@@ -6,7 +6,7 @@
 #    By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 14:21:14 by eholzer           #+#    #+#              #
-#    Updated: 2023/03/13 14:22:07 by eholzer          ###   ########.fr        #
+#    Updated: 2023/03/13 14:25:54 by eholzer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ OBJS_DIR	=	objects/
 OBJS		=	${addprefix ${OBJS_DIR}, ${OBJS_LIST}}
 
 CC			=	gcc
-CFLAGS		=	-Wall -Werror -Wextra -pthread
+CFLAGS		=	-Wall -Werror -Wextra
 
 all:			${NAME}
 
