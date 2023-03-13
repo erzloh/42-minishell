@@ -6,13 +6,14 @@
 #    By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 14:21:14 by eholzer           #+#    #+#              #
-#    Updated: 2023/03/13 14:39:43 by alesspal         ###   ########.fr        #
+#    Updated: 2023/03/13 17:00:24 by alesspal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	minishell
 
-SRCS_LIST	=	main.c
+SRCS_LIST	=	main.c \
+				signal.c
 SRCS_DIR	=	sources/
 SRCS		=	${addprefix ${SRCS_DIR}, ${SRCS_LIST}}
 
