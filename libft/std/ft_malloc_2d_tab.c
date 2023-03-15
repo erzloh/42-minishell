@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signal.c                                           :+:      :+:    :+:   */
+/*   ft_malloc_2d_tab.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 16:23:02 by alesspal          #+#    #+#             */
-/*   Updated: 2023/03/15 09:09:38 by alesspal         ###   ########.fr       */
+/*   Created: 2023/01/30 16:28:44 by alesspal          #+#    #+#             */
+/*   Updated: 2023/02/28 15:46:18 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "std.h"
 
-void	sig_handler(int signum)
+int	**ft_malloc_2d_tab(int row, int col)
 {
-	(void)signum;
-}
+	int	i;
+	int	**tab;
 
-int	init_signal(int signum, void(*handler)(int))
-{
-	struct sigaction sa;
-
-	sa.sa_handler = handler;
-	sigemptyset(&sa.sa_mask);
-	sa.sa_flags = SA_RESTART;
-	if (sigaction(signum, &sa, NULL) == -1)
+	tab = malloc(sizeof(int *) * row);
+	if (!tab)
+		return (NULL);
+	i = -1;
+	while (++i < row)
 	{
-		perror("sigaction");
-		return (-1);
+		tab[i] = malloc(sizeof(int) * col);
+		if (!tab[i])
+		{
+			ft_free_2d_tab(tab, 4);
+			return (NULL);
+		}			
 	}
-	return (0);
+	return (tab);
 }

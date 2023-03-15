@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signal.c                                           :+:      :+:    :+:   */
+/*   update_aff.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 16:23:02 by alesspal          #+#    #+#             */
-/*   Updated: 2023/03/15 09:09:38 by alesspal         ###   ########.fr       */
+/*   Created: 2022/10/18 12:45:13 by alesspal          #+#    #+#             */
+/*   Updated: 2022/11/18 15:07:57 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef UPDATE_AFF_H
+# define UPDATE_AFF_H
 
-void	sig_handler(int signum)
-{
-	(void)signum;
-}
+# include <stdarg.h>
+# include "format.h"
 
-int	init_signal(int signum, void(*handler)(int))
-{
-	struct sigaction sa;
+int	aff_decimal(va_list *ap, t_format format);
+int	aff_char(va_list *ap, t_format format);
+int	aff_hex(va_list *ap, int in_maj);
+int	aff_pointer(va_list *ap);
+int	update_aff(va_list *ap, t_format format);
 
-	sa.sa_handler = handler;
-	sigemptyset(&sa.sa_mask);
-	sa.sa_flags = SA_RESTART;
-	if (sigaction(signum, &sa, NULL) == -1)
-	{
-		perror("sigaction");
-		return (-1);
-	}
-	return (0);
-}
+#endif

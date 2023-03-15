@@ -6,7 +6,7 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:51:07 by alesspal          #+#    #+#             */
-/*   Updated: 2023/03/13 17:25:54 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/03/15 09:11:41 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,21 +16,23 @@ int	main()
 {
 	char	*input;
 
-	if (init_signal(SIGINT, sig_handler) || init_signal(SIGQUIT, SIG_IGN))
-		return (0);
-	if (isatty(STDIN_FILENO))
+	if (isatty(STDIN_FILENO)) // check if is interactive environment
 	{
 		while (1)
 		{
-			input = readline("$ "); // write "$ " and waits an input and read it 
-			if (input)
+			input = readline("$ "); // write "$ " and waits an input and read it
+			printf("input = %s\n", input);
+			if (!input)
+				break;
+			add_history(input); // function for retrieving written commands
+			// execute the command
+			if (strcmp(input, "exit") == 0) // temporaire juste pour pouvoir quitter le code sans faire ctrl + c
 			{
-				add_history(input); // function for retrieving written commands
-				// execute the command
+				exit(0);
 				free(input);
 			}
-			else
-				break ;
+			free(input);
+			rl_on_new_line();
 		}
 	}
 	return (0);

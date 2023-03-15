@@ -1,33 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signal.c                                           :+:      :+:    :+:   */
+/*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 16:23:02 by alesspal          #+#    #+#             */
-/*   Updated: 2023/03/15 09:09:38 by alesspal         ###   ########.fr       */
+/*   Created: 2022/09/29 10:18:33 by marvin            #+#    #+#             */
+/*   Updated: 2022/12/08 12:09:36 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "std.h"
 
-void	sig_handler(int signum)
+void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	(void)signum;
-}
+	char		*dest2;
+	const char	*src2;
 
-int	init_signal(int signum, void(*handler)(int))
-{
-	struct sigaction sa;
-
-	sa.sa_handler = handler;
-	sigemptyset(&sa.sa_mask);
-	sa.sa_flags = SA_RESTART;
-	if (sigaction(signum, &sa, NULL) == -1)
+	dest2 = dest;
+	src2 = src;
+	if (!dest2 && !src2)
+		return (NULL);
+	if (dest2 > src2)
 	{
-		perror("sigaction");
-		return (-1);
+		while (n > 0)
+		{
+			n--;
+			dest2[n] = src2[n];
+		}
 	}
-	return (0);
+	else if (dest2 < src2)
+	{
+		dest2 = ft_memcpy(dest2, src2, n);
+	}
+	return (dest);
 }

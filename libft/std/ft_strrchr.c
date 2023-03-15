@@ -1,33 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signal.c                                           :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 16:23:02 by alesspal          #+#    #+#             */
-/*   Updated: 2023/03/15 09:09:38 by alesspal         ###   ########.fr       */
+/*   Created: 2022/09/27 11:44:28 by marvin            #+#    #+#             */
+/*   Updated: 2022/12/08 12:10:14 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "std.h"
 
-void	sig_handler(int signum)
+char	*ft_strrchr(const char *str, int c)
 {
-	(void)signum;
-}
+	int		i;
+	int		last_occurrence;
+	char	chr;
 
-int	init_signal(int signum, void(*handler)(int))
-{
-	struct sigaction sa;
-
-	sa.sa_handler = handler;
-	sigemptyset(&sa.sa_mask);
-	sa.sa_flags = SA_RESTART;
-	if (sigaction(signum, &sa, NULL) == -1)
+	i = 0;
+	last_occurrence = -1;
+	chr = c;
+	while (str[i] != '\0')
 	{
-		perror("sigaction");
-		return (-1);
+		if (str[i] == chr)
+			last_occurrence = i;
+		i++;
 	}
-	return (0);
+	if (last_occurrence != -1)
+		return ((char *)str + last_occurrence);
+	if (chr == '\0')
+		return ((char *)str + i);
+	return (NULL);
 }

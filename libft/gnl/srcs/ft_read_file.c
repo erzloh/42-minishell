@@ -1,33 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signal.c                                           :+:      :+:    :+:   */
+/*   ft_read_file.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 16:23:02 by alesspal          #+#    #+#             */
-/*   Updated: 2023/03/15 09:09:38 by alesspal         ###   ########.fr       */
+/*   Created: 2023/02/20 11:38:20 by alesspal          #+#    #+#             */
+/*   Updated: 2023/02/28 15:44:40 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../incl/get_next_line.h"
+#include "../../std/std.h"
 
-void	sig_handler(int signum)
+char	*ft_read_file(int fd)
 {
-	(void)signum;
-}
+	char	*temp;
+	char	*line;
+	char	*file;
 
-int	init_signal(int signum, void(*handler)(int))
-{
-	struct sigaction sa;
-
-	sa.sa_handler = handler;
-	sigemptyset(&sa.sa_mask);
-	sa.sa_flags = SA_RESTART;
-	if (sigaction(signum, &sa, NULL) == -1)
+	file = NULL;
+	while (1)
 	{
-		perror("sigaction");
-		return (-1);
+		line = get_next_line(fd);
+		if (!line)
+			break ;
+		temp = ft_strjoin(file, line);
+		if (file)
+			free(file);
+		file = temp;
+		if (!file)
+		{
+			if (line)
+				free(line);
+			return (NULL);
+		}
+		if (line)
+			free(line);
 	}
-	return (0);
+	return (file);
 }

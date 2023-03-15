@@ -1,33 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signal.c                                           :+:      :+:    :+:   */
+/*   ft_display_2d_tab.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 16:23:02 by alesspal          #+#    #+#             */
-/*   Updated: 2023/03/15 09:09:38 by alesspal         ###   ########.fr       */
+/*   Created: 2023/02/10 12:46:27 by alesspal          #+#    #+#             */
+/*   Updated: 2023/02/28 15:46:03 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../ft_printf/incl/ft_printf.h"
 
-void	sig_handler(int signum)
+void	display_2d_tab(int **tab, int row, int col)
 {
-	(void)signum;
-}
+	int	i;
+	int	j;
 
-int	init_signal(int signum, void(*handler)(int))
-{
-	struct sigaction sa;
-
-	sa.sa_handler = handler;
-	sigemptyset(&sa.sa_mask);
-	sa.sa_flags = SA_RESTART;
-	if (sigaction(signum, &sa, NULL) == -1)
+	i = -1;
+	if (!tab || row < 1 || col < 1)
+		return ;
+	while (++i < row)
 	{
-		perror("sigaction");
-		return (-1);
+		j = -1;
+		while (++j < col)
+		{
+			ft_printf("%i", tab[i][j]);
+			if (j != col - 1)
+				ft_printf(", ");
+		}
+		ft_printf("\n");
 	}
-	return (0);
 }

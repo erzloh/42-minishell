@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signal.c                                           :+:      :+:    :+:   */
+/*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 16:23:02 by alesspal          #+#    #+#             */
-/*   Updated: 2023/03/15 09:09:38 by alesspal         ###   ########.fr       */
+/*   Created: 2022/09/28 11:13:41 by marvin            #+#    #+#             */
+/*   Updated: 2022/12/08 12:09:36 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "std.h"
 
-void	sig_handler(int signum)
+int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
-	(void)signum;
-}
+	size_t				i;
+	const unsigned char	*str1;
+	const unsigned char	*str2;
 
-int	init_signal(int signum, void(*handler)(int))
-{
-	struct sigaction sa;
-
-	sa.sa_handler = handler;
-	sigemptyset(&sa.sa_mask);
-	sa.sa_flags = SA_RESTART;
-	if (sigaction(signum, &sa, NULL) == -1)
-	{
-		perror("sigaction");
-		return (-1);
-	}
-	return (0);
+	i = 0;
+	str1 = (const unsigned char *)s1;
+	str2 = (const unsigned char *)s2;
+	while (i < n && str1[i] == str2[i])
+		i++;
+	if (i == n)
+		return (0);
+	return (str1[i] - str2[i]);
 }

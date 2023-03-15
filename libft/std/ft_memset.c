@@ -1,33 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signal.c                                           :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 16:23:02 by alesspal          #+#    #+#             */
-/*   Updated: 2023/03/15 09:09:38 by alesspal         ###   ########.fr       */
+/*   Created: 2022/09/27 22:29:25 by marvin            #+#    #+#             */
+/*   Updated: 2022/12/08 12:09:36 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "std.h"
 
-void	sig_handler(int signum)
+void	*ft_memset(void *str, int c, size_t n)
 {
-	(void)signum;
-}
+	size_t			i;
+	unsigned char	*dest;
 
-int	init_signal(int signum, void(*handler)(int))
-{
-	struct sigaction sa;
-
-	sa.sa_handler = handler;
-	sigemptyset(&sa.sa_mask);
-	sa.sa_flags = SA_RESTART;
-	if (sigaction(signum, &sa, NULL) == -1)
+	i = 0;
+	dest = (unsigned char *)str;
+	while (i < n)
 	{
-		perror("sigaction");
-		return (-1);
+		dest[i] = (unsigned char)c;
+		i++;
 	}
-	return (0);
+	return (str);
 }

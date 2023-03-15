@@ -1,33 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signal.c                                           :+:      :+:    :+:   */
+/*   convert_base.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 16:23:02 by alesspal          #+#    #+#             */
-/*   Updated: 2023/03/15 09:09:38 by alesspal         ###   ########.fr       */
+/*   Created: 2022/10/14 16:40:56 by alesspal          #+#    #+#             */
+/*   Updated: 2023/01/30 16:31:23 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef CONVERT_BASE_H
+# define CONVERT_BASE_H
 
-void	sig_handler(int signum)
-{
-	(void)signum;
-}
+# include "../../std/std.h"
 
-int	init_signal(int signum, void(*handler)(int))
-{
-	struct sigaction sa;
+char			*ft_itoh(int nb_to_convert, int in_maj);
+char			*ft_ultoh(unsigned long nb_to_convert, int in_maj);
+char			*ft_uitoa(unsigned int n);
 
-	sa.sa_handler = handler;
-	sigemptyset(&sa.sa_mask);
-	sa.sa_flags = SA_RESTART;
-	if (sigaction(signum, &sa, NULL) == -1)
-	{
-		perror("sigaction");
-		return (-1);
-	}
-	return (0);
-}
+#endif

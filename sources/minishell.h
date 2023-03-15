@@ -6,7 +6,7 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:28:45 by alesspal          #+#    #+#             */
-/*   Updated: 2023/03/13 17:05:52 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/03/15 09:11:41 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,4 @@
 
 // signal managemenent
 void	sig_handler(int sig);
-void	sigquit_handler(int sig);
-void	sigtest_handler(int sig);
 int		init_signal(int signum, void(*handler)(int));

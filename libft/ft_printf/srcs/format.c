@@ -1,33 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signal.c                                           :+:      :+:    :+:   */
+/*   format.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 16:23:02 by alesspal          #+#    #+#             */
-/*   Updated: 2023/03/15 09:09:38 by alesspal         ###   ########.fr       */
+/*   Created: 2022/10/13 11:38:10 by alesspal          #+#    #+#             */
+/*   Updated: 2022/11/18 15:27:18 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../incl/format.h"
 
-void	sig_handler(int signum)
+t_format	get_format(char c)
 {
-	(void)signum;
-}
-
-int	init_signal(int signum, void(*handler)(int))
-{
-	struct sigaction sa;
-
-	sa.sa_handler = handler;
-	sigemptyset(&sa.sa_mask);
-	sa.sa_flags = SA_RESTART;
-	if (sigaction(signum, &sa, NULL) == -1)
-	{
-		perror("sigaction");
-		return (-1);
-	}
-	return (0);
+	if (c == 'c')
+		return (T_CHAR);
+	if (c == 's')
+		return (T_STR);
+	if (c == 'p')
+		return (T_POINTER);
+	if (c == 'd')
+		return (T_DECIMAL);
+	if (c == 'i')
+		return (T_INT);
+	if (c == 'u')
+		return (T_UINT);
+	if (c == 'x')
+		return (T_HEX_MIN);
+	if (c == 'X')
+		return (T_HEX_MAJ);
+	if (c == '%')
+		return (T_PERCENT);
+	return (T_UNDEFINED);
 }

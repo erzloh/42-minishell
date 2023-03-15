@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signal.c                                           :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 16:23:02 by alesspal          #+#    #+#             */
-/*   Updated: 2023/03/15 09:09:38 by alesspal         ###   ########.fr       */
+/*   Created: 2022/09/27 11:14:48 by marvin            #+#    #+#             */
+/*   Updated: 2022/12/08 12:10:01 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "std.h"
 
-void	sig_handler(int signum)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	(void)signum;
-}
+	unsigned int	i;
+	unsigned int	len_s;
+	char			*str;
 
-int	init_signal(int signum, void(*handler)(int))
-{
-	struct sigaction sa;
-
-	sa.sa_handler = handler;
-	sigemptyset(&sa.sa_mask);
-	sa.sa_flags = SA_RESTART;
-	if (sigaction(signum, &sa, NULL) == -1)
-	{
-		perror("sigaction");
-		return (-1);
-	}
-	return (0);
+	if (!s)
+		return (NULL);
+	len_s = ft_strlen(s);
+	str = malloc((len_s + 1) * sizeof(char));
+	if (!str)
+		return (NULL);
+	i = -1;
+	while (++i < len_s)
+		str[i] = f(i, s[i]);
+	str[i] = '\0';
+	return (str);
 }

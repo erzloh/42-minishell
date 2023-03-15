@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   signal.c                                           :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 16:23:02 by alesspal          #+#    #+#             */
-/*   Updated: 2023/03/15 09:09:38 by alesspal         ###   ########.fr       */
+/*   Created: 2022/09/27 09:43:11 by marvin            #+#    #+#             */
+/*   Updated: 2022/12/08 12:10:01 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "std.h"
 
-void	sig_handler(int signum)
+size_t	ft_strlcpy(char *dest, const char *src, size_t size)
 {
-	(void)signum;
-}
+	size_t	i;
+	size_t	len_src;
 
-int	init_signal(int signum, void(*handler)(int))
-{
-	struct sigaction sa;
-
-	sa.sa_handler = handler;
-	sigemptyset(&sa.sa_mask);
-	sa.sa_flags = SA_RESTART;
-	if (sigaction(signum, &sa, NULL) == -1)
+	i = 0;
+	len_src = ft_strlen(src);
+	if (!dest || !src)
+		return (0);
+	while (i < len_src && i + 1 < size)
 	{
-		perror("sigaction");
-		return (-1);
+		dest[i] = src[i];
+		i++;
 	}
-	return (0);
+	if (i < size)
+		dest[i] = '\0';
+	return (len_src);
 }

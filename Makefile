@@ -6,23 +6,26 @@
 #    By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 14:21:14 by eholzer           #+#    #+#              #
-#    Updated: 2023/03/13 17:00:24 by alesspal         ###   ########.fr        #
+#    Updated: 2023/03/15 15:15:55 by alesspal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	minishell
 
-SRCS_LIST	=	main.c \
-				signal.c
-SRCS_DIR	=	sources/
-SRCS		=	${addprefix ${SRCS_DIR}, ${SRCS_LIST}}
-
-OBJS_LIST	=	${SRCS_LIST:.c=.o}
-OBJS_DIR	=	objects/
-OBJS		=	${addprefix ${OBJS_DIR}, ${OBJS_LIST}}
-
 CC			=	gcc
 CFLAGS		=	-Wall -Werror -Wextra
+
+SRCS_DIR	=	sources/
+OBJS_DIR	=	objects/
+
+SRCS_LIST	=	main.c \
+				signal.c
+
+#SRCS		=	${addprefix ${SRCS_DIR}, ${SRCS_LIST}}
+
+OBJS_LIST	=	${SRCS_LIST:.c=.o}
+
+OBJS		=	${addprefix ${OBJS_DIR}, ${OBJS_LIST}}
 
 all:			${NAME}
 
