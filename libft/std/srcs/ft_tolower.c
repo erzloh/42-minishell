@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/13 11:00:17 by alesspal          #+#    #+#             */
-/*   Updated: 2023/03/16 17:12:39 by alesspal         ###   ########.fr       */
+/*   Created: 2022/09/25 18:07:54 by marvin            #+#    #+#             */
+/*   Updated: 2023/03/16 17:02:58 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "../incl/std.h"
 
-# include "../../std/incl/std.h"
-
-int	nb_of_arg_asked(const char *str);
-int	ft_printf(const char *str, ...);
-
-#endif
+int	ft_tolower(int c)
+{
+	if (c >= 'A' && c <= 'Z')
+		return (c + 32);
+	return (c);
+}

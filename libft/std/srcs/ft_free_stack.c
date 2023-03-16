@@ -1,21 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_free_stack.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/13 11:00:17 by alesspal          #+#    #+#             */
-/*   Updated: 2023/03/16 17:12:39 by alesspal         ###   ########.fr       */
+/*   Created: 2023/01/16 10:07:39 by alesspal          #+#    #+#             */
+/*   Updated: 2023/03/16 17:02:58 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "../incl/std.h"
 
-# include "../../std/incl/std.h"
-
-int	nb_of_arg_asked(const char *str);
-int	ft_printf(const char *str, ...);
-
-#endif
+void	free_stack(t_stack *to_freed)
+{
+	if (!to_freed)
+		return ;
+	if (to_freed->tab)
+		free(to_freed->tab);
+	free(to_freed);
+}

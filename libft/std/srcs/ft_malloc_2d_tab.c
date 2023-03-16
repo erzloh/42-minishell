@@ -1,21 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_malloc_2d_tab.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/13 11:00:17 by alesspal          #+#    #+#             */
-/*   Updated: 2023/03/16 17:12:39 by alesspal         ###   ########.fr       */
+/*   Created: 2023/01/30 16:28:44 by alesspal          #+#    #+#             */
+/*   Updated: 2023/03/16 17:02:58 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "../incl/std.h"
 
-# include "../../std/incl/std.h"
+int	**ft_malloc_2d_tab(int row, int col)
+{
+	int	i;
+	int	**tab;
 
-int	nb_of_arg_asked(const char *str);
-int	ft_printf(const char *str, ...);
-
-#endif
+	tab = malloc(sizeof(int *) * row);
+	if (!tab)
+		return (NULL);
+	i = -1;
+	while (++i < row)
+	{
+		tab[i] = malloc(sizeof(int) * col);
+		if (!tab[i])
+		{
+			ft_free_2d_tab(tab, 4);
+			return (NULL);
+		}			
+	}
+	return (tab);
+}

@@ -1,21 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/13 11:00:17 by alesspal          #+#    #+#             */
-/*   Updated: 2023/03/16 17:12:39 by alesspal         ###   ########.fr       */
+/*   Created: 2022/10/04 14:36:07 by marvin            #+#    #+#             */
+/*   Updated: 2023/03/16 17:02:58 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "../incl/std.h"
 
-# include "../../std/incl/std.h"
+t_list	*ft_lstnew(void *content)
+{
+	t_list	*lst;
 
-int	nb_of_arg_asked(const char *str);
-int	ft_printf(const char *str, ...);
-
-#endif
+	lst = malloc(sizeof(t_list));
+	if (!lst)
+		return (NULL);
+	lst->content = content;
+	lst->next = NULL;
+	return (lst);
+}

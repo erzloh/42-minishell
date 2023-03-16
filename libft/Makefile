@@ -6,7 +6,7 @@
 #    By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/22 19:07:10 by apalumbi          #+#    #+#              #
-#    Updated: 2023/03/15 16:00:16 by alesspal         ###   ########.fr        #
+#    Updated: 2023/03/16 17:19:20 by alesspal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,9 @@ STD_DIR			=	std
 GNL_DIR			=	gnl
 FT_PRINTF_DIR	=	ft_printf
 SRCS_DIR		=	srcs
-SRCS_GNL_DIR	=	$(SRCS_DIR)/$(GNL_DIR)
-SRCS_FT_PRINTF_DIR	=	$(SRCS_DIR)/$(FT_PRINTF_DIR)
+SRCS_STD_DIR	=	$(STD_DIR)/$(SRCS)
+SRCS_GNL_DIR	=	$(GNL_DIR)/$(SRCS_DIR)
+SRCS_FT_PRINTF_DIR	=	$(FT_PRINTF_DIR)/$(SRCS_DIR)
 INCL_DIR		=	incl
 OBJS_DIR		=	objs
 
@@ -96,12 +97,31 @@ OBJS			=	$(addprefix $(OBJS_DIR)/,$(OBJS_LIST))
 all: $(NAME)
 
 ${OBJS_DIR}:
-				mkdir -p $(OBJS_DIR)
+	mkdir -p $(OBJS_DIR)
 
-${OBJS_DIR}%.o: $(STD_DIR)%.c $(SRCS_GNL_DIR)%.c $(SRCS_FT_PRINTF_DIR)%.c | $(OBJS_DIR)
-				$(CC) $(CFLAGS) -c $^ -o $@
+${OBJS_DIR}/%.o: $(SRCS_STD_DIR)/%.c | $(OBJS_DIR)
+	$(CC) $(CFLAGS) -I $(STD_DIR)/$(INCL_DIR) -I . -c $< -o $@
 
-${NAME}: $(OBJS) | $(OBJS_DIR)
+${OBJS_DIR}/%.o: $(SRCS_GNL_DIR)/%.c | $(OBJS_DIR)
+	$(CC) $(CFLAGS) -I $(GNL_DIR)/$(INCL_DIR) -I . -c $< -o $@
+
+${OBJS_DIR}/%.o: $(SRCS_FT_PRINTF_DIR)/%.c | $(OBJS_DIR)
+	$(CC) $(CFLAGS) -I $(FT_PRINTF_DIR)/$(INCL_DIR) -I . -c $< -o $@
+
+STD_OBJS = $(addprefix $(OBJS_DIR)/, $(SRCS_STD:.c=.o))
+GNL_OBJS = $(addprefix $(OBJS_DIR)/, $(SRCS_GNL:.c=.o))
+FT_PRINTF_OBJS = $(addprefix $(OBJS_DIR)/, $(SRCS_FT_PRINTF:.c=.o))
+
+$(STD_OBJS): $(OBJS_DIR)/%.o: $(STD_DIR)/$(SRCS_DIR)/%.c | $(OBJS_DIR)
+	$(CC) $(CFLAGS) -I $(STD_DIR)/$(INCL_DIR) -I . -c $< -o $@
+
+$(GNL_OBJS): $(OBJS_DIR)/%.o: $(SRCS_GNL_DIR)/%.c | $(OBJS_DIR)
+	$(CC) $(CFLAGS) -I $(GNL_DIR)/$(INCL_DIR) -I . -c $< -o $@
+
+$(FT_PRINTF_OBJS): $(OBJS_DIR)/%.o: $(SRCS_FT_PRINTF_DIR)/%.c | $(OBJS_DIR)
+	$(CC) $(CFLAGS) -I $(FT_PRINTF_DIR)/$(INCL_DIR) -I . -c $< -o $@
+
+${NAME}: $(STD_OBJS) $(GNL_OBJS) $(FT_PRINTF_OBJS) | $(OBJS_DIR)
 	ar rcs $(NAME) $(OBJS)
 
 clean:
@@ -111,3 +131,5 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
+.PHONY:			all clean fclean re

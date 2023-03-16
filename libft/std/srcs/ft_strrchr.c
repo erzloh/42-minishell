@@ -1,21 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/13 11:00:17 by alesspal          #+#    #+#             */
-/*   Updated: 2023/03/16 17:12:39 by alesspal         ###   ########.fr       */
+/*   Created: 2022/09/27 11:44:28 by marvin            #+#    #+#             */
+/*   Updated: 2023/03/16 17:02:58 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "../incl/std.h"
 
-# include "../../std/incl/std.h"
+char	*ft_strrchr(const char *str, int c)
+{
+	int		i;
+	int		last_occurrence;
+	char	chr;
 
-int	nb_of_arg_asked(const char *str);
-int	ft_printf(const char *str, ...);
-
-#endif
+	i = 0;
+	last_occurrence = -1;
+	chr = c;
+	while (str[i] != '\0')
+	{
+		if (str[i] == chr)
+			last_occurrence = i;
+		i++;
+	}
+	if (last_occurrence != -1)
+		return ((char *)str + last_occurrence);
+	if (chr == '\0')
+		return ((char *)str + i);
+	return (NULL);
+}

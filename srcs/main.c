@@ -1,42 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_read_file.c                                     :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/20 11:38:20 by alesspal          #+#    #+#             */
-/*   Updated: 2023/03/16 17:13:00 by alesspal         ###   ########.fr       */
+/*   Created: 2023/03/13 13:51:07 by alesspal          #+#    #+#             */
+/*   Updated: 2023/03/16 13:17:17 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/get_next_line.h"
-# include "../../std/incl/std.h"
+#include "minishell.h"
 
-char	*ft_read_file(int fd)
+int	main()
 {
-	char	*temp;
-	char	*line;
-	char	*file;
+	char	*input;
 
-	file = NULL;
-	while (1)
+	if (isatty(STDIN_FILENO))				// check if is interactive environment
 	{
-		line = get_next_line(fd);
-		if (!line)
-			break ;
-		temp = ft_strjoin(file, line);
-		if (file)
-			free(file);
-		file = temp;
-		if (!file)
+		while (1)
 		{
-			if (line)
-				free(line);
-			return (NULL);
+			input = readline("$ ");			// write "$ " and waits an input and read it
+			if (!input)
+				break;
+			add_history(input);				// function for retrieving written commands
+			execute_cmd(input);				// execute the command
+			free(input);
+			rl_on_new_line();
 		}
-		if (line)
-			free(line);
 	}
-	return (file);
+	return (0);
 }
