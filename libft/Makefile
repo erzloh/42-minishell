@@ -6,7 +6,7 @@
 #    By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/22 19:07:10 by apalumbi          #+#    #+#              #
-#    Updated: 2023/03/16 17:19:20 by alesspal         ###   ########.fr        #
+#    Updated: 2023/03/16 18:06:15 by alesspal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,69 +19,67 @@ STD_DIR			=	std
 GNL_DIR			=	gnl
 FT_PRINTF_DIR	=	ft_printf
 SRCS_DIR		=	srcs
-SRCS_STD_DIR	=	$(STD_DIR)/$(SRCS)
+SRCS_STD_DIR	=	$(STD_DIR)/$(SRCS_DIR)
 SRCS_GNL_DIR	=	$(GNL_DIR)/$(SRCS_DIR)
 SRCS_FT_PRINTF_DIR	=	$(FT_PRINTF_DIR)/$(SRCS_DIR)
 INCL_DIR		=	incl
 OBJS_DIR		=	objs
 
-INCL			=	libft.h
+SRCS_STD		=	ft_memset.c \
+					ft_bzero.c \
+					ft_memcpy.c \
+					ft_memmove.c \
+					ft_memchr.c \
+					ft_memcmp.c \
+					ft_strlen.c \
+					ft_strlcpy.c \
+					ft_strlcat.c \
+					ft_strchr.c \
+					ft_strrchr.c \
+					ft_strnstr.c \
+					ft_strncmp.c \
+					ft_atoi.c \
+					ft_isalpha.c \
+					ft_isdigit.c \
+					ft_isalnum.c \
+					ft_isascii.c \
+					ft_isprint.c \
+					ft_toupper.c \
+					ft_tolower.c \
+					ft_calloc.c \
+					ft_strdup.c \
+					ft_substr.c \
+					ft_strjoin.c \
+					ft_strtrim.c \
+					ft_split.c \
+					ft_itoa.c \
+					ft_strmapi.c \
+					ft_putchar_fd.c \
+					ft_putstr_fd.c \
+					ft_putendl_fd.c \
+					ft_putnbr_fd.c \
+					ft_striteri.c \
+					ft_lstnew_bonus.c \
+					ft_lstadd_front_bonus.c \
+					ft_lstsize_bonus.c \
+					ft_lstlast_bonus.c \
+					ft_lstadd_back_bonus.c \
+					ft_lstdelone_bonus.c \
+					ft_lstclear_bonus.c \
+					ft_lstiter_bonus.c \
+					ft_lstmap_bonus.c \
+					ft_malloc_2d_tab.c \
+					ft_free_2d_tab.c \
+					ft_display_2d_tab.c \
+					ft_add_element_to_stack.c \
+					ft_malloc_stack.c \
+					ft_free_stack.c
 
-SRCS_STD	=	ft_memset.c \
-				ft_bzero.c \
-				ft_memcpy.c \
-				ft_memmove.c \
-				ft_memchr.c \
-				ft_memcmp.c \
-				ft_strlen.c \
-				ft_strlcpy.c \
-				ft_strlcat.c \
-				ft_strchr.c \
-				ft_strrchr.c \
-				ft_strnstr.c \
-				ft_strncmp.c \
-				ft_atoi.c \
-				ft_isalpha.c \
-				ft_isdigit.c \
-				ft_isalnum.c \
-				ft_isascii.c \
-				ft_isprint.c \
-				ft_toupper.c \
-				ft_tolower.c \
-				ft_calloc.c \
-				ft_strdup.c \
-				ft_substr.c \
-				ft_strjoin.c \
-				ft_strtrim.c \
-				ft_split.c \
-				ft_itoa.c \
-				ft_strmapi.c \
-				ft_putchar_fd.c \
-				ft_putstr_fd.c \
-				ft_putendl_fd.c \
-				ft_putnbr_fd.c \
-				ft_striteri.c \
-				ft_lstnew_bonus.c \
-				ft_lstadd_front_bonus.c \
-				ft_lstsize_bonus.c \
-				ft_lstlast_bonus.c \
-				ft_lstadd_back_bonus.c \
-				ft_lstdelone_bonus.c \
-				ft_lstclear_bonus.c \
-				ft_lstiter_bonus.c \
-				ft_lstmap_bonus.c \
-				ft_malloc_2d_tab.c \
-				ft_free_2d_tab.c \
-				ft_display_2d_tab.c \
-				ft_add_element_to_stack.c \
-				ft_malloc_stack.c \
-				ft_free_stack.c
-
-SRCS_GNL	=	get_next_line.c \
-				get_next_line_utils.c \
-				get_next_line_bonus.c \
-				get_next_line_utils_bonus.c \
-				ft_read_file.c
+SRCS_GNL		=	get_next_line.c \
+					get_next_line_utils.c \
+					get_next_line_bonus.c \
+					get_next_line_utils_bonus.c \
+					ft_read_file.c
 
 SRCS_FT_PRINTF	=	format.c \
 					ft_itoh.c \
@@ -94,34 +92,18 @@ SRCS_FT_PRINTF	=	format.c \
 OBJS_LIST		=	$(SRCS_STD:.c=.o) $(SRCS_GNL:.c=.o) $(SRCS_FT_PRINTF:.c=.o)
 OBJS			=	$(addprefix $(OBJS_DIR)/,$(OBJS_LIST))
 
+INCL_DIRS		= -I $(STD_DIR)/$(INCL_DIR) -I $(GNL_DIR)/$(INCL_DIR) -I $(FT_PRINTF_DIR)/$(INCL_DIR) -I .
+VPATH			= $(SRCS_STD_DIR):$(SRCS_GNL_DIR):$(SRCS_FT_PRINTF_DIR)
+
 all: $(NAME)
 
-${OBJS_DIR}:
+$(OBJS_DIR):
 	mkdir -p $(OBJS_DIR)
 
-${OBJS_DIR}/%.o: $(SRCS_STD_DIR)/%.c | $(OBJS_DIR)
-	$(CC) $(CFLAGS) -I $(STD_DIR)/$(INCL_DIR) -I . -c $< -o $@
+$(OBJS_DIR)/%.o: %.c | $(OBJS_DIR)
+	$(CC) $(CFLAGS) $(INCL_DIRS) -c $< -o $@
 
-${OBJS_DIR}/%.o: $(SRCS_GNL_DIR)/%.c | $(OBJS_DIR)
-	$(CC) $(CFLAGS) -I $(GNL_DIR)/$(INCL_DIR) -I . -c $< -o $@
-
-${OBJS_DIR}/%.o: $(SRCS_FT_PRINTF_DIR)/%.c | $(OBJS_DIR)
-	$(CC) $(CFLAGS) -I $(FT_PRINTF_DIR)/$(INCL_DIR) -I . -c $< -o $@
-
-STD_OBJS = $(addprefix $(OBJS_DIR)/, $(SRCS_STD:.c=.o))
-GNL_OBJS = $(addprefix $(OBJS_DIR)/, $(SRCS_GNL:.c=.o))
-FT_PRINTF_OBJS = $(addprefix $(OBJS_DIR)/, $(SRCS_FT_PRINTF:.c=.o))
-
-$(STD_OBJS): $(OBJS_DIR)/%.o: $(STD_DIR)/$(SRCS_DIR)/%.c | $(OBJS_DIR)
-	$(CC) $(CFLAGS) -I $(STD_DIR)/$(INCL_DIR) -I . -c $< -o $@
-
-$(GNL_OBJS): $(OBJS_DIR)/%.o: $(SRCS_GNL_DIR)/%.c | $(OBJS_DIR)
-	$(CC) $(CFLAGS) -I $(GNL_DIR)/$(INCL_DIR) -I . -c $< -o $@
-
-$(FT_PRINTF_OBJS): $(OBJS_DIR)/%.o: $(SRCS_FT_PRINTF_DIR)/%.c | $(OBJS_DIR)
-	$(CC) $(CFLAGS) -I $(FT_PRINTF_DIR)/$(INCL_DIR) -I . -c $< -o $@
-
-${NAME}: $(STD_OBJS) $(GNL_OBJS) $(FT_PRINTF_OBJS) | $(OBJS_DIR)
+$(NAME): $(OBJS)
 	ar rcs $(NAME) $(OBJS)
 
 clean:
@@ -132,4 +114,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY:			all clean fclean re
+.PHONY: all clean fclean re
