@@ -6,7 +6,7 @@
 #    By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/22 19:07:10 by apalumbi          #+#    #+#              #
-#    Updated: 2023/03/16 18:06:15 by alesspal         ###   ########.fr        #
+#    Updated: 2023/03/17 18:30:36 by alesspal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,12 +44,15 @@ SRCS_STD		=	ft_memset.c \
 					ft_isalnum.c \
 					ft_isascii.c \
 					ft_isprint.c \
+					ft_is_white_space.c \
 					ft_toupper.c \
 					ft_tolower.c \
 					ft_calloc.c \
 					ft_strdup.c \
+					ft_strndup.c \
 					ft_substr.c \
 					ft_strjoin.c \
+					ft_strjoin3.c \
 					ft_strtrim.c \
 					ft_split.c \
 					ft_itoa.c \

@@ -6,7 +6,7 @@
 #    By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 14:21:14 by eholzer           #+#    #+#              #
-#    Updated: 2023/03/16 17:34:06 by alesspal         ###   ########.fr        #
+#    Updated: 2023/03/17 10:16:50 by alesspal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRCS_LIST	=	main.c \
 				signal.c \
 				executor.c \
 				parse.c \
+				env.c \
 
 OBJS_LIST	=	${SRCS_LIST:.c=.o}
 

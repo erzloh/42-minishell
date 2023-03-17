@@ -6,7 +6,7 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:28:45 by alesspal          #+#    #+#             */
-/*   Updated: 2023/03/16 17:15:01 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/03/17 17:19:04 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,19 +44,23 @@ typedef struct s_token
 } t_token;
 
 // laxer
-t_token	laxing_cmd(char *input);
+t_token	ft_laxing_cmd(char *input);
 
 // expender
-t_token	expend_cmd(t_token token);
+t_token	ft_expend_cmd(t_token token);
 
 // executor
-void	execute_cmd(char *input);
+void	ft_execute_cmd(char *input);
 
-// cmd
-// ...
-// ...
-
+// env
+int		ft_is_dollar(int c);
+int		ft_setenv(const char *name, const char *value);
+int		ft_unsetenv( char *name);
+char	*ft_getenv(char *name);
+void	ft_get_all_env();
+char	*ft_findenv(const char *input);
+int my_setenv(const char *name, const char *value, int overwrite);
 // signal managemenent
-void	sigINGORE_handler(int sig);
-void	sigINT_handler(int signum);
-int		init_signal(int signum, void(*handler)(int));
+void	ft_sigINGORE_handler(int sig);
+void	ft_sigINT_handler(int signum);
+int		ft_init_signal(int signum, void(*handler)(int));

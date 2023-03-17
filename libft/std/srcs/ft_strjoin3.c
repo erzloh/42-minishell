@@ -1,41 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin3.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/26 10:43:58 by marvin            #+#    #+#             */
-/*   Updated: 2023/03/17 18:10:13 by alesspal         ###   ########.fr       */
+/*   Created: 2023/03/17 18:27:38 by alesspal          #+#    #+#             */
+/*   Updated: 2023/03/17 18:30:58 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/std.h"
 
-char	*ft_strjoin(const char *s1, const char *s2)
+char	*ft_strjoin3(const char *s1, const char *s2, const char *s3)
 {
-	int		i;
-	int		len_s1;
-	int		len_s2;
-	char	*str;
+	char	*result;
+	size_t	len1;
+	size_t	len2;
+	size_t	len3;
 
-	if (!s2)
+	if (!s1 || !s2 || !s3)
 		return (NULL);
-	if (s1)
-		len_s1 = ft_strlen(s1);
-	else
-		len_s1 = 0;
-	len_s2 = ft_strlen(s2);
-	str = malloc((len_s1 + len_s2 + 1) * sizeof(char));
-	if (!str)
+	len1 = ft_strlen(s1);
+	len2 = ft_strlen(s2);
+	len3 = ft_strlen(s3);
+	result = malloc(sizeof(char) * (len1 + len2 + len3 + 1));
+	if (!result)
 		return (NULL);
-	i = -1;
-	if (s1)
-		while (++i < len_s1)
-			str[i] = s1[i];
-	i = -1;
-	while (++i < len_s2)
-		str[len_s1 + i] = s2[i];
-	str[len_s1 + len_s2] = '\0';
-	return (str);
+	ft_memcpy(result, s1, len1);
+	ft_memcpy(result + len1, s2, len2);
+	ft_memcpy(result + len1 + len2, s3, len3);
+	result[len1 + len2 + len3] = '\0';
+	return result;
 }
