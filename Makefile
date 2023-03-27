@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+         #
+#    By: eric <eric@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 14:21:14 by eholzer           #+#    #+#              #
-#    Updated: 2023/03/16 17:34:06 by alesspal         ###   ########.fr        #
+#    Updated: 2023/03/17 14:31:36 by eric             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,9 +21,9 @@ SRCS_DIR	=	srcs/
 OBJS_DIR	=	objs/
 
 SRCS_LIST	=	main.c \
-				signal.c \
-				executor.c \
-				parse.c \
+				# signal.c \
+				# executor.c \
+				# parse.c \
 
 OBJS_LIST	=	${SRCS_LIST:.c=.o}
 
