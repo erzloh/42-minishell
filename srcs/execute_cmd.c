@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ls.c                                               :+:      :+:    :+:   */
+/*   execute_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eric <eric@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:44:30 by eric              #+#    #+#             */
-/*   Updated: 2023/03/27 21:36:01 by eric             ###   ########.fr       */
+/*   Updated: 2023/03/28 15:44:35 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 // Takes an array of a command with its potential flags and arguments and
 // execute it. The command must be written with its full path.
-int	execute_cmd(char **cmd)
+int	execute_cmd(char **cmd_arr)
 {
 	int	pid;
 
 	pid = fork();
-	if (pid == -1)
+	if (pid < 0)
 		return (1);
 	if (pid == 0)
 	{
-		if (execve(cmd[0], cmd, NULL) == -1)
+		if (execve(cmd_arr[0], cmd_arr, NULL) == -1)
 		{
 			perror("Error with execve()");
 			return (-1);
@@ -39,8 +39,8 @@ int	execute_cmd(char **cmd)
 
 // int main()
 // {
-// 	char *cmd[] = {"/bin/ls", "-l", NULL};
+// 	char *cmd_arr[] = {"/bin/ls", "-l", NULL};
 
-// 	execute_cmd(cmd);
+// 	execute_cmd(cmd_arr);
 // 	return 0;
 // }
