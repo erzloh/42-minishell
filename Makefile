@@ -6,7 +6,7 @@
 #    By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 14:21:14 by eholzer           #+#    #+#              #
-#    Updated: 2023/03/16 17:34:06 by alesspal         ###   ########.fr        #
+#    Updated: 2023/03/29 10:22:34 by alesspal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,9 +21,7 @@ SRCS_DIR	=	srcs/
 OBJS_DIR	=	objs/
 
 SRCS_LIST	=	main.c \
-				signal.c \
-				executor.c \
-				parse.c \
+				token_utils.c
 
 OBJS_LIST	=	${SRCS_LIST:.c=.o}
 
@@ -35,7 +33,7 @@ ${OBJS_DIR}:
 				mkdir ${OBJS_DIR}
 
 ${OBJS_DIR}%.o: ${SRCS_DIR}%.c
-				${CC} ${CFLAGS} -c $^ -o $@
+				${CC} ${CFLAGS} -Iincl/ -c $^ -o $@
 
 ${NAME}:		${OBJS_DIR} ${OBJS}
 				${CC} ${CFLAGS} ${OBJS} -Llibft -lft -lreadline -o ${NAME}

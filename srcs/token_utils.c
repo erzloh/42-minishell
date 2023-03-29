@@ -1,32 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   token_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 13:51:07 by alesspal          #+#    #+#             */
-/*   Updated: 2023/03/29 10:23:48 by alesspal         ###   ########.fr       */
+/*   Created: 2023/03/29 10:16:46 by alesspal          #+#    #+#             */
+/*   Updated: 2023/03/29 10:23:09 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/minishell.h"
+#include "../incl/tokenizer.h"
 
-int	main()
+void	ft_free_token(t_token *token)
 {
-	char	*input;
+	t_token	*next;
 
-	if (isatty(STDIN_FILENO))				// check if is interactive environment
+	while (token)
 	{
-		while (1)
-		{
-			input = readline("$ ");			// write "$ " and waits an input and read it
-			if (!input)
-				break;
-			add_history(input);				// function for retrieving written commands
-			free(input);
-			rl_on_new_line();
-		}
+		next = token->next;
+		if (token->arg)
+			free(token->arg);
+		free(token);
+		token = next;
 	}
-	return (0);
+}
+
+
+void	ft_display_token(t_token *token)
+{
+	int	i;
+
+	i = -1;
+	while (token)
+	{
+		i++;
+		ft_printf("token %i :\n", i);
+		ft_printf("cmd = %i\n", token->cmd);
+		ft_printf("arg = %s\n", token->arg);
+		token = token->next;
+	}
 }

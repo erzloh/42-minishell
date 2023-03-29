@@ -6,9 +6,12 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:28:45 by alesspal          #+#    #+#             */
-/*   Updated: 2023/03/16 18:17:38 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/03/29 10:23:56 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef MINISHELL_H
+# define MINISHELL_H
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -19,3 +22,5 @@
 #include <signal.h>
 #include <unistd.h>
 #include "../libft/libft.h"
+
+#endif
