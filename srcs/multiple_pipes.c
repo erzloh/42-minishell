@@ -6,7 +6,7 @@
 /*   By: eric <eric@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 13:12:40 by eric              #+#    #+#             */
-/*   Updated: 2023/04/04 11:57:03 by eric             ###   ########.fr       */
+/*   Updated: 2023/04/06 20:16:36 by eric             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,23 +181,11 @@ int	multiple_pipe(char ***cmd_arr_arr)
 
 int	main()
 {
-	char *cmd1_arr[] = {"/bin/echo", "-z", NULL};
-	// char *cmd2_arr[] = {"/bin/pwd", "-a", NULL};
+	char *cmd1_arr[] = {"/bin/echo", "-z", "hello", NULL};
 	// char *cmd2_arr[] = {"/usr/bin/grep", "pipe", NULL};
-	// char *cmd3_arr[] = {"/usr/bin/wc", NULL};
+	// char *cmd3_arr[] = {"/usr/bin/wc", "-l", NULL};
 	// char **cmd_arr_arr[] = { cmd1_arr, cmd2_arr, cmd3_arr };
 	char **cmd_arr_arr[] = { cmd1_arr };
-	// char **cmd2_arr_arr[] = { cmd2_arr };
-
-	t_token token1;
-	t_token token2;
-
-	token1.cmd = LS;
-	token1.arg = "-l";
-	token1.next = &token2;
-	token2.cmd = WC;
-	token2.arg = NULL;
-	token2.next = NULL;
 
 	multiple_pipe(cmd_arr_arr);
 	// multiple_pipe(cmd2_arr_arr);

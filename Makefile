@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: eric <eric@student.42.fr>                  +#+  +:+       +#+         #
+#    By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 14:21:14 by eholzer           #+#    #+#              #
-#    Updated: 2023/03/17 14:31:36 by eric             ###   ########.fr        #
+#    Updated: 2023/04/06 11:18:52 by eholzer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,9 @@ LIBFT		=	libft.a
 SRCS_DIR	=	srcs/
 OBJS_DIR	=	objs/
 
-SRCS_LIST	=	main.c \
+SRCS_LIST	=	execution_42.c
+				# multiple_pipes.c
+				# main.c \
 				# signal.c \
 				# executor.c \
 				# parse.c \
