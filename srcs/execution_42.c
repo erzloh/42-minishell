@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 13:12:40 by eric              #+#    #+#             */
-/*   Updated: 2023/04/06 12:48:51 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/04/06 15:55:56 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	print_error(char *err_msg, int ret_val)
 
 // Compare two strings. Return 0 if they're the same.
 // Return -1 if one or both of the args are NULL.
-int	is_equal(const char s1*, const char *s2)
+int	is_equal(const char *s1, const char *s2)
 {
 	size_t	i;
 
@@ -140,21 +140,50 @@ int	get_cmds_nb(t_token *token)
 // }
 
 
-
-// char	**split_echo_n_flag(char *arg)
-// {
-	
-// }
-
 // Get the path of the given command
-char *get_cmd_path(char *cmd)
+char	*get_cmd_path(char *cmd)
 {
 	if (is_equal(cmd, "pwd") == 1)
 		return (ft_strdup("/bin/pwd"));
+	else if (is_equal(cmd, "echo") == 1)
+		return (ft_strdup("/bin/echo"));
+	else if (is_equal(cmd, "ls") == 1)
+		return (ft_strdup("/bin/ls"));
+	else if (is_equal(cmd, "wc") == 1)
+		return (ft_strdup("/usr/bin/wc"));
+	else
+		return (NULL);
 }
 
+
+// STANDBY BECAUSE I NEED AN IMPLEMENTATION OF THE T_TOKEN WITH A FLAG COMPONENT.
+// // Return the cmd arr for the echo command. If a -n flag is detected, takes it into account.
+// char	**get_echo_cmd_arr(t_token *token)
+// {
+
+// 	char	**cmd_arr;
+// 	int		arg_len;
+// 	int		cmd_arr_size;
+
+// 	cmd_arr_size = 3;
+// 	arg_len = ft_strlen(token->arg);
+// 	if (arg_len >= 2)
+// 		if (token->arg[0] == '-' && token->arg[1] == 'n'
+// 			&& token->arg[2] == ' ')
+// 			cmd_arr_size++;
+// 	cmd_arr = malloc(sizeof(char *) * (cmd_arr_size + 1));
+// 	if (!cmd_arr)
+// 		return (NULL);
+// 	cmd_arr[0] = get_cmd_path(token->cmd);
+// 	if (cmd_arr_size == 3)
+// 	{
+// 		cmd_arr[1] = ft_strdup("-n");
+// 		cmd_arr[2] = 
+// 	}
+// }
+
 // Return a string array of the i-th command in the given token list
-char	**get_cmd_arr(t_token token, int i)
+char	**get_cmd_arr(t_token *token, int i)
 {
 	int		n;
 	char	**cmd_arr;
@@ -165,14 +194,15 @@ char	**get_cmd_arr(t_token token, int i)
 	while (token)
 	{
 		if (is_cmd(token->cmd))
-			if (i == n)
+		{
+			if (n == i)
 			{
 				// Make sure to check if the arg is null -> if so: not execute splitflag()
-				// fill cmd_arr
-				if (is_equal(token->cmd, "echo") == 1)
-				{
-
-				}
+				// if (is_equal(token->cmd, "echo") == 1)
+				// {
+				// 	// do stuff
+				// 	cmd_arr = get_echo_cmd_arr(token);
+				// }
 				if (token->arg[0])
 					cmd_arr_size++;
 				cmd_arr = malloc(sizeof(char *) * cmd_arr_size);
@@ -188,8 +218,11 @@ char	**get_cmd_arr(t_token token, int i)
 					cmd_arr[1] = NULL;
 				return (cmd_arr);
 			}
+			n++;
+		}
 		token = token->next;
 	}
+	return (NULL);
 }
 
 // Fill the commands array (cmds_arr) with string arrays 
@@ -198,16 +231,17 @@ int	fill_cmds_arr(char ***cmds_arr, t_token *token)
 	int	cmds_nb;
 	int	i;
 
-	cmds_nb = get_cmds_nb;
+	cmds_nb = get_cmds_nb(token);
 	i = 0;
 	while (i < cmds_nb)
 	{
 		cmds_arr[i] = get_cmd_arr(token, i);
 		if (!cmds_arr[i])
-			return (0)
+			return (-1);
 		// check for malloc errors
 		i++;
 	}
+	return (0);
 }
 
 
@@ -221,30 +255,46 @@ char	***get_cmds_arr(t_token *token)
 	cmds_arr = malloc(sizeof(char **) * (cmds_nb + 1));
 	if (!cmds_arr)
 		return (NULL);
-	if (!fill_cmds_arr(cmds_arr, token))
+	if (fill_cmds_arr(cmds_arr, token) < 0)
 		return (NULL);
 	// check errors
 	return (cmds_arr);
 }
 
-int	multiple_pipe(char ***cmd_arr_arr)
+int	get_pipe_nb(t_token *token)
+{
+	int	pipe_nb;
+
+	pipe_nb = 0;
+	while (token)
+	{
+		if (is_equal(token->cmd, "|") == 1)
+			pipe_nb++;
+		token = token->next;
+	}
+	return (pipe_nb);
+}
+
+int	multiple_pipe(t_token *token)
 {
 	int	i;
 	int	j;
-	int	pipe_nb = 2;
-	int	pipe_fd[pipe_nb][2];
+	int	pipe_nb;
 	int	pid;
 	int	children_nb;
-	char	***cmd_arr;
+	char	***cmds_arr;
 
+
+	pipe_nb = get_pipe_nb(token);
 	children_nb = pipe_nb + 1;
+	int	pipe_fd[pipe_nb][2];
 
 	// MAKE SURE THAT TOKEN IS NOT NULL
 
 	cmds_arr = get_cmds_arr(token);
 	if (!cmds_arr)
-		return (print_error("to malloc"));
-	
+		return (print_error("to malloc", 1));
+
 	// Create the pipes
 	i = 0;
 	while (i < pipe_nb)
@@ -280,7 +330,7 @@ int	multiple_pipe(char ***cmd_arr_arr)
 				j++;
 			}
 			// Execute the command
-			execve(cmd_arr_arr[i][0], cmd_arr_arr[i], NULL);
+			execve(cmds_arr[i][0], cmds_arr[i], NULL);
 			// Should never reach here
 			return (print_error("execute a command", 1));
 		}
@@ -301,14 +351,29 @@ int	multiple_pipe(char ***cmd_arr_arr)
 	return (0);
 }
 
-int	main(int ac, char **av)
+int	main()
 {
-	char *cmd1_arr[] = {"/bin/pwd", NULL};
-	char *cmd2_arr[] = {"/usr/bin/grep", "pipe", NULL};
-	char *cmd3_arr[] = {"/usr/bin/wc", "-l", NULL};
-	char **cmd_arr_arr[] = { cmd1_arr, cmd2_arr, cmd3_arr };
+	// char *cmd1_arr[] = {"/bin/pwd", NULL};
+	// char *cmd2_arr[] = {"/usr/bin/grep", "pipe", NULL};
+	// char *cmd3_arr[] = {"/usr/bin/wc", "-l", NULL};
+	// char **cmd_arr_arr[] = { cmd1_arr, cmd2_arr, cmd3_arr };
 
 	// Create token manually for testing purposes
+	t_token	token1;
+	// t_token	token2;
+	// t_token	token3;
 
-	multiple_pipe(cmd_arr_arr);
+	token1.cmd = "echo";
+	token1.arg = "-n bonjour";
+	token1.next = NULL;
+
+	// token2.cmd = "|";
+	// token2.arg = "";
+	// token2.next = &token3;
+
+	// token3.cmd = "wc";
+	// token3.arg = "";
+	// token3.next = NULL;
+
+	multiple_pipe(&token1);
 }
