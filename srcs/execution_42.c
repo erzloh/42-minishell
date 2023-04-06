@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 13:12:40 by eric              #+#    #+#             */
-/*   Updated: 2023/04/06 12:45:33 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/04/06 12:48:51 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,72 +78,73 @@ int	get_cmds_nb(t_token *token)
 	return (cmds_nb);
 }
 
-// Update the value of i if there are whitespaces from str[i]
-void	skip_whitespaces(char *str, int *i)
-{
-	if (!str)
-		return ;
-	while (str[*i] == ' ' || str[*i] == '\t')
-	{
-		(*i)++;
-	}
-}
+// // NOT USED, NOT FINISHED
+// // Update the value of i if there are whitespaces from str[i]
+// void	skip_whitespaces(char *str, int *i)
+// {
+// 	if (!str)
+// 		return ;
+// 	while (str[*i] == ' ' || str[*i] == '\t')
+// 	{
+// 		(*i)++;
+// 	}
+// }
 
-// Counts the number of flags in a string argument
-int	get_flag_nb(char *arg)
-{
-	int	i;
-	int	flag_nb;
+// // Counts the number of flags in a string argument
+// int	get_flag_nb(char *arg)
+// {
+// 	int	i;
+// 	int	flag_nb;
 
-	i = 0;
-	flag_nb = 0;
-	if (!arg)
-		return (-1);
-	while (arg[i])
-	{
-		skip_whitespaces(arg, &i);
-		if (arg[i] != '-')
-			break ;
-		else
-		{
-			flag_nb++;
-			while ((arg[i] != ' ' && arg[i] != '\t') && arg[i])
-				i++;
-			if (!arg[i])
-				break ;
-		}
-		i++;
-	}
-	return (flag_nb);
-}
+// 	i = 0;
+// 	flag_nb = 0;
+// 	if (!arg)
+// 		return (-1);
+// 	while (arg[i])
+// 	{
+// 		skip_whitespaces(arg, &i);
+// 		if (arg[i] != '-')
+// 			break ;
+// 		else
+// 		{
+// 			flag_nb++;
+// 			while ((arg[i] != ' ' && arg[i] != '\t') && arg[i])
+// 				i++;
+// 			if (!arg[i])
+// 				break ;
+// 		}
+// 		i++;
+// 	}
+// 	return (flag_nb);
+// }
 
-// Check if there are flags in the string and if so,
-// split each element into an string array
-char	**split_flags(char *arg)
-{
-	char	**args;
-	int		i;
-	int		arg_nb;
+// // Check if there are flags in the string and if so,
+// // split each element into an string array
+// char	**split_flags(char *arg)
+// {
+// 	char	**args;
+// 	int		i;
+// 	int		arg_nb;
 
-	i = 0;
-	arg_nb = get_flag_nb(arg);
-	while (arg[i])
-	{
-		if (arg[i] == '-')
-		{
-			while ((arg[i + j] != ' ' || arg[i + j] != '\t') && arg[i + j])
-				j++;
-		}
-		i++;
-	}
-}
+// 	i = 0;
+// 	arg_nb = get_flag_nb(arg);
+// 	while (arg[i])
+// 	{
+// 		if (arg[i] == '-')
+// 		{
+// 			while ((arg[i + j] != ' ' || arg[i + j] != '\t') && arg[i + j])
+// 				j++;
+// 		}
+// 		i++;
+// 	}
+// }
 
 
 
-char	**split_echo_n_flag(char *arg)
-{
+// char	**split_echo_n_flag(char *arg)
+// {
 	
-}
+// }
 
 // Get the path of the given command
 char *get_cmd_path(char *cmd)
