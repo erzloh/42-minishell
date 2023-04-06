@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   multiple_pipes.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eric <eric@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 13:12:40 by eric              #+#    #+#             */
-/*   Updated: 2023/03/30 16:03:48 by eric             ###   ########.fr       */
+/*   Updated: 2023/04/06 10:04:11 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	multiple_pipe(char ***cmd_arr_arr)
 {
 	int	i;
 	int	j;
-	int	pipe_nb = 2;
+	int	pipe_nb = 0;
 	int	pipe_fd[pipe_nb][2];
 	int	pid;
 	int	children_nb;
@@ -98,10 +98,11 @@ int	multiple_pipe(char ***cmd_arr_arr)
 
 int	main()
 {
-	char *cmd1_arr[] = {"/bin/ls", "-l", NULL};
-	char *cmd2_arr[] = {"/usr/bin/grep", "pipe", NULL};
-	char *cmd3_arr[] = {"/usr/bin/wc", "-l", NULL};
-	char **cmd_arr_arr[] = { cmd1_arr, cmd2_arr, cmd3_arr };
+	char *cmd1_arr[] = {"/bin/echo", "-z", "hello", NULL};
+	// char *cmd2_arr[] = {"/usr/bin/grep", "pipe", NULL};
+	// char *cmd3_arr[] = {"/usr/bin/wc", "-l", NULL};
+	// char **cmd_arr_arr[] = { cmd1_arr, cmd2_arr, cmd3_arr };
+	char **cmd_arr_arr[] = { cmd1_arr };
 
 	multiple_pipe(cmd_arr_arr);
 }
