@@ -1,34 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_malloc_2d_tab.c                                 :+:      :+:    :+:   */
+/*   ft_is_white_space.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/30 16:28:44 by alesspal          #+#    #+#             */
-/*   Updated: 2023/03/17 14:20:45 by alesspal         ###   ########.fr       */
+/*   Created: 2023/03/17 10:31:07 by alesspal          #+#    #+#             */
+/*   Updated: 2023/03/22 20:49:43 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/std.h"
 
-int	**ft_malloc_2d_tab(int row, int col)
+int	ft_is_white_space(int c)
 {
-	int	i;
-	int	**tab;
-
-	tab = malloc(sizeof(int *) * row);
-	if (!tab)
-		return (NULL);
-	i = -1;
-	while (++i < row)
-	{
-		tab[i] = malloc(sizeof(int) * col);
-		if (!tab[i])
-		{
-			ft_free_2d_tab((void **)tab);
-			return (NULL);
-		}			
-	}
-	return (tab);
+	return (c == 32 || (c >= 9 && c <= 13));
 }

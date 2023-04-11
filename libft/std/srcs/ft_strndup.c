@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_malloc_2d_tab.c                                 :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/30 16:28:44 by alesspal          #+#    #+#             */
-/*   Updated: 2023/03/17 14:20:45 by alesspal         ###   ########.fr       */
+/*   Created: 2023/03/17 10:50:15 by alesspal          #+#    #+#             */
+/*   Updated: 2023/03/30 11:34:08 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/std.h"
 
-int	**ft_malloc_2d_tab(int row, int col)
+char	*ft_strndup(const char *src, size_t n)
 {
-	int	i;
-	int	**tab;
+	int		ret_strlcpy;
+	char	*dst;
+	size_t	src_len;
 
-	tab = malloc(sizeof(int *) * row);
-	if (!tab)
+	src_len = ft_strlen(src);
+	if (n < src_len)
+		src_len = n;
+	dst = malloc(src_len + 1);
+	if (dst == NULL)
 		return (NULL);
-	i = -1;
-	while (++i < row)
+	ret_strlcpy = ft_strlcpy(dst, src, src_len + 1);
+	if (!ret_strlcpy)
 	{
-		tab[i] = malloc(sizeof(int) * col);
-		if (!tab[i])
-		{
-			ft_free_2d_tab((void **)tab);
-			return (NULL);
-		}			
+		free(dst);
+		dst = NULL;
 	}
-	return (tab);
+	return (dst);
 }

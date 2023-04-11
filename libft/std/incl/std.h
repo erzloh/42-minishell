@@ -6,7 +6,7 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 16:09:25 by marvin            #+#    #+#             */
-/*   Updated: 2023/02/28 15:46:57 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/04/05 13:16:40 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,14 @@ int					ft_isalnum(int c);
 int					ft_isascii(int c);
 
 /// @brief check if is a printable character
-/// @param cascii character value
+/// @param c ascii character value
 /// @return 1 : if it's a printable character, 0 : if it's not
 int					ft_isprint(int c);
+
+/// @brief check if is a whitespace (if it is ASCII 32/9/10/11/12/13)
+/// @param c ascii character value
+/// @return 1 : if it's a whitespace character, 0 : if it's not
+int					ft_is_white_space(int c);
 
 /// @brief calculates the size of string
 /// @param str string to calculate
@@ -66,8 +71,8 @@ char				*ft_strnstr(const char *str, const char *to_find, \
 /// @param s2 string two
 /// @return the concatenated string
 char				*ft_strjoin(const char *s1, const char *s2);
-
-char				*ft_strtrim(char const *s1, char const *set);
+char				*ft_strjoin3(const char *s1, const char *s2, const char *s3);
+char				*ft_strtrim(char *s1, char const *set);
 
 /// @brief split a string into multiple strings with a separator
 /// @param s string to split
@@ -119,7 +124,7 @@ void				*ft_calloc(size_t nmemb, size_t size);
 /// @param str string to copy
 /// @return str copied with allocated memory
 char				*ft_strdup(const char *str);
-
+char				*ft_strndup(const char *src, size_t n);
 void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char *s, int fd);
 void				ft_putendl_fd(char *s, int fd);
@@ -143,7 +148,7 @@ void				ft_lstiter(t_list *lst, void (*f)(void *));
 int					ft_lstsize(t_list *lst);
 
 int					**ft_malloc_2d_tab(int row, int col);
-void				ft_free_2d_tab(int **tab, int row);
+void				ft_free_2d_tab(void **tab);
 void				display_2d_tab(int **tab, int row, int col);
 
 typedef struct s_stack{

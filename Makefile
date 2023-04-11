@@ -6,7 +6,7 @@
 #    By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 14:21:14 by eholzer           #+#    #+#              #
-#    Updated: 2023/03/29 10:22:34 by alesspal         ###   ########.fr        #
+#    Updated: 2023/04/11 14:27:45 by alesspal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,13 @@ SRCS_DIR	=	srcs/
 OBJS_DIR	=	objs/
 
 SRCS_LIST	=	main.c \
-				token_utils.c
+				executor.c \
+				env.c \
+				env_utils.c \
+				token_utils.c \
+				laxer.c \
+				laxer_utils.c \
+				expender.c \
 
 OBJS_LIST	=	${SRCS_LIST:.c=.o}
 

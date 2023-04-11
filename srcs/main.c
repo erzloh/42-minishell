@@ -6,7 +6,7 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:51:07 by alesspal          #+#    #+#             */
-/*   Updated: 2023/03/29 10:23:48 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/04/11 14:24:57 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	main()
 			if (!input)
 				break;
 			add_history(input);				// function for retrieving written commands
+			ft_execute_cmd(input);			// execute the command
 			free(input);
 			rl_on_new_line();
 		}
