@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_cmd.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eric <eric@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 15:44:30 by eric              #+#    #+#             */
-/*   Updated: 2023/03/30 16:03:46 by eric             ###   ########.fr       */
+/*   Updated: 2023/04/20 15:46:03 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ int	execute_cmd(char **cmd_arr)
 	return (0);
 }
 
-// int main()
-// {
-// 	char *cmd_arr[] = {"/bin/ls", "-l", NULL};
+int main()
+{
+	char *cmd_arr[] = {"/bin/echo", "bonjour", NULL};
 
-// 	execute_cmd(cmd_arr);
-// 	return 0;
-// }
+	execute_cmd(cmd_arr);
+	return 0;
+}
