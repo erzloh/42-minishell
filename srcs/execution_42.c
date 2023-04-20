@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution_42.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eric <eric@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 13:12:40 by eric              #+#    #+#             */
-/*   Updated: 2023/04/06 15:55:56 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/04/20 12:08:15 by eric             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	print_error(char *err_msg, int ret_val)
 }
 
 // Make free_cmds_arr function
+// Make free pipe_fd function
 
 // Make CD function, and also make a check if cmd == "cd", there should be no pipes
 
@@ -118,6 +119,7 @@ int	get_cmds_nb(t_token *token)
 // 	return (flag_nb);
 // }
 
+// NOT FINISHED
 // // Check if there are flags in the string and if so,
 // // split each element into an string array
 // char	**split_flags(char *arg)
@@ -139,7 +141,6 @@ int	get_cmds_nb(t_token *token)
 // 	}
 // }
 
-
 // Get the path of the given command
 char	*get_cmd_path(char *cmd)
 {
@@ -154,7 +155,6 @@ char	*get_cmd_path(char *cmd)
 	else
 		return (NULL);
 }
-
 
 // STANDBY BECAUSE I NEED AN IMPLEMENTATION OF THE T_TOKEN WITH A FLAG COMPONENT.
 // // Return the cmd arr for the echo command. If a -n flag is detected, takes it into account.
@@ -275,35 +275,68 @@ int	get_pipe_nb(t_token *token)
 	return (pipe_nb);
 }
 
-int	multiple_pipe(t_token *token)
+// Create pipes
+int	create_pipes(int ***pipe_fd, int pipe_nb)
 {
 	int	i;
-	int	j;
-	int	pipe_nb;
-	int	pid;
-	int	children_nb;
-	char	***cmds_arr;
 
-
-	pipe_nb = get_pipe_nb(token);
-	children_nb = pipe_nb + 1;
-	int	pipe_fd[pipe_nb][2];
-
-	// MAKE SURE THAT TOKEN IS NOT NULL
-
-	cmds_arr = get_cmds_arr(token);
-	if (!cmds_arr)
-		return (print_error("to malloc", 1));
-
-	// Create the pipes
+	i = 0;
+	*pipe_fd = malloc(sizeof(int *) * pipe_nb);
+	if (!(*pipe_fd))
+		return (print_error("to malloc a pipe fd", -1));
+	while (i < pipe_nb)
+	{
+		(*pipe_fd)[i] = malloc(sizeof(int) * 2);
+		if (!(*pipe_fd)[i])
+			return (print_error("to malloc a pipe", -1));
+		i++;
+	}
 	i = 0;
 	while (i < pipe_nb)
 	{
-		if (pipe(pipe_fd[i]) < 0)
-			return (print_error("to create a pipe", 1));
+		if (pipe((*pipe_fd)[i]) < 0)
+			return (print_error("to create a pipe", -1));
 		i++;
 	}
-	// Create the children processes
+	return (0);
+}
+
+int	exec_child(int pipe_nb, int **pipe_fd, char ***cmds_arr, int i)
+{
+	int children_nb;
+	int	j;
+
+	children_nb = pipe_nb + 1;
+	// Redirect standard input
+	if (i != 0)
+		if (dup2(pipe_fd[i - 1][0], STDIN_FILENO) < 0)
+			return (print_error("dup2() to redirect stdin", 1));
+	// Redirect standard output
+	if (i < children_nb - 1)
+		if (dup2(pipe_fd[i][1], STDOUT_FILENO) < 0)
+			return (print_error("dup2() to redirect stdout", 1));
+	// Close all the pipes in the child
+	j = 0;
+	while (j < pipe_nb)
+	{
+		// Protect closes?
+		close(pipe_fd[j][0]);
+		close(pipe_fd[j][1]);
+		j++;
+	}
+	// Execute the command
+	execve(cmds_arr[i][0], cmds_arr[i], NULL);
+	// Should never reach here
+	return (print_error("execute a command", 1));
+}
+
+int	create_children(int pipe_nb, int **pipe_fd, char ***cmds_arr)
+{
+	int	pid;
+	int	i;
+	int	children_nb;
+
+	children_nb = pipe_nb + 1;
 	i = 0;
 	while (i < children_nb)
 	{
@@ -313,29 +346,36 @@ int	multiple_pipe(t_token *token)
 		// Child process
 		if (pid == 0)
 		{
-			// Redirect standard input
-			if (i != 0)
-				if (dup2(pipe_fd[i - 1][0], STDIN_FILENO) < 0)
-					return (print_error("dup2() to redirect stdin", 1));
-			// Redirect standard output
-			if (i < children_nb - 1)
-				if (dup2(pipe_fd[i][1], STDOUT_FILENO) < 0)
-					return (print_error("dup2() to redirect stdout", 1));
-			// Close all the pipes in the child
-			j = 0;
-			while (j < pipe_nb)
-			{
-				close(pipe_fd[j][0]);
-				close(pipe_fd[j][1]);
-				j++;
-			}
-			// Execute the command
-			execve(cmds_arr[i][0], cmds_arr[i], NULL);
-			// Should never reach here
-			return (print_error("execute a command", 1));
+			if (exec_child(pipe_nb, pipe_fd, cmds_arr, i) == 1)
+				return (-1);
 		}
 		i++;
 	}
+	return (0);
+}
+
+int	executor(t_token *token)
+{
+	int	i;
+	// int	j;
+	int	pipe_nb;
+	// int	pid;
+	int	children_nb;
+	char	***cmds_arr;
+	int		**pipe_fd;
+
+	if (!token) // is this check necessary? is token already not null for sure?
+		return (1);
+	pipe_nb = get_pipe_nb(token);
+	children_nb = pipe_nb + 1;
+	if (create_pipes(&pipe_fd, pipe_nb) == -1)
+		return (1);
+	cmds_arr = get_cmds_arr(token);
+	if (!cmds_arr)
+		return (print_error("to malloc cmds_arr", 1));
+	// Create the children processes
+	if (create_children(pipe_nb, pipe_fd, cmds_arr) == -1)
+		return (1);
 	// Close all the pipes in the parent
 	i = 0;
 	while (i < pipe_nb)
@@ -360,20 +400,20 @@ int	main()
 
 	// Create token manually for testing purposes
 	t_token	token1;
-	// t_token	token2;
-	// t_token	token3;
+	t_token	token2;
+	t_token	token3;
 
-	token1.cmd = "echo";
-	token1.arg = "-n bonjour";
-	token1.next = NULL;
+	token1.cmd = "ls";
+	token1.arg = "-a";
+	token1.next = &token2;
 
-	// token2.cmd = "|";
-	// token2.arg = "";
-	// token2.next = &token3;
+	token2.cmd = "|";
+	token2.arg = "";
+	token2.next = &token3;
 
-	// token3.cmd = "wc";
-	// token3.arg = "";
-	// token3.next = NULL;
+	token3.cmd = "wc";
+	token3.arg = "";
+	token3.next = NULL;
 
-	multiple_pipe(&token1);
+	executor(&token1);
 }

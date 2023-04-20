@@ -6,29 +6,29 @@
 /*   By: eric <eric@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 13:12:40 by eric              #+#    #+#             */
-/*   Updated: 2023/04/06 20:16:36 by eric             ###   ########.fr       */
+/*   Updated: 2023/04/06 20:19:16 by eric             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 // Return the number of commands in a token list
-int	get_cmd_nb(t_token *token)
-{
-	int	cmd_nb;
+// int	get_cmd_nb(t_token *token)
+// {
+// 	int	cmd_nb;
 
-	cmd_nb = 0;
-	while (token)
-	{
-		if (token->cmd == ECHO ||
-			token->cmd == PWD ||
-			token->cmd == WC ||
-			token->cmd == LS)
-			cmd_nb++;
-		token = token->next;
-	}
-	return (cmd_nb);
-}
+// 	cmd_nb = 0;
+// 	while (token)
+// 	{
+// 		if (token->cmd == ECHO ||
+// 			token->cmd == PWD ||
+// 			token->cmd == WC ||
+// 			token->cmd == LS)
+// 			cmd_nb++;
+// 		token = token->next;
+// 	}
+// 	return (cmd_nb);
+// }
 
 // Take a token.arg string and split the flags and the argument to a
 // string array. Return NULL no flags was detected.
@@ -63,17 +63,17 @@ char	**split_arg(char *arg)
 
 // NOT FINISHED
 // Get the i-th command and return it in a string array format
-char	**get_cmd_str_arr(t_token *token, int i)
-{
-	char	**cmd_str_arr;
-	char	**split_args;
+// char	**get_cmd_str_arr(t_token *token, int i)
+// {
+// 	char	**cmd_str_arr;
+// 	char	**split_args;
 
-	// I need to iterate to the i-th cmd
+// 	// I need to iterate to the i-th cmd
 
-	if (token->arg != NULL)
-		split_args = split_arg(token->arg);
-	cmd_str_arr = malloc()
-}
+// 	if (token->arg != NULL)
+// 		split_args = split_arg(token->arg);
+// 	cmd_str_arr = malloc()
+// }
 
 // Take a token as argument and returns an array of string arrays.
 char ***token_to_arr(t_token *token)
