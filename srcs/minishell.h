@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:28:45 by alesspal          #+#    #+#             */
-/*   Updated: 2023/04/21 12:09:13 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/04/21 13:28:23 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,10 @@ char	*get_cmd_path(char *cmd);
 int		print_error(char *err_msg, int ret_val);
 int		is_equal(const char *s1, const char *s2);
 void	complete_token(t_token *token);
+
+// Free functions
+void	free_cmds_arr(char ***cmds_arr);
+void	free_cmd_arr(char **cmd_arr);
+void	free_pipe_fd(int **pipe_fd);
 
 #endif

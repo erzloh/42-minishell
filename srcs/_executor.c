@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 10:31:56 by eholzer           #+#    #+#             */
-/*   Updated: 2023/04/21 11:51:30 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/04/21 13:45:28 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,8 @@ int	executor(t_token *token)
 	if (close_pipes(token->pipes_nb, pipe_fd) == -1)
 		return (1);
 	wait_children(token);
+	free_cmds_arr(cmds_arr);
+	if (token->pipes_nb != 0)
+		free_pipe_fd(pipe_fd);
 	return (0);
 }

@@ -6,15 +6,11 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 13:12:40 by eric              #+#    #+#             */
-/*   Updated: 2023/04/21 12:09:15 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/04/21 14:38:11 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// ---- TO DO -----
-// Make free_cmds_arr function
-// Make free pipe_fd function
 
 //  ----- Error handling function ------
 // Make CD function, and also make a check if cmd == "cd", there should be no pipes
@@ -32,11 +28,11 @@ int	main()
 	t_token	token1;
 	t_token	token2;
 	t_token	token3;
-
-	token1.cmd = "echo";
-	token1.arg = "bonjour";
-	token1.flag = "-a";
-	token1.next = NULL;
+ 
+	token1.cmd = "ls";
+	token1.arg = "-l";
+	token1.flag = "";
+	token1.next = &token2;
 
 	token2.cmd = "|";
 	token2.arg = "";

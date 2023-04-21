@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 10:39:37 by eholzer           #+#    #+#             */
-/*   Updated: 2023/04/21 11:50:26 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/04/21 14:37:54 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ int	create_pipes(int ***pipe_fd, int pipes_nb)
 	int	i;
 
 	i = 0;
+	if (pipes_nb == 0)
+		return (1);
 	*pipe_fd = malloc(sizeof(int *) * pipes_nb);
 	if (!(*pipe_fd))
 		return (print_error("to malloc a pipe fd", -1));
@@ -54,7 +56,6 @@ int	create_pipes(int ***pipe_fd, int pipes_nb)
 }
 
 // Closes the write-end and the read-end of pipes
-// Should I protect the close calls?
 int	close_pipes(int pipes_nb, int **pipe_fd)
 {
 	int	i;
@@ -62,9 +63,9 @@ int	close_pipes(int pipes_nb, int **pipe_fd)
 	i = 0;
 	while (i < pipes_nb)
 	{
-		if (close(pipe_fd[i][0] < 0))
+		if (close(pipe_fd[i][0]) < 0)
 			return (print_error("to close the read-end of a pipe", -1));
-		if (close(pipe_fd[i][1] < 0))
+		if (close(pipe_fd[i][1]) < 0)
 			return (print_error("to close the write-end a pipe", -1));
 		i++;
 	}
