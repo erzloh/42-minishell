@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   laxer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:04:09 by alesspal          #+#    #+#             */
-/*   Updated: 2023/04/10 15:36:43 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/04/21 16:33:39 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ t_token	*ft_laxing_cmd(char *input)
 	t_token	*head_token;
 	t_token	*tail_token;
 
-	if (!input)
+	if (!input || !input[0])
 		return (NULL);
 	tail_token = create_token();
 	if (!tail_token)

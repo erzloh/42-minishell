@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   executor.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:12:10 by alesspal          #+#    #+#             */
-/*   Updated: 2023/04/11 14:24:34 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/04/21 16:38:24 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,12 @@ void	ft_execute_cmd(char *input)
 		t_token *token;
 
 		token = ft_laxing_cmd(input);
-		ft_display_token(token);
+		// ft_display_token(token);
 		token = ft_expend_cmd(token);
-		ft_printf("---final token---\n");
-		ft_display_token(token);
-		ft_printf("-----------------\n");
+		// ft_printf("---final token---\n");
+		// ft_display_token(token);
+		// ft_printf("-----------------\n");
+		executor(token);
 		ft_free_token(token);
 		/* while (1); */
 	}

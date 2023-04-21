@@ -6,14 +6,14 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 13:55:13 by alesspal          #+#    #+#             */
-/*   Updated: 2023/04/21 15:56:00 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/04/21 16:24:56 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
 #ifndef TOKENIZER_H
 # define TOKENIZER_H
-// # include "../libft/libft.h"
+# include "../libft/libft.h"
 
 // typedef struct s_token
 // {
