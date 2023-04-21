@@ -6,7 +6,7 @@
 #    By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 14:21:14 by eholzer           #+#    #+#              #
-#    Updated: 2023/04/21 15:19:24 by eholzer          ###   ########.fr        #
+#    Updated: 2023/04/21 15:42:25 by eholzer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,15 @@ SRCS_LIST	=	cd.c \
 				command.c \
 				pipes.c \
 				utils_1.c \
-				free_memory.c
+				free_memory.c \
+				main.c \
+				executor.c \
+				env.c \
+				env_utils.c \
+				token_utils.c \
+				laxer.c \
+				laxer_utils.c \
+				expender.c \
 				# execution_main.c \
 
 OBJS_LIST	=	${SRCS_LIST:.c=.o}
@@ -40,7 +48,7 @@ ${OBJS_DIR}:
 				mkdir ${OBJS_DIR}
 
 ${OBJS_DIR}%.o: ${SRCS_DIR}%.c
-				${CC} ${CFLAGS} -c $^ -o $@
+				${CC} ${CFLAGS} -Iincl/ -c $^ -o $@
 
 ${NAME}:		${OBJS_DIR} ${OBJS}
 				${CC} ${CFLAGS} ${OBJS} -Llibft -lft -lreadline -o ${NAME}

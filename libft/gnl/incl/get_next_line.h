@@ -6,7 +6,7 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 11:15:27 by jdecorte          #+#    #+#             */
-/*   Updated: 2023/02/20 14:49:08 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/03/30 11:35:35 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,6 @@ char	*ft_strchr(const char *string, int searchedChar );
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t elementCount, size_t elementSize);
 
-size_t	ft_strlen(const char *theString);
+size_t	ft_strlen2(const char *theString);
 
 #endif

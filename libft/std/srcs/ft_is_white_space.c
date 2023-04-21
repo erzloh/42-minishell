@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_is_white_space.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/25 17:06:19 by marvin            #+#    #+#             */
-/*   Updated: 2023/03/30 11:43:06 by alesspal         ###   ########.fr       */
+/*   Created: 2023/03/17 10:31:07 by alesspal          #+#    #+#             */
+/*   Updated: 2023/04/21 15:46:10 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/std.h"
 
-size_t	ft_strlen(const char *str)
+int	ft_is_white_space(int c)
 {
-	size_t	i;
-
-	i = 0;
-	while (str && str[i])
-		i++;
-	return (i);
+	return (c == 32 || (c >= 9 && c <= 13));
 }

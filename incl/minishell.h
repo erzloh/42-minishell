@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:28:45 by alesspal          #+#    #+#             */
-/*   Updated: 2023/04/21 15:03:46 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/04/21 15:57:28 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,37 +23,30 @@
 # include <unistd.h>
 # include <sys/wait.h>
 # include "../libft/libft.h"
+# include "tokenizer.h"
 
-// tokenizer.h
+// executor
+void	ft_execute_cmd(char *input);
 
-// typedef enum
-// {
-// 	ECHO,				// echo
-// 	CD,					// cd
-// 	PWD,				// pwd
-// 	EXPORT,				// export
-// 	UNSET,				// unset
-// 	ENV,				// env
-// 	EXIT,				// exit
-// 	PIPE,				// |
-// 	INPUT_REDIRECT,		// <
-// 	OUTPUT_REDIRECT,	// >
-// 	HEREDOC_REDIRECT,	// <<
-// 	APPEND_REDIRECT,	// >>
-// 	PATH,
-// 	INVALID,
-// }	cmd_type;
+// env
+int		ft_setenv(const char *name, const char *value);
+int		ft_unsetenv(char *name);
+char	*ft_getenv(const char *name);
+void	ft_get_all_env(void);
 
-typedef struct s_token
-{
-	char			*cmd;
-	char			*arg;
-	char			*flag;
-	struct s_token	*next;
-	int				cmds_nb;
-	int				pipes_nb;
-}	t_token;
+// env_utils
+bool	ft_is_valid_name(const char *name);
+int		ft_find_index_env(const char *name);
+int		ft_replace_env(const char *name, const char *value);
+int		ft_add_env(const char *name, const char *value);
+char	**ft_copy_env_except(char *name);
 
+// signal managemenent
+void	ft_sigINGORE_handler(int sig);
+void	ft_sigINT_handler(int signum);
+int		ft_init_signal(int signum, void(*handler)(int));
+
+// Eric's stuff
 // --- Functions related to the executor --- 
 int		executor(t_token *token);
 

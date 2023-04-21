@@ -1,32 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin3.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/27 09:43:11 by marvin            #+#    #+#             */
+/*   Created: 2023/03/17 18:27:38 by alesspal          #+#    #+#             */
 /*   Updated: 2023/03/30 11:34:08 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/std.h"
 
-size_t	ft_strlcpy(char *dest, const char *src, size_t size)
+char	*ft_strjoin3(const char *s1, const char *s2, const char *s3)
 {
-	size_t	i;
-	size_t	len_src;
+	char	*result;
+	size_t	len1;
+	size_t	len2;
+	size_t	len3;
 
-	i = 0;
-	len_src = ft_strlen(src);
-	if (!dest || !src)
-		return (0);
-	while (i < len_src && i + 1 < size)
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	if (i < size)
-		dest[i] = '\0';
-	return (len_src);
+	if (!s1 || !s2 || !s3)
+		return (NULL);
+	len1 = ft_strlen(s1);
+	len2 = ft_strlen(s2);
+	len3 = ft_strlen(s3);
+	result = malloc(sizeof(char) * (len1 + len2 + len3 + 1));
+	if (!result)
+		return (NULL);
+	ft_memcpy(result, s1, len1);
+	ft_memcpy(result + len1, s2, len2);
+	ft_memcpy(result + len1 + len2, s3, len3);
+	result[len1 + len2 + len3] = '\0';
+	return result;
 }

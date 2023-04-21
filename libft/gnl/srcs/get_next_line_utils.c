@@ -6,7 +6,7 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/19 11:14:11 by jdecorte          #+#    #+#             */
-/*   Updated: 2023/02/20 14:45:46 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/03/30 11:35:35 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	int		j;
 
 	i = 0;
-	sizetotal = ft_strlen(s1) + ft_strlen(s2);
+	sizetotal = ft_strlen2(s1) + ft_strlen2(s2);
 	res = malloc(sizeof(char) * (sizetotal + 1));
 	if (!res || !s1 || !s2)
 		return (NULL);
@@ -78,7 +78,7 @@ void	*ft_calloc(size_t elementCount, size_t elementSize)
 	return (res);
 }
 
-size_t	ft_strlen(const char *theString)
+size_t	ft_strlen2(const char *theString)
 {
 	int	i;
 
