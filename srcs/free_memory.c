@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 12:12:04 by eholzer           #+#    #+#             */
-/*   Updated: 2023/04/21 15:02:59 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/04/21 17:25:44 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,14 @@ void	free_cmds_arr(char ***cmds_arr)
 	free(cmds_arr);
 }
 
-void	free_pipe_fd(int **pipe_fd)
+void	free_pipe_fd(int **pipe_fd, int pipes_nb)
 {
 	int	i;
 
+	if (pipes_nb == 0)
+		return ;
 	i = 0;
-	while (pipe_fd[i])
+	while (i < pipes_nb)
 	{
 		free(pipe_fd[i]);
 		i++;
@@ -54,6 +56,5 @@ void	free_pipe_fd(int **pipe_fd)
 void	free_memory(char ***cmds_arr, int **pipe_fd, int pipes_nb)
 {
 	free_cmds_arr(cmds_arr);
-	if (pipes_nb != 0)
-		free_pipe_fd(pipe_fd);
+	free_pipe_fd(pipe_fd, pipes_nb);
 }
