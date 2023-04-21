@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 12:12:04 by eholzer           #+#    #+#             */
-/*   Updated: 2023/04/21 13:50:58 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/04/21 15:02:59 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,11 @@ void	free_pipe_fd(int **pipe_fd)
 		i++;
 	}
 	free(pipe_fd);
+}
+
+void	free_memory(char ***cmds_arr, int **pipe_fd, int pipes_nb)
+{
+	free_cmds_arr(cmds_arr);
+	if (pipes_nb != 0)
+		free_pipe_fd(pipe_fd);
 }

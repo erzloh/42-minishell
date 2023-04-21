@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:28:45 by alesspal          #+#    #+#             */
-/*   Updated: 2023/04/21 13:28:23 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/04/21 15:03:46 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,6 @@ void	complete_token(t_token *token);
 void	free_cmds_arr(char ***cmds_arr);
 void	free_cmd_arr(char **cmd_arr);
 void	free_pipe_fd(int **pipe_fd);
+void	free_memory(char ***cmds_arr, int **pipe_fd, int pipes_nb);
 
 #endif
