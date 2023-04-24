@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 10:37:30 by eholzer           #+#    #+#             */
-/*   Updated: 2023/04/21 11:48:52 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/04/24 08:57:00 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,10 @@ int	create_children(int pipes_nb, int **pipe_fd, char ***cmds_arr)
 void	wait_children(t_token *token)
 {
 	int	i;
+	int	children_nb;
 
 	i = -1;
-	while (++i < token->pipes_nb)
+	children_nb = token->pipes_nb + 1;
+	while (++i < children_nb)
 		wait(NULL);
 }

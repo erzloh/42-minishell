@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 11:20:28 by eholzer           #+#    #+#             */
-/*   Updated: 2023/04/21 11:20:50 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/04/24 10:19:21 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ int	is_cmd(char *str)
 	if (is_equal(str, "echo") == 1
 		|| is_equal(str, "pwd") == 1
 		|| is_equal(str, "ls") == 1
-		|| is_equal(str, "wc") == 1)
+		|| is_equal(str, "wc") == 1
+		|| is_equal(str, "cd") == 1)
 		return (1);
 	else
 		return (0);

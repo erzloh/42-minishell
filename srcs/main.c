@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:51:07 by alesspal          #+#    #+#             */
-/*   Updated: 2023/04/21 17:30:52 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/04/21 18:06:37 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	main()
 {
 	char	*input;
-
 	if (isatty(STDIN_FILENO))				// check if is interactive environment
 	{
 		while (1)

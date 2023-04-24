@@ -6,7 +6,7 @@
 #    By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 14:21:14 by eholzer           #+#    #+#              #
-#    Updated: 2023/04/21 16:01:27 by eholzer          ###   ########.fr        #
+#    Updated: 2023/04/24 10:15:19 by eholzer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ SRCS_LIST	=	cd.c \
 				pipes.c \
 				utils_1.c \
 				free_memory.c \
+				check_errors.c \
 				main.c \
 				executor.c \
 				env.c \

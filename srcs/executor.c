@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:12:10 by alesspal          #+#    #+#             */
-/*   Updated: 2023/04/21 16:38:24 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/04/24 10:27:41 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,8 @@ void	ft_execute_cmd(char *input)
 		// ft_printf("---final token---\n");
 		// ft_display_token(token);
 		// ft_printf("-----------------\n");
-		executor(token);
+		if (check_errors(token) == 0)
+			executor(token); // check errors
 		ft_free_token(token);
 		/* while (1); */
 	}

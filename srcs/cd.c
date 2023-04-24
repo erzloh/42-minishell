@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 15:00:05 by eholzer           #+#    #+#             */
-/*   Updated: 2023/04/21 16:01:18 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/04/24 10:25:41 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,12 @@
 int	cd(t_token *token)
 {
 	if (chdir(token->arg) != 0)
-		print_error("to cd", -1); // error must be treated like in the real bash
+	{
+		// print_error("to cd", 1); // error must be treated like in the real bash
+		ft_printf("minishell: cd: %s: ", token->arg);
+		perror("");
+		return (1);
+	}
 	return (0);
 }
 

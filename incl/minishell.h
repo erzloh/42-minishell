@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:28:45 by alesspal          #+#    #+#             */
-/*   Updated: 2023/04/21 17:25:59 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/04/24 10:15:52 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@
 # include <sys/wait.h>
 # include "../libft/libft.h"
 # include "tokenizer.h"
+
+// Macros
+# define MALLOC_ERR -42
 
 // executor
 void	ft_execute_cmd(char *input);
@@ -82,5 +85,11 @@ void	free_cmds_arr(char ***cmds_arr);
 void	free_cmd_arr(char **cmd_arr);
 void	free_pipe_fd(int **pipe_fd, int pipes_nb);
 void	free_memory(char ***cmds_arr, int **pipe_fd, int pipes_nb);
+
+// Commands
+int		cd(t_token *token);
+
+// Check errors
+int		check_errors(t_token *token);
 
 #endif
