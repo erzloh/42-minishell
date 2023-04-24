@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 10:39:37 by eholzer           #+#    #+#             */
-/*   Updated: 2023/04/21 14:37:54 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/04/24 11:43:02 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,23 +34,25 @@ int	create_pipes(int ***pipe_fd, int pipes_nb)
 
 	i = 0;
 	if (pipes_nb == 0)
-		return (1);
+		return (0);
 	*pipe_fd = malloc(sizeof(int *) * pipes_nb);
 	if (!(*pipe_fd))
-		return (print_error("to malloc a pipe fd", -1));
+		return (print_error("to malloc a pipe fd", MALLOC_ERR));
 	while (i < pipes_nb)
 	{
 		(*pipe_fd)[i] = malloc(sizeof(int) * 2);
 		if (!(*pipe_fd)[i])
-			return (print_error("to malloc a pipe", -1));
+			return (print_error("to malloc a pipe", MALLOC_ERR));
 		i++;
 	}
-	i = 0;
-	while (i < pipes_nb)
+	i = -1;
+	while (++i < pipes_nb)
 	{
 		if (pipe((*pipe_fd)[i]) < 0)
+		{
+			free_pipe_fd(*pipe_fd, pipes_nb);
 			return (print_error("to create a pipe", -1));
-		i++;
+		}
 	}
 	return (0);
 }

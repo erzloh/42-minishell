@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:28:45 by alesspal          #+#    #+#             */
-/*   Updated: 2023/04/24 10:15:52 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/04/24 11:27:31 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 
 // Macros
 # define MALLOC_ERR -42
+# define MILD_ERR -43
 
 // executor
 void	ft_execute_cmd(char *input);

@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 10:37:30 by eholzer           #+#    #+#             */
-/*   Updated: 2023/04/24 08:57:00 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/04/24 16:09:52 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	create_children(int pipes_nb, int **pipe_fd, char ***cmds_arr)
 	{
 		pid = fork();
 		if (pid < 0)
-			return (print_error("fork", 1));
+			return (print_error("fork", -1));
 		// Child process
 		if (pid == 0)
 		{

@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:12:10 by alesspal          #+#    #+#             */
-/*   Updated: 2023/04/24 10:27:41 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/04/24 11:45:47 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 // CETTE FONCTION A POUR L'INSTANT COMME BUT DE TESTER LES FONCTIONS
 void	ft_execute_cmd(char *input)
 {
+	int	error;
+
 	if (!ft_memcmp(input, "exit", 4))
 	{
 		free(input);
@@ -73,7 +75,15 @@ void	ft_execute_cmd(char *input)
 		// ft_display_token(token);
 		// ft_printf("-----------------\n");
 		if (check_errors(token) == 0)
-			executor(token); // check errors
+		{
+			error = executor(token);
+			if (error != 0 && error != MILD_ERR)
+			{
+				free(input);
+				ft_free_token(token);
+				exit(error);
+			}
+		}
 		ft_free_token(token);
 		/* while (1); */
 	}
