@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 13:12:10 by alesspal          #+#    #+#             */
-/*   Updated: 2023/04/24 11:45:47 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/04/25 15:19:58 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,5 @@ void	ft_execute_cmd(char *input)
 		ft_free_token(token);
 		/* while (1); */
 	}
+	// ft_setenv("PATH", "bonjour");
 }

@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 11:01:27 by eholzer           #+#    #+#             */
-/*   Updated: 2023/04/21 11:19:58 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/04/25 15:45:32 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,8 @@ char	**get_cmd_arr(t_token *token, int i)
 				cmd_arr = malloc(sizeof(char *) * cmd_arr_size);
 				if (!cmd_arr)
 					return (NULL);
-				fill_cmd_arr(&cmd_arr, token);
+				if (fill_cmd_arr(&cmd_arr, token) != 0)
+					return (NULL);
 				return (cmd_arr);
 			}
 			n++;
@@ -76,9 +77,14 @@ char	**get_cmd_arr(t_token *token, int i)
 
 // Fills the given command array.
 // Should I protect all the strdup?...
-void	fill_cmd_arr(char ***cmd_arr, t_token *token)
+int	fill_cmd_arr(char ***cmd_arr, t_token *token)
 {
-	(*cmd_arr)[0] = get_cmd_path(token->cmd);
+	int	error;
+
+	error = set_cmd_path(token);
+	if (error == MALLOC_ERR)
+		return (MALLOC_ERR);
+	(*cmd_arr)[0] = token->cmd_path;
 	if (token->arg[0] && token->flag[0] == '\0')
 	{
 		(*cmd_arr)[1] = ft_strdup(token->arg);
@@ -97,6 +103,7 @@ void	fill_cmd_arr(char ***cmd_arr, t_token *token)
 	}
 	else
 		(*cmd_arr)[1] = NULL;
+	return (0);
 }
 
 // Returns the size of a command array.

@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/21 10:31:56 by eholzer           #+#    #+#             */
-/*   Updated: 2023/04/24 11:44:59 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/04/25 15:03:55 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	executor(t_token *token)
 		free_pipe_fd(pipe_fd, token->pipes_nb);
 		return (print_error("to malloc cmds_arr", MALLOC_ERR));
 	}
-	if (create_children(token->pipes_nb, pipe_fd, cmds_arr) == -1)
+	if (create_children(token->pipes_nb, pipe_fd, cmds_arr, token) == -1)
 	{
 		free_memory(cmds_arr, pipe_fd, token->pipes_nb);
 		return (1);

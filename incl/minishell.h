@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:28:45 by alesspal          #+#    #+#             */
-/*   Updated: 2023/04/24 11:27:31 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/04/25 15:42:22 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 // Macros
 # define MALLOC_ERR -42
 # define MILD_ERR -43
+# define CMD_NOT_FOUND -44
 
 // executor
 void	ft_execute_cmd(char *input);
@@ -55,8 +56,8 @@ int		ft_init_signal(int signum, void(*handler)(int));
 int		executor(t_token *token);
 
 // Children
-int		create_children(int pipes_nb, int **pipe_fd, char ***cmds_arr);
-int		exec_child(int pipes_nb, int **pipe_fd, char ***cmds_arr, int i);
+int		create_children(int pipes_nb, int **pipe_fd, char ***cmds_arr, t_token *token);
+int		exec_child(int pipes_nb, int **pipe_fd, char ***cmds_arr, int i, t_token *token);
 void	wait_children(t_token *token);
 
 // Pipes
@@ -68,7 +69,7 @@ int		close_pipes(int pipe_nb, int **pipe_fd);
 char	***get_cmds_arr(t_token *token);
 int		fill_cmds_arr(char ***cmds_arr, t_token *token);
 char	**get_cmd_arr(t_token *token, int i);
-void	fill_cmd_arr(char ***cmd_arr, t_token *token);
+int		fill_cmd_arr(char ***cmd_arr, t_token *token);
 int		get_cmd_arr_size(t_token *token);
 
 // Command related utility functions
@@ -92,5 +93,8 @@ int		cd(t_token *token);
 
 // Check errors
 int		check_errors(t_token *token);
+
+// Path
+int		set_cmd_path(t_token *token);
 
 #endif

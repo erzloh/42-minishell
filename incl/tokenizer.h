@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 13:55:13 by alesspal          #+#    #+#             */
-/*   Updated: 2023/04/24 09:22:52 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/04/25 15:42:12 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ typedef struct s_token
 	struct s_token	*next;
 	int				cmds_nb;
 	int				pipes_nb;
+	char			*cmd_path;
+	int				is_cmd_valid;
 }	t_token;
 
 t_token	*create_token(void);

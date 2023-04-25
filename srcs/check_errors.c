@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 09:56:30 by eholzer           #+#    #+#             */
-/*   Updated: 2023/04/24 11:48:43 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/04/25 15:21:02 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ int	check_errors(t_token *token)
 	if (!token->cmd || !token->arg || !token->flag)
 		return (MALLOC_ERR);
 	// Check if commmand exists
-	if (!is_cmd(token->cmd))
-	{
-		ft_printf("minishell: %s: command not found\n", token->cmd);
-		return (-1);
-	}
+	// if (!is_cmd(token->cmd))
+	// {
+	// 	ft_printf("minishell: %s: command not found\n", token->cmd);
+	// 	return (-1);
+	// }
 	return (0);
 }

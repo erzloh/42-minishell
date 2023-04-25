@@ -6,7 +6,7 @@
 #    By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 14:21:14 by eholzer           #+#    #+#              #
-#    Updated: 2023/04/24 10:15:19 by eholzer          ###   ########.fr        #
+#    Updated: 2023/04/25 14:55:44 by eholzer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRCS_DIR	=	srcs/
 OBJS_DIR	=	objs/
 
 SRCS_LIST	=	cd.c \
+				path.c \
 				_executor.c \
 				children.c \
 				cmds_arr.c \
