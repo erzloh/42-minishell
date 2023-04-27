@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:28:45 by alesspal          #+#    #+#             */
-/*   Updated: 2023/04/27 10:26:20 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/04/27 16:43:34 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,13 @@ typedef struct s_data
 
 // Function prototypes
 void	process_input(char *input);
+
+// Path
+int		set_cmd_path(t_token *token, char **env_arr);
+int		search_cmd_in_path(char **path_arr, t_token *token);
+
+// Utils
+int		print_error(char *err_msg, int ret_val);
+char	*ft_getenv(char *name);
 
 #endif
