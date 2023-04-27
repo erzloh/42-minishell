@@ -6,7 +6,7 @@
 #    By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 14:21:14 by eholzer           #+#    #+#              #
-#    Updated: 2023/04/25 14:55:44 by eholzer          ###   ########.fr        #
+#    Updated: 2023/04/27 10:32:12 by eholzer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,24 +20,25 @@ LIBFT		=	libft.a
 SRCS_DIR	=	srcs/
 OBJS_DIR	=	objs/
 
-SRCS_LIST	=	cd.c \
-				path.c \
-				_executor.c \
-				children.c \
-				cmds_arr.c \
-				command.c \
-				pipes.c \
-				utils_1.c \
-				free_memory.c \
-				check_errors.c \
-				main.c \
-				executor.c \
-				env.c \
-				env_utils.c \
-				token_utils.c \
-				laxer.c \
-				laxer_utils.c \
-				expender.c \
+SRCS_LIST	=	main.c \
+				process_input.c \
+				# cd.c \
+				# path.c \
+				# _executor.c \
+				# children.c \
+				# cmds_arr.c \
+				# command.c \
+				# pipes.c \
+				# utils_1.c \
+				# free_memory.c \
+				# check_errors.c \
+				# executor.c \
+				# env.c \
+				# env_utils.c \
+				# token_utils.c \
+				# laxer.c \
+				# laxer_utils.c \
+				# expender.c \
 				# execution_main.c \
 
 OBJS_LIST	=	${SRCS_LIST:.c=.o}
