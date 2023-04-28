@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 15:00:09 by eholzer           #+#    #+#             */
-/*   Updated: 2023/04/27 16:48:12 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/04/28 17:10:50 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,6 @@ int	search_cmd_in_path(char **path_arr, t_token *token)
 			return (0);
 		}
 	}
+	free(tmp_path);
 	return (1);
 }
