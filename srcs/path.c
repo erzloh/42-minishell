@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 15:00:09 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/01 13:14:52 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/01 17:31:58 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,11 @@ int	set_cmd_path(t_token *token, char **env_arr)
 	char	**path_arr;
 
 	(void) env_arr;
+	if (is_builtin(token))
+	{
+		token->is_builtin = 1;
+		return (0);
+	}
 	// Check if the cmd is already a valid path
 	if (access(token->cmd_arr[0], F_OK) == 0)
 	{

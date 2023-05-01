@@ -6,11 +6,13 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:51:07 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/01 12:32:23 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/01 15:42:37 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	g_status;
 
 int	main(int ac, char **av, char **envp)
 {
@@ -21,6 +23,7 @@ int	main(int ac, char **av, char **envp)
 	(void) ac;
 	(void) av;
 	(void) envp; // Unused for now
+	g_status = 0;
 	data.env_arr = NULL; // Set to NULL for now
 	// init_data(data, envp);
 	while (1)
@@ -32,6 +35,7 @@ int	main(int ac, char **av, char **envp)
 		process_input(input, &data);
 		free(input); // We can do free_all() here as well I guess, to free the input, the token, etc...
 		// rl_on_new_line()
+		// printf("%d", g_status);
 	}
 	return (0);
 }

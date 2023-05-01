@@ -6,11 +6,13 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 14:21:05 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/01 15:09:36 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/01 17:55:00 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+extern int	g_status;
 
 int	echo(t_token *token)
 {
@@ -27,6 +29,8 @@ int	echo(t_token *token)
 	while (token->cmd_arr[i])
 	{
 		printf("%s", token->cmd_arr[i]);
+		if (token->cmd_arr[i + 1] != NULL)
+			printf(" ");
 		i++;
 	}
 	if (!flag)

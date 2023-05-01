@@ -6,11 +6,13 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 13:58:14 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/01 15:08:49 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/01 17:32:38 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+extern int g_status;
 
 void	create_children(t_token *token, t_data *data)
 {
@@ -22,7 +24,7 @@ void	create_children(t_token *token, t_data *data)
 		// Child Process
 		if (token->pid == 0)
 		{
-			if (is_builtin(token))
+			if (token->is_builtin)
 				exec_builtin(token, data);
 			else
 				exec_single_cmd(token, data);
@@ -40,15 +42,23 @@ int	exec_single_cmd(t_token *token, t_data *data)
 	}
 	else
 		printf("minishell: %s: command not found\n", token->cmd_arr[0]);
-	exit(1);
+	exit(127);
 }
 
 // Waits that all the children finish their execution
 void	wait_children(t_token *token)
 {
+	int	status;
+
 	while (token)
 	{
-		wait(NULL);
+		waitpid(token->pid, &status, 0);
+		if (WIFEXITED(status))
+		{
+			status = WEXITSTATUS(status);
+			g_status = status;
+			printf("g_status = %d\n", g_status);
+		}
 		token = token->next;
 	}
 }
