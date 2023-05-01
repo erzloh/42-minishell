@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:19:05 by eholzer           #+#    #+#             */
-/*   Updated: 2023/04/27 16:19:25 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/01 14:57:17 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,24 @@ int	print_error(char *err_msg, int ret_val)
 	perror(err_msg_full);
 	free(err_msg_full);
 	return (ret_val);
+}
+
+void	fatal_error(char *err_msg)
+{
+	perror(err_msg);
+	exit(-1);
+}
+
+int	is_builtin(t_token *token)
+{
+	if (ft_strncmp(token->cmd_arr[0], "echo", 5) == 0
+		|| ft_strncmp(token->cmd_arr[0], "cd", 3) == 0
+		|| ft_strncmp(token->cmd_arr[0], "pwd", 4) == 0
+		|| ft_strncmp(token->cmd_arr[0], "export", 7) == 0
+		|| ft_strncmp(token->cmd_arr[0], "unset", 6) == 0
+		|| ft_strncmp(token->cmd_arr[0], "env", 4) == 0
+		|| ft_strncmp(token->cmd_arr[0], "exit", 5) == 0)
+		return (1);
+	else
+		return (0);
 }

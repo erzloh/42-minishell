@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:51:07 by alesspal          #+#    #+#             */
-/*   Updated: 2023/04/28 17:10:50 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/01 12:32:23 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,10 @@ int	main(int ac, char **av, char **envp)
 	{
 		input = readline("minishell$ ");
 		if (!input)
-		{
-			printf("An error occured with the input. ");
-			printf("The program will now exit.\n");
-			// free the copy of envp and any allocated memory to exit in a clean manner
-			return (1);
-		}
+			fatal_error("Error with readline()");
 		add_history(input);
-		if (process_input(input, &data) == MALLOC_ERR)
-		{
-			// free_all(token, data, input); // Free the input, free the token and its attributes, free the env_arr, and basically everything that was malloced
-			return (MALLOC_ERR);
-		}
-		free(input); // We can do free_all() here as well I guess
+		process_input(input, &data);
+		free(input); // We can do free_all() here as well I guess, to free the input, the token, etc...
 		// rl_on_new_line()
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 15:00:09 by eholzer           #+#    #+#             */
-/*   Updated: 2023/04/28 17:10:50 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/01 13:14:52 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,8 @@ int	set_cmd_path(t_token *token, char **env_arr)
 {
 	char	*path_str = "/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/Library/Apple/usr/bin";
 	char	**path_arr;
-	int		ret;
-	(void) env_arr;
 
+	(void) env_arr;
 	// Check if the cmd is already a valid path
 	if (access(token->cmd_arr[0], F_OK) == 0)
 	{
@@ -34,17 +33,10 @@ int	set_cmd_path(t_token *token, char **env_arr)
 		return (1); // Return MALLOC_ERR if it's a copy
 	path_arr = ft_split(path_str, ':');
 	if (!path_arr)
-		return (print_error("to malloc path_arr", MALLOC_ERR));
+		fatal_error("Error with malloc()");
 	// If not a path, checks if the commands exists in one of the paths from PATH
-	ret = search_cmd_in_path(path_arr, token);
-	if (ret == 0)
+	if (search_cmd_in_path(path_arr, token) == 0)
 		return (0);
-	else if (ret == MALLOC_ERR)
-	{
-		// free(path_str); // only if get_env gives a copy
-		ft_free_2d_tab((void **)path_arr);
-		return (MALLOC_ERR);
-	}
 	else
 		return (1);
 }
@@ -62,7 +54,7 @@ int	search_cmd_in_path(char **path_arr, t_token *token)
 	{
 		tmp_path = ft_strjoin3(path_arr[i], "/", token->cmd_arr[0]);
 		if (!tmp_path)
-			return (print_error("to malloc tmp_path", MALLOC_ERR));
+			fatal_error("Error with malloc()");
 		if (access(tmp_path, F_OK) == 0)
 		{
 			// free(token->cmd_arr[0]); NEEDS TO BE UNCOMMENTED WHEN MERGING WITH ALESS
@@ -74,5 +66,7 @@ int	search_cmd_in_path(char **path_arr, t_token *token)
 		}
 	}
 	free(tmp_path);
+	ft_free_2d_tab((void **)path_arr);
+	// free(path_str); // only if get_env gives a copy
 	return (1);
 }

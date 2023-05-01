@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:28:45 by alesspal          #+#    #+#             */
-/*   Updated: 2023/04/28 13:54:28 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/01 15:03:10 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,20 @@ int		search_cmd_in_path(char **path_arr, t_token *token);
 
 // Utils
 int		print_error(char *err_msg, int ret_val);
+void	fatal_error(char *err_msg);
 char	*ft_getenv(char *name);
+int		is_builtin(t_token *token);
 
 // Executor
 int		executor(t_token *token, t_data *data);
+
+// Children
+void	create_children(t_token *token, t_data *data);
 int		exec_single_cmd(t_token *token, t_data *data);
+void	exec_builtin(t_token *token, t_data *data);
+void	wait_children(t_token *token);
+
+// Built-ins
+int		echo(t_token *token);
 
 #endif

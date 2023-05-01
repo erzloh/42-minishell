@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 10:08:43 by eholzer           #+#    #+#             */
-/*   Updated: 2023/04/28 10:22:30 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/01 15:04:57 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ int	process_input(char *input, t_data *data)
 	// I'm creating tokens manually for testing purposes
 	// The following is supposed to be in a "create_token()" or "fill_token()" function
 	t_token	token;
-	char	*cmd_arr[] = {"clear", NULL};
+	char	*cmd_arr[] = {"echo", "-na", "bonjour", "monsieur", NULL};
 
 	token.cmd_arr = cmd_arr;
 	token.cmd_valid = 0;
-	if (set_cmd_path(&token, data->env_arr) == MALLOC_ERR)
-		return (MALLOC_ERR);
-
+	token.next = NULL;
+	set_cmd_path(&token, data->env_arr);
+	
 	// Execute
 	executor(&token, data);
 	return (0);

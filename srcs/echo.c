@@ -1,20 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   executor.c                                         :+:      :+:    :+:   */
+/*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/28 09:49:54 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/01 14:17:56 by eholzer          ###   ########.fr       */
+/*   Created: 2023/05/01 14:21:05 by eholzer           #+#    #+#             */
+/*   Updated: 2023/05/01 15:09:36 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	executor(t_token *token, t_data *data)
+int	echo(t_token *token)
 {
-	create_children(token, data);
-	wait_children(token);
-	return (0);
+	int	i;
+	int	flag;
+
+	i = 1;
+	flag = 0;
+	if (ft_strncmp(token->cmd_arr[1], "-n", 3) == 0)
+	{
+		i++;
+		flag = 1;
+	}
+	while (token->cmd_arr[i])
+	{
+		printf("%s", token->cmd_arr[i]);
+		i++;
+	}
+	if (!flag)
+		printf("\n");
+	exit(0);
 }
