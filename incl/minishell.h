@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:28:45 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/01 15:03:10 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/02 16:34:29 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ typedef struct s_data
     char    **env_arr; // a COPY of envp
     char    *line; // (maybe we don't need that here)
     char    **line_elem; // Result of the expander (maybe we don't need that here)
+	int		**pipe_fd;
+	int		tokens_nb;
 }	t_data;
 
 // Function prototypes
@@ -45,6 +47,7 @@ int		process_input(char *input, t_data *data);
 // Path
 int		set_cmd_path(t_token *token, char **env_arr);
 int		search_cmd_in_path(char **path_arr, t_token *token);
+void	set_cmd_path_in_all_token(t_token *token, char **env_arr);
 
 // Utils
 int		print_error(char *err_msg, int ret_val);
@@ -57,11 +60,16 @@ int		executor(t_token *token, t_data *data);
 
 // Children
 void	create_children(t_token *token, t_data *data);
-int		exec_single_cmd(t_token *token, t_data *data);
+int		exec_external(t_token *token, t_data *data);
 void	exec_builtin(t_token *token, t_data *data);
 void	wait_children(t_token *token);
 
 // Built-ins
 int		echo(t_token *token);
+
+// Pipes
+void	create_pipes(t_data *data);
+void	close_pipes(t_data *data);
+void	set_pipe_fd_in_token(t_token *token, t_data *data);
 
 #endif

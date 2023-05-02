@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 15:00:09 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/01 17:31:58 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/02 16:34:18 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,13 @@ int	search_cmd_in_path(char **path_arr, t_token *token)
 	ft_free_2d_tab((void **)path_arr);
 	// free(path_str); // only if get_env gives a copy
 	return (1);
+}
+
+void	set_cmd_path_in_all_token(t_token *token, char **env_arr)
+{
+	while (token)
+	{
+		set_cmd_path(token, env_arr);
+		token = token->next;
+	}
 }

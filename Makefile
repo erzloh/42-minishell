@@ -6,7 +6,7 @@
 #    By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 14:21:14 by eholzer           #+#    #+#              #
-#    Updated: 2023/05/01 14:59:31 by eholzer          ###   ########.fr        #
+#    Updated: 2023/05/02 16:27:04 by eholzer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,8 @@ SRCS_LIST	=	main.c \
 				utils1.c \
 				executor.c \
 				children.c \
-				echo.c
+				echo.c \
+				pipes.c
 
 OBJS_LIST	=	${SRCS_LIST:.c=.o}
 
