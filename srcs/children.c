@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 13:58:14 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/02 17:00:22 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/02 17:17:44 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,10 @@ void	create_children(t_token *token, t_data *data)
 		if (token->pid == 0)
 		{
 			// set_dups
-			if (token->id != 0)
-				if (dup2(token->infile_fd, STDIN_FILENO) < 0)
-					fatal_error("Error with dup2() when redirecting stdin");
-			if (token->id < data->tokens_nb - 1)
-				if (dup2(token->outfile_fd, STDOUT_FILENO) < 0)
-					fatal_error("Error with dup2() when redirecting stdout");
+			if (dup2(token->infile_fd, STDIN_FILENO) < 0)
+				fatal_error("Error with dup2() when redirecting stdin");
+			if (dup2(token->outfile_fd, STDOUT_FILENO) < 0)
+				fatal_error("Error with dup2() when redirecting stdout");
 			// close_pipes
 			close_pipes(data);
 			if (token->is_builtin)
