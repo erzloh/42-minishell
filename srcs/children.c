@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 13:58:14 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/04 11:25:11 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/04 16:32:59 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	create_children(t_token *token, t_data *data)
 			if (dup2(token->redirect.outfile_fd, STDOUT_FILENO) < 0)
 				fatal_error("Error with dup2() when redirecting stdout");
 			// close_pipes
-			close_pipes(data);
+			close_pipes(token, data);
 			if (token->is_builtin)
 				exec_builtin(token, data);
 			else

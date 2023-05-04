@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 08:59:43 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/04 12:11:03 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/04 17:05:23 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ void	set_redirect_fd_in_token(t_token *token)
 	{
 		if (token->redirect.r_in_type == INPUT_REDIRECT)
 			set_input_redirect(token);
-		else if (token->redirect.r_in_type == OUTPUT_REDIRECT)
+		else if (token->redirect.r_in_type == HEREDOC_REDIRECT)
+			set_heredoc_redirect(token);
+		if (token->redirect.r_out_type == OUTPUT_REDIRECT)
 			set_output_redirect(token);
-		if (token->redirect.r_out_type == APPEND_REDIRECT)
+		else if (token->redirect.r_out_type == APPEND_REDIRECT)
 			set_append_redirect(token);
-		// else if (token->redirect.r_out_type == HEREDOC_REDIRECT)
-			// set_heredoc_redirect(token);
 		token = token->next;
 	}
 }
@@ -35,13 +35,39 @@ void	set_input_redirect(t_token *token)
 		token->redirect.valid_infile = 0;
 }
 
+void	set_heredoc_redirect(t_token *token)
+{
+	int		*heredoc_pipe;
+	char	*heredoc_input;
+	char	*eof;
+
+	eof = token->redirect.infile;
+	heredoc_pipe = malloc(sizeof(int) * 2);
+	if (!heredoc_pipe)
+		fatal_error("Error when trying to malloc() heredoc_pipe");
+	if (pipe(heredoc_pipe) < 0)
+		fatal_error("Error when trying to pipe() heredoc_pipe");
+	heredoc_input = readline("> ");
+	while (ft_strncmp(heredoc_input, eof, ft_strlen(eof)) != 0)
+	{
+		write(heredoc_pipe[1], heredoc_input, ft_strlen(heredoc_input));
+		write(heredoc_pipe[1], "\n", 1);
+		free(heredoc_input);
+		heredoc_input = readline("> ");
+	}
+	free(heredoc_input);
+	token->redirect.infile_fd = heredoc_pipe[0];
+	token->redirect.heredoc_pipe = heredoc_pipe;
+	// need to close the pipe and to free the heredoc_pipe
+}
+
 void	set_output_redirect(t_token *token)
 {
 	char	*outfile;
 	int		outfile_fd;
 
 	outfile = token->redirect.outfile;
-	outfile_fd = open(outfile, O_WRONLY | O_CREAT);
+	outfile_fd = open(outfile, O_WRONLY | O_CREAT, 0644);
 	if (outfile_fd < 0)
 		fatal_error("Error when openning an outfile");
 	token->redirect.outfile_fd = outfile_fd;
@@ -53,13 +79,23 @@ void	set_append_redirect(t_token *token)
 	int		outfile_fd;
 
 	outfile = token->redirect.outfile;
-	outfile_fd = open(outfile, O_WRONLY | O_CREAT | O_APPEND);
+	outfile_fd = open(outfile, O_WRONLY | O_CREAT | O_APPEND, 0644);
 	if (outfile_fd < 0)
 		fatal_error("Error when openning an outfile");
 	token->redirect.outfile_fd = outfile_fd;
 }
 
-// void	close_redirect_files(t_token *token)
-// {
-	
-// }
+void	close_redirect_files(t_token *token)
+{
+	while (token)
+	{
+		if (token->redirect.r_in_type == INPUT_REDIRECT) // Check if r_in_type == HEREDOC_REDIRECT
+			if (close(token->redirect.infile_fd) < 0)
+				fatal_error("Error when trying to close an in-file");
+		if (token->redirect.r_out_type == OUTPUT_REDIRECT
+			|| token->redirect.r_out_type == APPEND_REDIRECT)
+			if (close(token->redirect.outfile_fd) < 0)
+				fatal_error("Error when trying to close an out-file");
+		token = token->next;
+	}
+}

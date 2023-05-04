@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 13:55:13 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/04 12:14:03 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/04 15:58:34 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_redirect
 	int				infile_fd;
 	int				outfile_fd;
 	int				valid_infile;
+	int				*heredoc_pipe;
 	t_redirect_in	r_in_type;
 	t_redirect_out	r_out_type;
 }	t_redirect;

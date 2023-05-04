@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:51:07 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/04 11:41:36 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/04 16:51:05 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int ac, char **av, char **envp)
 	(void) envp; // Unused for now
 	g_status = 0;
 	data.env_arr = NULL; // Set to NULL for now
-	data.tokens_nb = 2;
+	data.tokens_nb = 1;
 	// init_data(data, envp);
 	while (1)
 	{

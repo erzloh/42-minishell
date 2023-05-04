@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:28:45 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/04 11:41:19 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/04 16:58:37 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <errno.h>
 # include <signal.h>
 # include <unistd.h>
-#include <fcntl.h>
+# include <fcntl.h>
 # include <sys/wait.h>
 # include "../libft/libft.h"
 # include "tokenizer.h"
@@ -70,14 +70,16 @@ int		echo(t_token *token);
 
 // Pipes
 void	create_pipes(t_data *data);
-void	close_pipes(t_data *data);
+void	close_pipes(t_token *token, t_data *data);
 void	set_pipe_fd_in_token(t_token *token, t_data *data);
-void	free_pipe_fd(t_data *data);
+void	free_pipe_fd(t_token *token, t_data *data);
 
 // Redirections
 void	set_redirect_fd_in_token(t_token *token);
 void	set_input_redirect(t_token *token);
 void	set_output_redirect(t_token *token);
 void	set_append_redirect(t_token *token);
+void	close_redirect_files(t_token *token);
+void	set_heredoc_redirect(t_token *token);
 
 #endif
