@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 09:45:03 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/02 17:02:12 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/04 11:40:53 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ void	close_pipes(t_data *data)
 	}
 }
 
+// Fills token->redirect.infile and outfile with the appropriate pipe fds
 void	set_pipe_fd_in_token(t_token *token, t_data *data)
 {
 	int	i;
@@ -64,10 +65,24 @@ void	set_pipe_fd_in_token(t_token *token, t_data *data)
 	while (token)
 	{
 		if (i != 0)
-			token->infile_fd = data->pipe_fd[i - 1][0];
+			token->redirect.infile_fd = data->pipe_fd[i - 1][0];
 		if (i < data->tokens_nb - 1)
-			token->outfile_fd = data->pipe_fd[i][1];
+			token->redirect.outfile_fd = data->pipe_fd[i][1];
 		token = token->next;
 		i++;
 	}
+}
+
+void	free_pipe_fd(t_data *data)
+{
+	int	pipes_nb;
+	int	i;
+
+	pipes_nb = data->tokens_nb - 1;
+	if (pipes_nb == 0)
+		return ;
+	i = -1;
+	while (++i < pipes_nb)
+		free(data->pipe_fd[i]);
+	free(data->pipe_fd);
 }

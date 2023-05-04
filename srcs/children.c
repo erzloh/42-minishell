@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 13:58:14 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/02 17:17:44 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/04 11:25:11 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,16 @@ void	create_children(t_token *token, t_data *data)
 		// Child Process
 		if (token->pid == 0)
 		{
+			if (!token->redirect.valid_infile)
+			{
+				printf("minishell: %s: No such file or directory\n",
+					token->redirect.infile);
+				exit(1);
+			}
 			// set_dups
-			if (dup2(token->infile_fd, STDIN_FILENO) < 0)
+			if (dup2(token->redirect.infile_fd, STDIN_FILENO) < 0)
 				fatal_error("Error with dup2() when redirecting stdin");
-			if (dup2(token->outfile_fd, STDOUT_FILENO) < 0)
+			if (dup2(token->redirect.outfile_fd, STDOUT_FILENO) < 0)
 				fatal_error("Error with dup2() when redirecting stdout");
 			// close_pipes
 			close_pipes(data);
@@ -44,7 +50,7 @@ void	create_children(t_token *token, t_data *data)
 // Executes with execve() the external command given by token
 int	exec_external(t_token *token, t_data *data)
 {
-	if (token->cmd_valid)
+	if (token->valid_cmd)
 	{
 		execve(token->cmd_arr[0], token->cmd_arr, data->env_arr);
 		printf("minishell: %s: is a directory\n", token->cmd_arr[0]);

@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 15:00:09 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/02 16:34:18 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/04 09:47:36 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	set_cmd_path(t_token *token, char **env_arr)
 	// Check if the cmd is already a valid path
 	if (access(token->cmd_arr[0], F_OK) == 0)
 	{
-		token->cmd_valid = 1;
+		token->valid_cmd = 1;
 		return (0);
 	}
 	// path_str = ft_getenv("PATH"); // Function not availabel yet. Is it a copy? // commented for now
@@ -64,7 +64,7 @@ int	search_cmd_in_path(char **path_arr, t_token *token)
 		{
 			// free(token->cmd_arr[0]); NEEDS TO BE UNCOMMENTED WHEN MERGING WITH ALESS
 			token->cmd_arr[0] = tmp_path;
-			token->cmd_valid = 1;
+			token->valid_cmd = 1;
 			// free(path_str); // only if get_env gives a copy
 			ft_free_2d_tab((void **)path_arr);
 			return (0);

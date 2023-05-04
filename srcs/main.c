@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:51:07 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/02 16:35:21 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/04 11:41:36 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ int	main(int ac, char **av, char **envp)
 // 	char	*cmd_arr[] = {"/bin/ls", NULL};
 
 // 	token.cmd_arr = cmd_arr;
-// 	token.cmd_valid = 0;
+// 	token.valid_cmd = 0;
 // 	env_arr = NULL;
 // 	// set_cmd_path(&token, env_arr);
 // 	// printf("cmd = %s\n", token.cmd_arr[0]);
-// 	// printf("cmd_valid = %i\n", token.cmd_valid);
+// 	// printf("valid_cmd = %i\n", token.valid_cmd);
 // 	execve(token.cmd_arr[0], token.cmd_arr, env_arr);
 // 	perror("Error: ");
 // }
