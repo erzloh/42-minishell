@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 13:58:14 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/04 16:32:59 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/05 10:02:20 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,9 @@ void	create_children(t_token *token, t_data *data)
 		// Child Process
 		if (token->pid == 0)
 		{
-			if (!token->redirect.valid_infile)
-			{
-				printf("minishell: %s: No such file or directory\n",
-					token->redirect.infile);
-				exit(1);
-			}
-			// set_dups
-			if (dup2(token->redirect.infile_fd, STDIN_FILENO) < 0)
-				fatal_error("Error with dup2() when redirecting stdin");
-			if (dup2(token->redirect.outfile_fd, STDOUT_FILENO) < 0)
-				fatal_error("Error with dup2() when redirecting stdout");
-			// close_pipes
-			close_pipes(token, data);
+			check_infile(token, data);
+			set_dups(token);
+			clean_up(token, data);
 			if (token->is_builtin)
 				exec_builtin(token, data);
 			else
@@ -47,25 +37,30 @@ void	create_children(t_token *token, t_data *data)
 	}
 }
 
-// Executes with execve() the external command given by token
-int	exec_external(t_token *token, t_data *data)
+void	check_infile(t_token *token, t_data *data)
 {
-	if (token->valid_cmd)
+	if (!token->redirect.valid_infile)
 	{
-		execve(token->cmd_arr[0], token->cmd_arr, data->env_arr);
-		printf("minishell: %s: is a directory\n", token->cmd_arr[0]);
+		printf("minishell: %s: No such file or directory\n",
+			token->redirect.infile);
+		clean_up(token, data);
+		exit(1);
 	}
-	else
-		printf("minishell: %s: command not found\n", token->cmd_arr[0]);
-	exit(127);
 }
 
-// Executes the built-in command given by token
-void	exec_builtin(t_token *token, t_data *data)
+void	set_dups(t_token *token)
 {
-	(void) data;
-	if (ft_strncmp(token->cmd_arr[0], "echo", 5) == 0)
-		echo(token);
+	if (dup2(token->redirect.infile_fd, STDIN_FILENO) < 0)
+		fatal_error("Error with dup2() when redirecting stdin");
+	if (dup2(token->redirect.outfile_fd, STDOUT_FILENO) < 0)
+		fatal_error("Error with dup2() when redirecting stdout");
+}
+
+void	clean_up(t_token *token, t_data *data)
+{
+	close_pipes(token, data);
+	close_redirect_files(token);
+	free_pipe_fd(token, data);
 }
 
 // Waits that all the children finish their execution
@@ -80,7 +75,6 @@ void	wait_children(t_token *token)
 		{
 			status = WEXITSTATUS(status);
 			g_status = status;
-			// printf("g_status = %d\n", g_status);
 		}
 		token = token->next;
 	}

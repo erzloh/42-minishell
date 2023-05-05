@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 08:59:43 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/04 17:05:23 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/05 09:12:40 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,6 @@ void	set_heredoc_redirect(t_token *token)
 	free(heredoc_input);
 	token->redirect.infile_fd = heredoc_pipe[0];
 	token->redirect.heredoc_pipe = heredoc_pipe;
-	// need to close the pipe and to free the heredoc_pipe
 }
 
 void	set_output_redirect(t_token *token)
@@ -83,19 +82,4 @@ void	set_append_redirect(t_token *token)
 	if (outfile_fd < 0)
 		fatal_error("Error when openning an outfile");
 	token->redirect.outfile_fd = outfile_fd;
-}
-
-void	close_redirect_files(t_token *token)
-{
-	while (token)
-	{
-		if (token->redirect.r_in_type == INPUT_REDIRECT) // Check if r_in_type == HEREDOC_REDIRECT
-			if (close(token->redirect.infile_fd) < 0)
-				fatal_error("Error when trying to close an in-file");
-		if (token->redirect.r_out_type == OUTPUT_REDIRECT
-			|| token->redirect.r_out_type == APPEND_REDIRECT)
-			if (close(token->redirect.outfile_fd) < 0)
-				fatal_error("Error when trying to close an out-file");
-		token = token->next;
-	}
 }

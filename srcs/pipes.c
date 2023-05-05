@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 09:45:03 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/04 17:01:11 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/05 09:10:55 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ void	close_pipes(t_token *token, t_data *data)
 		if (token->redirect.heredoc_pipe)
 		{
 			if (close(token->redirect.heredoc_pipe[0]) < 0)
-				fatal_error("Error when closing the read-end of a heredoc_pipe");
+				fatal_error("Error when closing the read-end of a << pipe");
 			if (close(token->redirect.heredoc_pipe[1]) < 0)
-				fatal_error("Error when closing the write-end a heredoc_pipe");
+				fatal_error("Error when closing the write-end a << pipe");
 		}
 		token = token->next;
 	}
@@ -84,6 +84,7 @@ void	set_pipe_fd_in_token(t_token *token, t_data *data)
 	}
 }
 
+// Frees the pipe fd for the regular pipes, and the heredoc pipes if they exists
 void	free_pipe_fd(t_token *token, t_data *data)
 {
 	int	pipes_nb;

@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 13:55:13 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/04 15:58:34 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/05 10:03:47 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,18 +43,11 @@ typedef struct s_redirect
 typedef struct s_token
 {
 	char			**cmd_arr;
-	// char			*infile;
-	// char			*outfile;
-	// int				infile_fd;
-	// int				outfile_fd;
-	// int				valid_infile;
 	int				valid_cmd;
 	int				is_builtin;
 	t_redirect		redirect;
 	int				pid;
-	int				id;
 	struct s_token	*next;
-	struct s_token	*prev;
 }	t_token;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:28:45 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/04 16:58:37 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/05 10:01:49 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,14 @@ int		executor(t_token *token, t_data *data);
 
 // Children
 void	create_children(t_token *token, t_data *data);
+void	check_infile(t_token *token, t_data *data);
+void	set_dups(t_token *token);
+void	clean_up(t_token *token, t_data *data);
+void	wait_children(t_token *token);
+
+// Exec
 int		exec_external(t_token *token, t_data *data);
 void	exec_builtin(t_token *token, t_data *data);
-void	wait_children(t_token *token);
 
 // Built-ins
 int		echo(t_token *token);
@@ -77,9 +82,12 @@ void	free_pipe_fd(t_token *token, t_data *data);
 // Redirections
 void	set_redirect_fd_in_token(t_token *token);
 void	set_input_redirect(t_token *token);
+void	set_heredoc_redirect(t_token *token);
 void	set_output_redirect(t_token *token);
 void	set_append_redirect(t_token *token);
 void	close_redirect_files(t_token *token);
-void	set_heredoc_redirect(t_token *token);
+
+// Tokens
+void	init_token(t_token *token);
 
 #endif
