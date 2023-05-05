@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 10:08:43 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/05 09:49:04 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/05 11:34:17 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,12 @@ int	process_input(char *input, t_data *data)
 	t_token	*token2 = malloc(sizeof(t_token));
 	// char	*cmd_arr[] = {"echo", "-n", "bonjour", "monsieur", NULL};
 	// char	*cmd_arr[] = {"grep", "Download", NULL};
-	char	*cmd_arr[] = {"cat", "-e", NULL};
+	// char	*cmd_arr[] = {"cat", "-e", NULL};
+	char	*cmd_arr[] = {"env", NULL};
 	init_token(token1);
 	token1->cmd_arr = cmd_arr;
-	token1->redirect.r_in_type = HEREDOC_REDIRECT;
-	token1->redirect.infile = "EOF";
+	// token1->redirect.r_in_type = HEREDOC_REDIRECT;
+	// token1->redirect.infile = "EOF";
 	// token1->next = token2;
 
 	char	*cmd_arr2[] = {"wc", "-l", NULL};

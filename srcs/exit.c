@@ -1,24 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   executor.c                                         :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/28 09:49:54 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/05 10:40:22 by eholzer          ###   ########.fr       */
+/*   Created: 2023/05/05 10:50:57 by eholzer           #+#    #+#             */
+/*   Updated: 2023/05/05 12:16:22 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	executor(t_token *token, t_data *data)
+void	exit_builtin(t_token *token)
 {
-	create_pipes(data);
-	set_pipe_fd_in_token(token, data);
-	set_redirect_fd_in_token(token);
-	create_children(token, data);
-	clean_up(token, data);
-	wait_children(token);
-	return (0);
+
 }
