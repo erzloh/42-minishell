@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+         #
+#    By: eric <eric@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 14:21:14 by eholzer           #+#    #+#              #
-#    Updated: 2023/05/05 09:51:46 by eholzer          ###   ########.fr        #
+#    Updated: 2023/05/08 12:43:52 by eric             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,12 +26,14 @@ SRCS_LIST	=	main.c \
 				utils1.c \
 				executor.c \
 				children.c \
+				children2.c \
 				echo.c \
 				pipes.c \
 				redirections.c \
 				redirections2.c \
 				init_token.c \
-				exec.c
+				exec.c \
+				exit.c
 
 OBJS_LIST	=	${SRCS_LIST:.c=.o}
 

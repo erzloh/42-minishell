@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eric <eric@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:28:45 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/05 10:01:49 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/08 13:03:55 by eric             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int		print_error(char *err_msg, int ret_val);
 void	fatal_error(char *err_msg);
 char	*ft_getenv(char *name);
 int		is_builtin(t_token *token);
+int 	is_str_digit(char *str);
 
 // Executor
 int		executor(t_token *token, t_data *data);
@@ -65,6 +66,7 @@ void	check_infile(t_token *token, t_data *data);
 void	set_dups(t_token *token);
 void	clean_up(t_token *token, t_data *data);
 void	wait_children(t_token *token);
+int 	is_cmd_childable(t_token *token);
 
 // Exec
 int		exec_external(t_token *token, t_data *data);
@@ -72,6 +74,7 @@ void	exec_builtin(t_token *token, t_data *data);
 
 // Built-ins
 int		echo(t_token *token);
+void	exit_builtin(t_token *token);
 
 // Pipes
 void	create_pipes(t_data *data);

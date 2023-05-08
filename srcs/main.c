@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eric <eric@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:51:07 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/05 11:36:07 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/08 12:55:10 by eric             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int ac, char **av, char **envp)
 	(void) envp; // Unused for now
 	g_status = 0;
 	data.env_arr = NULL; // Set to NULL for now
-	data.tokens_nb = 1;
+	data.tokens_nb = 2;
 	// init_data(data, envp);
 	while (1)
 	{
