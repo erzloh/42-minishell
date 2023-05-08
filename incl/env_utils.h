@@ -1,34 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_display_2d_tab.c                                :+:      :+:    :+:   */
+/*   env_utils.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/10 12:46:27 by alesspal          #+#    #+#             */
-/*   Updated: 2023/03/16 17:00:54 by alesspal         ###   ########.fr       */
+/*   Created: 2023/05/01 13:52:24 by alesspal          #+#    #+#             */
+/*   Updated: 2023/05/01 14:25:39 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../ft_printf/incl/ft_printf.h"
+#ifndef ENV_UTILS_H
+# define ENV_UTILS_H
 
-void	display_2d_tab(int **tab, int row, int col)
-{
-	int	i;
-	int	j;
+# include <stdbool.h>
+# include "../libft/libft.h"
 
-	i = -1;
-	if (!tab || row < 1 || col < 1)
-		return ;
-	while (++i < row)
-	{
-		j = -1;
-		while (++j < col)
-		{
-			ft_printf("%i", tab[i][j]);
-			if (j != col - 1)
-				ft_printf(", ");
-		}
-		ft_printf("\n");
-	}
-}
+bool	ft_is_valid_name(const char *name);
+int		ft_find_index_env(const char *name, char **envp_copy);
+int		ft_replace_env(const char *name, const char *value, char ***envp_copy);
+int		ft_add_env(const char *name, const char *value, char ***envp_copy);
+int		ft_remove_env(char *name, char ***envp_copy);
+
+#endif

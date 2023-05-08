@@ -1,34 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_malloc_2d_tab.c                                 :+:      :+:    :+:   */
+/*   ft_display_2d_tab.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/30 16:28:44 by alesspal          #+#    #+#             */
-/*   Updated: 2023/03/17 14:20:45 by alesspal         ###   ########.fr       */
+/*   Created: 2023/02/10 12:46:27 by alesspal          #+#    #+#             */
+/*   Updated: 2023/05/01 16:48:17 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/std.h"
+#include "../../ft_printf/incl/ft_printf.h"
 
-int	**ft_malloc_2d_tab(int row, int col)
+void	display_2d_int(int **tab, int row, int col)
 {
 	int	i;
-	int	**tab;
+	int	j;
 
-	tab = malloc(sizeof(int *) * row);
-	if (!tab)
-		return (NULL);
 	i = -1;
+	if (!tab || row < 1 || col < 1)
+		return ;
 	while (++i < row)
 	{
-		tab[i] = malloc(sizeof(int) * col);
-		if (!tab[i])
+		j = -1;
+		while (++j < col)
 		{
-			ft_free_2d_tab((void **)tab);
-			return (NULL);
-		}			
+			ft_printf("%i", tab[i][j]);
+			if (j != col - 1)
+				ft_printf(", ");
+		}
+		ft_printf("\n");
 	}
-	return (tab);
 }

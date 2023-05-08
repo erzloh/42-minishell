@@ -6,7 +6,7 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 16:09:25 by marvin            #+#    #+#             */
-/*   Updated: 2023/04/05 13:16:40 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/05/05 10:06:35 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,9 +147,12 @@ void				ft_lstclear(t_list **lst, void (*del)(void *));
 void				ft_lstiter(t_list *lst, void (*f)(void *));
 int					ft_lstsize(t_list *lst);
 
-int					**ft_malloc_2d_tab(int row, int col);
-void				ft_free_2d_tab(void **tab);
-void				display_2d_tab(int **tab, int row, int col);
+int					**ft_malloc_2d_int(int row, int col);
+void				ft_free_2d_int(int **tab, int row);
+void				display_2d_int(int **tab, int row, int col);
+void				ft_free_2d_char(char **c);
+char				**ft_str_arrdup(char **str_arr);
+void				ft_str_arr_alpsort(char ***str_arr);
 
 typedef struct s_stack{
 	int	*tab;
@@ -161,5 +164,13 @@ t_stack				*ft_malloc_stack(int len);
 t_stack				*ft_malloc_and_cpy_stack(t_stack *stack);
 void				free_stack(t_stack *to_freed);
 t_stack				*ft_add_t_stack_element(t_stack *stack, int element);
+
+typedef enum e_error
+{
+	E_ERROR_ARG = 1,
+	E_ERROR_MALLOC = 2,
+}	t_error;
+
+void				ft_fatal_error(char *err_msg, int ret_err);
 
 #endif

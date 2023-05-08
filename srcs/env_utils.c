@@ -5,18 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/20 09:52:06 by alesspal          #+#    #+#             */
-/*   Updated: 2023/04/06 14:27:18 by alesspal         ###   ########.fr       */
+/*   Created: 2023/05/01 12:50:17 by alesspal          #+#    #+#             */
+/*   Updated: 2023/05/03 12:36:38 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <string.h>
-#include "../libft/libft.h"
 #include "../incl/minishell.h"
 
 bool	ft_is_valid_name(const char *name)
 {
-	if (!name || !(*name == '_' || ft_isalpha(*name)))
+	if (!name || !(*name == '_' || ft_isalpha(*name)) || !ft_strlen(name))
 		return (false);
 	name++;
 	while (*name)
@@ -28,99 +26,107 @@ bool	ft_is_valid_name(const char *name)
 	return (true);
 }
 
-int	ft_find_index_env(const char *name)
+int	ft_find_index_env(const char *name, char **envp_copy)
 {
 	int			i;
 	int			len;
-	extern char	**environ;
 
+	if (!name || !(*envp_copy))
+		return (-1);
 	len = ft_strlen(name);
 	i = -1;
-	while (environ[++i])
+	while (envp_copy[++i])
 	{
-		if (!ft_strncmp(environ[i], name, len) && environ[i][len] == '=')
+		if (!ft_strncmp(envp_copy[i], name, len) && envp_copy[i][len] == '=')
 			return (i);
 	}
 	return (-1);
 }
 
-int	ft_replace_env(const char *name, const char *value)
+int	ft_replace_env(const char *name, const char *value, char ***envp_copy)
 {
 	int			i;
 	int			len;
-	extern char	**environ;
 
+	if (!name || value || !(*envp_copy))
+		return (-1);
 	len = ft_strlen(name);
 	i = -1;
-	while (environ[++i])
+	while ((*envp_copy)[++i])
 	{
-		if (!ft_strncmp(environ[i], name, len) && environ[i][len] == '=')
+		if (!ft_strncmp((*envp_copy)[i], name, len) && (*envp_copy)[i][len] == '=')
 		{
-			free(environ[i]);
-			environ[i] = ft_strjoin3(name, "=", value);
-			if (!environ)
-				return (-1);
+			/* printf("old env = %s\n", (*envp_copy)[i]); */
+			free((*envp_copy)[i]);
+			(*envp_copy)[i] = ft_strjoin3(name, "=", value);
+			/* ft_printf("new env = %s\n", (*envp_copy)[i]); */
+			if (!(*envp_copy)[i])
+				ft_fatal_error("memory allocation error", E_ERROR_MALLOC);
 			return (0);
 		}
 	}
 	return (-1);
 }
 
-int	ft_add_env(const char *name, const char *value)
+int	ft_add_env(const char *name, const char *value, char ***envp_copy)
 {
 	int			i;
 	char		**new_env;
-	extern char	**environ;
 
+	if (!name || value || !(*envp_copy))
+		return (-1);
 	i = 0;
-	while (environ[i])
+	while ((*envp_copy)[i])
 		i++;
 	new_env = malloc(sizeof(char *) * (i + 2));
 	if (!new_env)
-		return (-1);
+		ft_fatal_error("memory allocation error", E_ERROR_MALLOC);
 	i = -1;
 	//copy la variable environ dans env_final
-	while (environ[++i])
+	while ((*envp_copy)[++i])
 	{
-		new_env[i] = ft_strdup(environ[i]);
+		new_env[i] = ft_strdup((*envp_copy)[i]);
 		if (!new_env[i])
-			return (ft_free_2d_tab((void **)new_env), -1);
+			ft_fatal_error("memory allocation error", E_ERROR_MALLOC);
 	}
 	// donne la nouvelle valeur à la fin du tableau
 	new_env[i] = ft_strjoin3(name, "=", value);
 	if (!new_env[i])
-		return (ft_free_2d_tab((void **)new_env), -1);
+		ft_fatal_error("memory allocation error", E_ERROR_MALLOC);
 	new_env[i + 1] = NULL;
-	ft_free_2d_tab((void **)environ);
-	environ = new_env;
+	ft_free_2d_char(*envp_copy);
+	*envp_copy = new_env;
 	return (0);
 }
 
-char	**ft_copy_env_except(char *name)
+int	ft_remove_env(char *name, char ***envp_copy)
 {
-	extern char	**environ;
 	char		**new_env;
 	int			i;
 	int			j;
 	int			len;
 
+	if (!name || !(*envp_copy))
+		return (-1);
 	i = 0;
-	while (environ[i])
+	while ((*envp_copy)[i])
 		i++;
 	new_env = malloc(sizeof(char *) * i);
 	if (!new_env)
-		return (NULL);
+		ft_fatal_error("memory allocation error", E_ERROR_MALLOC);
 	len = ft_strlen(name);
 	i = -1;
 	j = 0;
-	while (environ[++i])
+	while ((*envp_copy)[++i])
 	{
-		if (!(!ft_memcmp(environ[i], name, len) && environ[i][len] == '='))
+		if (!(!ft_memcmp((*envp_copy)[i], name, len) && (*envp_copy)[i][len] == '='))
 		{
-			new_env[j++] = ft_strdup(environ[i]);
+			new_env[j++] = ft_strdup((*envp_copy)[i]);
 			if (!new_env[j - 1])
-				return (ft_free_2d_tab((void **)new_env), NULL);
+				ft_fatal_error("memory allocation error", E_ERROR_MALLOC);
 		}
 	}
-	return (new_env[j] = NULL, new_env);
+	new_env[j] = NULL;
+	ft_free_2d_char(*envp_copy);
+	return (*envp_copy = new_env, 0);
 }

@@ -1,40 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokenizer.h                                        :+:      :+:    :+:   */
+/*   ft_fatal_error.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/22 13:55:13 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/03 13:16:15 by alesspal         ###   ########.fr       */
+/*   Created: 2023/05/03 11:44:31 by alesspal          #+#    #+#             */
+/*   Updated: 2023/05/03 12:14:29 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TOKENIZER_H
-# define TOKENIZER_H
+#include "../../ft_printf/incl/ft_printf.h"
 
-#include "../libft/libft.h"
-#include "minishell.h"
-
-typedef struct s_IO
+void	ft_fatal_error(char *err_msg, int ret_err)
 {
-	char			*infile;
-	char			*outfile;
-	int				infile_fd;
-	int				outfile_fd;
-}	t_IO;
-
-typedef struct s_token
-{
-	int				id;
-	char			**cmd_arr;
-	bool			cmd_isvalid;
-	bool			is_builtin;
-	t_IO			io;
-	int				pid;
-	struct s_token	*next;
-}	t_token;
-
-t_token	*ft_create_token(int id);
-
-#endif
+	perror(err_msg);
+	exit(ret_err);
+}

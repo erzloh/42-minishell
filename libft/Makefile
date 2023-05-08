@@ -6,7 +6,7 @@
 #    By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/22 19:07:10 by apalumbi          #+#    #+#              #
-#    Updated: 2023/03/17 18:30:36 by alesspal         ###   ########.fr        #
+#    Updated: 2023/05/05 10:06:18 by alesspal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,12 +71,16 @@ SRCS_STD		=	ft_memset.c \
 					ft_lstclear_bonus.c \
 					ft_lstiter_bonus.c \
 					ft_lstmap_bonus.c \
-					ft_malloc_2d_tab.c \
-					ft_free_2d_tab.c \
-					ft_display_2d_tab.c \
+					ft_malloc_2d_int.c \
+					ft_free_2d_int.c \
+					ft_display_2d_int.c \
+					ft_free_2d_char.c \
+					ft_str_arrdup.c \
+					ft_str_arr_alpsort.c \
 					ft_add_element_to_stack.c \
 					ft_malloc_stack.c \
-					ft_free_stack.c
+					ft_free_stack.c \
+					ft_fatal_error.c \
 
 SRCS_GNL		=	get_next_line.c \
 					get_next_line_utils.c \

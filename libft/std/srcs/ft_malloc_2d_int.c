@@ -1,40 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokenizer.h                                        :+:      :+:    :+:   */
+/*   ft_malloc_2d_int.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/22 13:55:13 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/03 13:16:15 by alesspal         ###   ########.fr       */
+/*   Created: 2023/01/30 16:28:44 by alesspal          #+#    #+#             */
+/*   Updated: 2023/05/01 16:56:48 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TOKENIZER_H
-# define TOKENIZER_H
+#include "../incl/std.h"
 
-#include "../libft/libft.h"
-#include "minishell.h"
-
-typedef struct s_IO
+int	**ft_malloc_2d_int(int row, int col)
 {
-	char			*infile;
-	char			*outfile;
-	int				infile_fd;
-	int				outfile_fd;
-}	t_IO;
+	int	i;
+	int	**tab;
 
-typedef struct s_token
-{
-	int				id;
-	char			**cmd_arr;
-	bool			cmd_isvalid;
-	bool			is_builtin;
-	t_IO			io;
-	int				pid;
-	struct s_token	*next;
-}	t_token;
-
-t_token	*ft_create_token(int id);
-
-#endif
+	tab = malloc(sizeof(int *) * row);
+	if (!tab)
+		return (NULL);
+	i = -1;
+	while (++i < row)
+	{
+		tab[i] = malloc(sizeof(int) * col);
+		if (!tab[i])
+		{
+			ft_free_2d_int(tab, row);
+			return (NULL);
+		}
+	}
+	return (tab);
+}
