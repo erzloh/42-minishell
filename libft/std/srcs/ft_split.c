@@ -6,7 +6,7 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:00:09 by marvin            #+#    #+#             */
-/*   Updated: 2023/03/30 11:34:08 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/05/03 15:08:37 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	free_2dtab(char **tab2d)
 	free(tab2d);
 }
 
-int	count_word(const char *str, char sep)
+int	count_arg(const char *str, char sep)
 {
 	int	i;
 	int	nb_word;
@@ -90,7 +90,7 @@ char	**ft_split(char const *s, char c)
 	int		nb_word_tot;
 	char	**split;
 
-	nb_word_tot = count_word(s, c);
+	nb_word_tot = count_arg(s, c);
 	split = malloc((nb_word_tot + 1) * sizeof(char *));
 	if (!split)
 		return (NULL);

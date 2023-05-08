@@ -6,7 +6,7 @@
 /*   By: eric <eric@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:28:45 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/08 15:20:05 by eric             ###   ########.fr       */
+/*   Updated: 2023/05/08 16:09:48 by eric             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,9 @@
 # include <sys/wait.h>
 # include "../libft/libft.h"
 # include "tokenizer.h"
-
+# include "env.h"
 // Macros
+
 # define MALLOC_ERR -42
 // # define MILD_ERR -43 
 // # define CMD_NOT_FOUND -44 
@@ -49,6 +50,8 @@ int		process_input(char *input, t_data *data);
 int		set_cmd_path(t_token *token, char **env_arr);
 int		search_cmd_in_path(char **path_arr, t_token *token);
 void	set_cmd_path_in_all_token(t_token *token, char **env_arr);
+
+
 
 // Utils
 int		print_error(char *err_msg, int ret_val);
@@ -94,5 +97,8 @@ void	close_redirect_files(t_token *token);
 
 // Tokens
 void	init_token(t_token *token);
+
+// Environment variables
+bool	check_unmatched_quotes(char *str);
 
 #endif

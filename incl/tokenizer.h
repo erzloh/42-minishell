@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eric <eric@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 13:55:13 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/05 10:03:47 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/08 16:29:41 by eric             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,17 @@ typedef struct s_redirect
 	t_redirect_out	r_out_type;
 }	t_redirect;
 
+#include "../libft/libft.h"
+#include "minishell.h"
+
+typedef struct s_IO
+{
+	char			*infile;
+	char			*outfile;
+	int				infile_fd;
+	int				outfile_fd;
+}	t_IO;
+
 typedef struct s_token
 {
 	char			**cmd_arr;
@@ -49,5 +60,26 @@ typedef struct s_token
 	int				pid;
 	struct s_token	*next;
 }	t_token;
+
+t_token	*create_token(void);
+void	ft_free_token(t_token *token);
+void	ft_display_token(t_token *token);
+
+// laxer
+t_token		*ft_laxing_cmd(char *input);
+int			ft_is_pipe_or_red(int c);
+char		*ft_get_cmd(char *input, int *index);
+char		*ft_get_arg(char *input, int *index);
+char		*ft_get_flag(char *input, int *index);
+
+// checkers
+char		*ft_find_and_check_echo_arg(char *arg, int *index);
+char		*ft_find_and_check_cd_arg(char *input, int *index);
+bool		check_unmatched_quotes(char *str);
+
+// expender
+t_token		*ft_expend_cmd(t_token *token);
+char		*ft_remove_quotes(char *str);
+char		*ft_strtrim_minishell(char *src);
 
 #endif

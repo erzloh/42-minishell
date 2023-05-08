@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_2d_tab.c                                   :+:      :+:    :+:   */
+/*   ft_free_2d_char.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/30 16:34:39 by alesspal          #+#    #+#             */
-/*   Updated: 2023/03/17 18:37:10 by alesspal         ###   ########.fr       */
+/*   Created: 2023/05/01 16:47:24 by alesspal          #+#    #+#             */
+/*   Updated: 2023/05/01 16:50:05 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/std.h"
 
-void ft_free_2d_tab(void **tab)
+void	ft_free_2d_char(char **c)
 {
-    int i;
+	int i;
 
-    if (!tab)
-        return;
-    i = -1;
-    while (tab[++i]) {
-        if (tab[i]) {
-            /* printf("Freeing pointer: %p\n", tab[i]); */
-            free(tab[i]);
-        }
-    }
-    /* printf("Freeing tab: %p\n", tab); */
-    free(tab);
+	if (!c)
+		return;
+	i = -1;
+	while (c[++i]) {
+		/* printf("Freeing pointer: %p\n", tab[i]); */
+		free(c[i]);
+	}
+	/* printf("Freeing tab: %p\n", tab); */
+	free(c);
 }
