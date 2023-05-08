@@ -6,7 +6,7 @@
 /*   By: eric <eric@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:28:45 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/08 15:01:55 by eric             ###   ########.fr       */
+/*   Updated: 2023/05/08 15:20:05 by eric             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ void	exec_builtin(t_token *token, t_data *data);
 int		echo(t_token *token);
 void	exit_builtin(t_token *token);
 void	pwd(void);
+void	cd(t_token *token);
 
 // Pipes
 void	create_pipes(t_data *data);

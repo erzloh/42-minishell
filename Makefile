@@ -6,7 +6,7 @@
 #    By: eric <eric@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 14:21:14 by eholzer           #+#    #+#              #
-#    Updated: 2023/05/08 14:59:00 by eric             ###   ########.fr        #
+#    Updated: 2023/05/08 15:04:22 by eric             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,8 @@ SRCS_LIST	=	main.c \
 				init_token.c \
 				exec.c \
 				exit.c \
-				pwd.c
+				pwd.c \
+				cd.c
 
 OBJS_LIST	=	${SRCS_LIST:.c=.o}
 
