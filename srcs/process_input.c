@@ -6,7 +6,7 @@
 /*   By: eric <eric@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 10:08:43 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/08 13:01:23 by eric             ###   ########.fr       */
+/*   Updated: 2023/05/08 15:02:05 by eric             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,11 @@ int	process_input(char *input, t_data *data)
 	// char	*cmd_arr[] = {"echo", "-n", "bonjour", "monsieur", NULL};
 	// char	*cmd_arr[] = {"grep", "Download", NULL};
 	// char	*cmd_arr[] = {"cat", "-e", NULL};
-	char	*cmd_arr[] = {"exit", "42", NULL};
+	// char	*cmd_arr[] = {"exit", "42", NULL};
+	char	*cmd_arr[] = {"pwd", NULL};
 	init_token(token1);
 	token1->cmd_arr = cmd_arr;
-	// token1->redirect.r_in_type = HEREDOC_REDIRECT;
+	// token1->redirect.r_in_type s= HEREDOC_REDIRECT;
 	// token1->redirect.infile = "EOF";
 	token1->next = token2;
 

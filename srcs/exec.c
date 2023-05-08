@@ -6,7 +6,7 @@
 /*   By: eric <eric@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 09:51:03 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/08 13:03:37 by eric             ###   ########.fr       */
+/*   Updated: 2023/05/08 14:59:43 by eric             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,4 +33,6 @@ void	exec_builtin(t_token *token, t_data *data)
 		echo(token);
 	if (ft_strncmp(token->cmd_arr[0], "exit", 5) == 0)
 		exit_builtin(token);
+	if (ft_strncmp(token->cmd_arr[0], "pwd", 4) == 0)
+		pwd(token);
 }
