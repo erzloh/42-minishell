@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eric <eric@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:51:07 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/08 16:16:52 by eric             ###   ########.fr       */
+/*   Updated: 2023/05/09 12:34:11 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,9 @@ int	main(int ac, char **av, char **envp)
 
 	(void) ac;
 	(void) av;
-	(void) envp; // Unused for now
 	g_status = 0;
-	data.env_arr = NULL; // Set to NULL for now
+	init_data(&data, envp);
 	data.tokens_nb = 1;
-	// init_data(data, envp);
 	while (1)
 	{
 		input = readline("minishell$ ");
@@ -38,6 +36,12 @@ int	main(int ac, char **av, char **envp)
 		// rl_on_new_line()
 	}
 	return (0);
+}
+
+// Initialize the data structure
+void	init_data(t_data *data, char **envp)
+{
+	data->env_arr = ft_str_arrdup(envp);
 }
 
 // int	main()

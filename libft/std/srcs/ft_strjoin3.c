@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin3.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/17 18:27:38 by alesspal          #+#    #+#             */
-/*   Updated: 2023/03/30 11:34:08 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/05/09 12:33:00 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ char	*ft_strjoin3(const char *s1, const char *s2, const char *s3)
 	size_t	len2;
 	size_t	len3;
 
-	if (!s1 || !s2 || !s3)
-		return (NULL);
 	len1 = ft_strlen(s1);
 	len2 = ft_strlen(s2);
 	len3 = ft_strlen(s3);

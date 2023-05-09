@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   process_input.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eric <eric@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 10:08:43 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/08 15:14:38 by eric             ###   ########.fr       */
+/*   Updated: 2023/05/09 12:36:39 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ int	process_input(char *input, t_data *data)
 	// char	*cmd_arr[] = {"cat", "-e", NULL};
 	// char	*cmd_arr[] = {"exit", "42", NULL};
 	// char	*cmd_arr[] = {"pwd", NULL};
-	char	*cmd_arr[] = {"cd", NULL};
+	// char	*cmd_arr[] = {"cd", NULL};
+	char	*cmd_arr[] = {"export", "bonjour", NULL};
 	init_token(token1);
 	token1->cmd_arr = cmd_arr;
 	// token1->redirect.r_in_type s= HEREDOC_REDIRECT;
@@ -38,8 +39,10 @@ int	process_input(char *input, t_data *data)
 
 	// char	*cmd_arr2[] = {"wc", "-l", NULL};
 	// char	*cmd_arr2[] = {"echo", "bonjour", NULL};
-	char	*cmd_arr2[] = {"pwd", NULL};
+	// char	*cmd_arr2[] = {"pwd", NULL};
+	// char	*cmd_arr2[] = {"cat", "-e", NULL};
 	// char	*cmd_arr2[] = {"exit", "42", NULL};
+	char	*cmd_arr2[] = {"env", NULL};
 	token2->cmd_arr = cmd_arr2;
 	init_token(token2);
 
@@ -47,6 +50,7 @@ int	process_input(char *input, t_data *data)
 	set_cmd_path_in_all_token(token2, data->env_arr);
 	// Execute 
 	executor(token1, data);
+	// executor(token2, data);
 	executor(token2, data);
 	return (0);
 }

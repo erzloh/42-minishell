@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 15:00:09 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/04 09:47:36 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/09 10:26:31 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 // Returns 1 if the command is not found
 int	set_cmd_path(t_token *token, char **env_arr)
 {
-	char	*path_str = "/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/Library/Apple/usr/bin";
+	// char	*path_str = "/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/Library/Apple/usr/bin";
+	char	*path_str;
 	char	**path_arr;
 
 	(void) env_arr;
@@ -33,9 +34,9 @@ int	set_cmd_path(t_token *token, char **env_arr)
 		token->valid_cmd = 1;
 		return (0);
 	}
-	// path_str = ft_getenv("PATH"); // Function not availabel yet. Is it a copy? // commented for now
+	path_str = ft_getenv("PATH", env_arr); // Function not availabel yet. Is it a copy? // commented for now
 	if (!path_str)
-		return (1); // Return MALLOC_ERR if it's a copy
+		return (1);
 	path_arr = ft_split(path_str, ':');
 	if (!path_arr)
 		fatal_error("Error with malloc()");
@@ -65,14 +66,12 @@ int	search_cmd_in_path(char **path_arr, t_token *token)
 			// free(token->cmd_arr[0]); NEEDS TO BE UNCOMMENTED WHEN MERGING WITH ALESS
 			token->cmd_arr[0] = tmp_path;
 			token->valid_cmd = 1;
-			// free(path_str); // only if get_env gives a copy
-			ft_free_2d_tab((void **)path_arr);
+			ft_free_2d_char(path_arr);
 			return (0);
 		}
 	}
 	free(tmp_path);
-	ft_free_2d_tab((void **)path_arr);
-	// free(path_str); // only if get_env gives a copy
+	ft_free_2d_char(path_arr);
 	return (1);
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eric <eric@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:28:45 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/08 16:09:48 by eric             ###   ########.fr       */
+/*   Updated: 2023/05/09 11:51:11 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,19 +46,19 @@ typedef struct s_data
 // Function prototypes
 int		process_input(char *input, t_data *data);
 
+// Initialization
+void	init_data(t_data *data, char **envp);
+
 // Path
 int		set_cmd_path(t_token *token, char **env_arr);
 int		search_cmd_in_path(char **path_arr, t_token *token);
 void	set_cmd_path_in_all_token(t_token *token, char **env_arr);
 
-
-
 // Utils
 int		print_error(char *err_msg, int ret_val);
 void	fatal_error(char *err_msg);
-char	*ft_getenv(char *name);
 int		is_builtin(t_token *token);
-int 	is_str_digit(char *str);
+int		is_str_digit(char *str);
 
 // Executor
 int		executor(t_token *token, t_data *data);
@@ -69,7 +69,7 @@ void	check_infile(t_token *token, t_data *data);
 void	set_dups(t_token *token);
 void	clean_up(t_token *token, t_data *data);
 void	wait_children(t_token *token);
-int 	is_cmd_childable(t_token *token);
+int		is_cmd_childable(t_token *token);
 
 // Exec
 int		exec_external(t_token *token, t_data *data);
@@ -80,6 +80,8 @@ int		echo(t_token *token);
 void	exit_builtin(t_token *token);
 void	pwd(void);
 void	cd(t_token *token);
+void	env(t_data *data);
+void	export(t_token *token, t_data *data);
 
 // Pipes
 void	create_pipes(t_data *data);

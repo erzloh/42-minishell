@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eric <eric@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 12:50:17 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/08 16:12:15 by eric             ###   ########.fr       */
+/*   Updated: 2023/05/09 12:29:55 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	ft_replace_env(const char *name, const char *value, char ***envp_copy)
 	int			i;
 	int			len;
 
-	if (!name || value || !(*envp_copy))
+	if (!name || !(*envp_copy))
 		return (-1);
 	len = ft_strlen(name);
 	i = -1;
@@ -73,7 +73,7 @@ int	ft_add_env(const char *name, const char *value, char ***envp_copy)
 	int			i;
 	char		**new_env;
 
-	if (!name || value || !(*envp_copy))
+	if (!name || !(*envp_copy))
 		return (-1);
 	i = 0;
 	while ((*envp_copy)[i])

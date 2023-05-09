@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: eric <eric@student.42.fr>                  +#+  +:+       +#+         #
+#    By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 14:21:14 by eholzer           #+#    #+#              #
-#    Updated: 2023/05/08 16:25:21 by eric             ###   ########.fr        #
+#    Updated: 2023/05/09 11:51:25 by eholzer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,10 +35,12 @@ SRCS_LIST	=	main.c \
 				exec.c \
 				exit.c \
 				pwd.c \
-				cd.c
-				env.c \
+				cd.c \
+				env_functions.c \
 				env_utils.c \
-				token_manager.c \
+				env.c \
+				export.c
+				# token_manager.c
 
 OBJS_LIST	=	${SRCS_LIST:.c=.o}
 
