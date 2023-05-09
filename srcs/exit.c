@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eric <eric@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 10:50:57 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/08 12:50:05 by eric             ###   ########.fr       */
+/*   Updated: 2023/05/09 13:53:11 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,6 @@ void	exit_builtin(t_token *token)
 		printf("minishell: exit: %s: numeric argument required\n", token->cmd_arr[1]);
 		exit(255);
 	}
+	if (!token->pid)
+		exit(1);
 }

@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 10:08:43 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/09 12:36:39 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/09 14:18:08 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,15 @@ int	process_input(char *input, t_data *data)
 	// The following is supposed to be in a "create_token()" or "fill_token()" function
 	t_token	*token1 = malloc(sizeof(t_token));
 	t_token	*token2 = malloc(sizeof(t_token));
-	// char	*cmd_arr[] = {"echo", "-n", "bonjour", "monsieur", NULL};
+	t_token	*token3 = malloc(sizeof(t_token));
+	t_token	*token4 = malloc(sizeof(t_token));
+	char	*cmd_arr[] = {"echo", "-n", "bonjour", "monsieur", NULL};
 	// char	*cmd_arr[] = {"grep", "Download", NULL};
 	// char	*cmd_arr[] = {"cat", "-e", NULL};
 	// char	*cmd_arr[] = {"exit", "42", NULL};
 	// char	*cmd_arr[] = {"pwd", NULL};
 	// char	*cmd_arr[] = {"cd", NULL};
-	char	*cmd_arr[] = {"export", "bonjour", NULL};
+	// char	*cmd_arr[] = {"export", "bonjour=42", NULL};
 	init_token(token1);
 	token1->cmd_arr = cmd_arr;
 	// token1->redirect.r_in_type s= HEREDOC_REDIRECT;
@@ -45,12 +47,24 @@ int	process_input(char *input, t_data *data)
 	char	*cmd_arr2[] = {"env", NULL};
 	token2->cmd_arr = cmd_arr2;
 	init_token(token2);
+	// token2->next = token3;
+
+	char	*cmd_arr3[] = {"unset", "bonjour", NULL};
+	token3->cmd_arr = cmd_arr3;
+	init_token(token3);
+
+	char	*cmd_arr4[] = {"env", NULL};
+	token4->cmd_arr = cmd_arr4;
+	init_token(token4);
 
 	set_cmd_path_in_all_token(token1, data->env_arr);
-	set_cmd_path_in_all_token(token2, data->env_arr);
+	// set_cmd_path_in_all_token(token2, data->env_arr);
+	// set_cmd_path_in_all_token(token3, data->env_arr);
+	// set_cmd_path_in_all_token(token4, data->env_arr);
 	// Execute 
 	executor(token1, data);
 	// executor(token2, data);
-	executor(token2, data);
+	// executor(token3, data);
+	// executor(token4, data);
 	return (0);
 }

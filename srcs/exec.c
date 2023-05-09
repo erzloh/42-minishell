@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 09:51:03 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/09 12:33:06 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/09 14:04:12 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,6 @@ void	exec_builtin(t_token *token, t_data *data)
 		env(data);
 	else if (ft_strncmp(token->cmd_arr[0], "export", 7) == 0)
 		export(token, data);
+	else if (ft_strncmp(token->cmd_arr[0], "unset", 6) == 0)
+		unset(token, data);
 }

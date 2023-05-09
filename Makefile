@@ -6,7 +6,7 @@
 #    By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 14:21:14 by eholzer           #+#    #+#              #
-#    Updated: 2023/05/09 11:51:25 by eholzer          ###   ########.fr        #
+#    Updated: 2023/05/09 14:11:38 by eholzer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,7 +39,8 @@ SRCS_LIST	=	main.c \
 				env_functions.c \
 				env_utils.c \
 				env.c \
-				export.c
+				export.c \
+				unset.c
 				# token_manager.c
 
 OBJS_LIST	=	${SRCS_LIST:.c=.o}

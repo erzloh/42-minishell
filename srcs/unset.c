@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   children2.c                                        :+:      :+:    :+:   */
+/*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/08 12:43:33 by eric              #+#    #+#             */
-/*   Updated: 2023/05/09 14:07:46 by eholzer          ###   ########.fr       */
+/*   Created: 2023/05/09 13:28:41 by eholzer           #+#    #+#             */
+/*   Updated: 2023/05/09 13:53:38 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// Returns 0 if the command is exit or cd and that there are no pipes
-int	is_cmd_childable(t_token *token)
+extern int g_status;
+
+void	unset(t_token *token, t_data *data)
 {
-	if (ft_strncmp(token->cmd_arr[0], "exit", 5) == 0
-		|| ft_strncmp(token->cmd_arr[0], "cd", 3) == 0
-		|| ft_strncmp(token->cmd_arr[0], "unset", 6) == 0)
-	{
-		if (token->next == NULL)
-			return (0);
-	}
-	else if (ft_strncmp(token->cmd_arr[0], "export", 7) == 0)
-	{
-		if (token->cmd_arr[1])
-			return (0);
-	}
-	return (1);
+	ft_unsetenv(token->cmd_arr[1], &data->env_arr);
+	g_status = 0;
+	if (!token->pid)
+		exit(0);
 }

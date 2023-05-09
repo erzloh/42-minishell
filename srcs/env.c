@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 10:43:34 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/09 10:51:27 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/09 13:34:25 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,4 +19,5 @@ void	env(t_data *data)
 	i = -1;
 	while (data->env_arr[++i])
 		printf("%s\n", data->env_arr[i]);
+	exit(0);
 }
