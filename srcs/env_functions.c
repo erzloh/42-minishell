@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 12:50:21 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/09 12:28:23 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/09 14:56:26 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char	*ft_getenv(const char *name, char **envp_copy)
 	while (envp_copy[++i])
 	{
 		if (!ft_strncmp(envp_copy[i], name, len) && envp_copy[i][len] == '=')
-			return (envp_copy[i]);
+			return (ft_strchr(envp_copy[i], '=') + 1);
 	}
 	return (NULL);
 }
