@@ -6,7 +6,7 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 12:50:21 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/05 10:08:46 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/05/10 17:21:14 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	ft_setenv(const char *name, const char *value, char ***envp_copy)
 	if (!ft_is_valid_name(name))
 		return (-1);
 	i = ft_find_index_env(name, *envp_copy);
-	/* ft_printf("ind env = %i\n", i); */
 	if (i >= 0)
 	{
 		if (ft_replace_env(name, value, envp_copy) != 0)
@@ -73,7 +72,7 @@ char	*ft_getenv(const char *name, char **envp_copy)
 	while (envp_copy[++i])
 	{
 		if (!ft_strncmp(envp_copy[i], name, len) && envp_copy[i][len] == '=')
-			return (envp_copy[i]);
+			return (ft_strchr(envp_copy[i], '=') + 1);
 	}
 	return (NULL);
 }

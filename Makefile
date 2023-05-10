@@ -6,7 +6,7 @@
 #    By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 14:21:14 by eholzer           #+#    #+#              #
-#    Updated: 2023/05/01 14:06:46 by alesspal         ###   ########.fr        #
+#    Updated: 2023/05/10 13:09:49 by alesspal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,11 @@ SRCS_LIST	=	main.c \
 				env.c \
 				env_utils.c \
 				token_manager.c \
+				check_input_syntax.c \
+				quote_manager.c \
+				lexer.c \
+				lexer_utils.c \
+				expander.c\
 
 OBJS_LIST	=	${SRCS_LIST:.c=.o}
 

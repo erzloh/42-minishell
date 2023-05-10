@@ -6,7 +6,7 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 16:09:25 by marvin            #+#    #+#             */
-/*   Updated: 2023/05/05 10:06:35 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/05/10 17:38:59 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,6 +153,8 @@ void				display_2d_int(int **tab, int row, int col);
 void				ft_free_2d_char(char **c);
 char				**ft_str_arrdup(char **str_arr);
 void				ft_str_arr_alpsort(char ***str_arr);
+int					ft_str_arr_len(char **str_arr);
+char				**ft_str_arr_cat(char **str_arr, const char *new_str);
 
 typedef struct s_stack{
 	int	*tab;

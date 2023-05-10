@@ -6,7 +6,7 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 14:10:35 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/05 09:55:58 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/05/10 16:47:26 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void ft_execute_cmd(char *input, char ***envp)
 			if ((input + 6)[i] == '=')
 				break;
 		}
-		char *name = strndup(input + 7, i - 1);
+		char *name = ft_strndup(input + 7, i - 1);
 		char *value = input + 7 + i;
 		/* printf("name = %s\n", name);
 		printf("value = %s\n", value); */
@@ -75,6 +75,58 @@ void ft_execute_cmd(char *input, char ***envp)
 	else if (!ft_memcmp(input, "unset ", 6))
 	{
 		ft_unsetenv(input + 6, envp);
+	}
+	else
+	{
+		int		i;
+		/* int		len;
+		char	**split = ft_lexer(input);
+		
+		len = 0;
+		if (!split)
+			return ;
+		while (split[len])
+			len++;
+		printf("lexer = {");
+		i = -1;
+		while (++i < len)
+		{
+			printf("%s", split[i]);
+			if (i < len - 1)
+				printf(", ");
+		}
+		printf("}\n");
+		split = ft_expander(split, *envp);
+		if (!split)
+			return ;
+		while (split[len])
+			len++;
+		printf("expender = {");
+		i = -1;
+		while (++i < len)
+		{
+			printf("%s", split[i]);
+			if (i < len - 1)
+				printf(", ");
+		}
+		printf("}\n");
+		ft_free_2d_char(split); */
+		t_data *data;
+
+		data = malloc(sizeof(t_data));
+		if (!data)
+			ft_fatal_error("memory allocation error\n", E_ERROR_MALLOC);
+		data->input = input;
+		data->formatted_input = ft_lexer(data->input);
+		data->formatted_input = ft_expander(data->formatted_input, *envp);
+		printf("formatted_input = {");
+		i = -1;
+		while (data->formatted_input[++i])
+			printf("%s, ", data->formatted_input[i]);
+		printf("}\n");
+		data->tokens_nb = ft_create_token(&data->token, data->formatted_input);
+		/* printf("here\n"); */
+		ft_display_token(data->token);
 	}
 }
 

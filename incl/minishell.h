@@ -6,7 +6,7 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:28:45 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/03 13:17:47 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/05/10 13:17:05 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,10 @@ typedef struct s_data
 {
 	int		tokens_nb;
     struct s_token *token; // pointer to the first token
-    char    **env_arr; // a COPY of envp
-    char    *line; // (maybe we don't need that here)
+    char    **envp_cpy; // a COPY of envp
+    char    *input;
+    char    **formatted_input;
 	int		**pipe_fd;
 }	t_data;
-
-bool	check_unmatched_quotes(char *str);
 
 #endif
