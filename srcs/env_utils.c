@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 12:50:17 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/09 12:29:55 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/11 14:02:13 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,14 +82,12 @@ int	ft_add_env(const char *name, const char *value, char ***envp_copy)
 	if (!new_env)
 		ft_fatal_error("memory allocation error", E_ERROR_MALLOC);
 	i = -1;
-	//copy la variable environ dans env_final
 	while ((*envp_copy)[++i])
 	{
 		new_env[i] = ft_strdup((*envp_copy)[i]);
 		if (!new_env[i])
 			ft_fatal_error("memory allocation error", E_ERROR_MALLOC);
 	}
-	// donne la nouvelle valeur à la fin du tableau
 	new_env[i] = ft_strjoin3(name, "=", value);
 	if (!new_env[i])
 		ft_fatal_error("memory allocation error", E_ERROR_MALLOC);
