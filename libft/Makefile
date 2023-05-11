@@ -6,7 +6,7 @@
 #    By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/22 19:07:10 by apalumbi          #+#    #+#              #
-#    Updated: 2023/05/05 10:06:18 by alesspal         ###   ########.fr        #
+#    Updated: 2023/05/10 17:38:35 by alesspal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,12 +71,14 @@ SRCS_STD		=	ft_memset.c \
 					ft_lstclear_bonus.c \
 					ft_lstiter_bonus.c \
 					ft_lstmap_bonus.c \
+					ft_str_arr_len.c \
 					ft_malloc_2d_int.c \
 					ft_free_2d_int.c \
 					ft_display_2d_int.c \
 					ft_free_2d_char.c \
 					ft_str_arrdup.c \
 					ft_str_arr_alpsort.c \
+					ft_str_arr_cat.c \
 					ft_add_element_to_stack.c \
 					ft_malloc_stack.c \
 					ft_free_stack.c \

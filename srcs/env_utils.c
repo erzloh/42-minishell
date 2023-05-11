@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 12:50:17 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/11 14:02:13 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/11 14:42:16 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 bool	ft_is_valid_name(const char *name)
 {
-	if (!name || !(*name == '_' || ft_isalpha(*name)) || !ft_strlen(name))
+	if (!name || !(ft_isalpha(*name) || *name == '_' || *name == '?') || !ft_strlen(name))
 		return (false);
 	name++;
 	while (*name)
@@ -56,10 +56,8 @@ int	ft_replace_env(const char *name, const char *value, char ***envp_copy)
 	{
 		if (!ft_strncmp((*envp_copy)[i], name, len) && (*envp_copy)[i][len] == '=')
 		{
-			/* printf("old env = %s\n", (*envp_copy)[i]); */
 			free((*envp_copy)[i]);
 			(*envp_copy)[i] = ft_strjoin3(name, "=", value);
-			/* ft_printf("new env = %s\n", (*envp_copy)[i]); */
 			if (!(*envp_copy)[i])
 				ft_fatal_error("memory allocation error", E_ERROR_MALLOC);
 			return (0);

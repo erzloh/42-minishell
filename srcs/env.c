@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_functions.c                                    :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 12:50:21 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/09 14:56:26 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/11 14:34:48 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	ft_setenv(const char *name, const char *value, char ***envp_copy)
 	if (!ft_is_valid_name(name))
 		return (-1);
 	i = ft_find_index_env(name, *envp_copy);
-	/* ft_printf("ind env = %i\n", i); */
 	if (i >= 0)
 	{
 		if (ft_replace_env(name, value, envp_copy) != 0)

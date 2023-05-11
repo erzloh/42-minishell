@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libft.h                                            :+:      :+:    :+:   */
+/*   quote_manager.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/06 15:45:51 by apalumbi          #+#    #+#             */
-/*   Updated: 2023/05/08 14:45:14 by alesspal         ###   ########.fr       */
+/*   Created: 2023/05/10 10:39:13 by alesspal          #+#    #+#             */
+/*   Updated: 2023/05/10 11:21:42 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBFT_H
-# define LIBFT_H
+#ifndef QUOTE_MANAGER_H
+# define QUOTE_MANAGER_H
 
-# include <stdbool.h>
-# include "std/incl/std.h"
-# include "gnl/incl/get_next_line.h"
-# include "gnl/incl/get_next_line_bonus.h"
-# include "ft_printf/incl/ft_printf.h"
+bool	check_unmatched_quotes(char *str);
+void	update_quote_status(char cur_char, char *cur_quote);
+char	*ft_remove_quotes(char *str);
 
 #endif

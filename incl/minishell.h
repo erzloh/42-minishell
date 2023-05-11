@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:28:45 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/09 14:04:38 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/11 14:31:52 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,11 @@ typedef struct s_data
     char    **env_arr; // a COPY of envp
     char    *line; // (maybe we don't need that here)
     char    **line_elem; // Result of the expander (maybe we don't need that here)
+	int		tokens_nb;
+    struct s_token *token; // pointer to the first token
+    char    **envp_cpy; // a COPY of envp
+    char    *input;
+    char    **formatted_input;
 	int		**pipe_fd;
 	int		tokens_nb;
 }	t_data;
