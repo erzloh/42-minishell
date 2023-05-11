@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 08:59:43 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/05 09:12:40 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/11 15:07:05 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	set_input_redirect(t_token *token)
 {
 	token->redirect.infile_fd = open(token->redirect.infile, O_RDONLY);
 	if (token->redirect.infile_fd < 0)
-		token->redirect.valid_infile = 0;
+		token->redirect.is_valid_infile = 0;
 }
 
 void	set_heredoc_redirect(t_token *token)

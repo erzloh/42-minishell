@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 15:00:09 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/09 14:11:28 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/11 15:07:28 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@
 // Returns 0 if it succeeds
 // Returns MALLOC_ERR in case of a malloc error
 // Returns 1 if the command is not found
-int	set_cmd_path(t_token *token, char **env_arr)
+int	set_cmd_path(t_token *token, char **envp_cpy)
 {
 	// char	*path_str = "/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/Library/Apple/usr/bin";
 	char	*path_str;
 	char	**path_arr;
 
-	(void) env_arr;
+	(void) envp_cpy;
 	if (is_builtin(token))
 	{
 		token->is_builtin = 1;
@@ -31,10 +31,10 @@ int	set_cmd_path(t_token *token, char **env_arr)
 	// Check if the cmd is already a valid path
 	if (access(token->cmd_arr[0], F_OK) == 0)
 	{
-		token->valid_cmd = 1;
+		token->is_valid_cmd = 1;
 		return (0);
 	}
-	path_str = ft_getenv("PATH", env_arr); // Function not availabel yet. Is it a copy? // commented for now
+	path_str = ft_getenv("PATH", envp_cpy); // Function not availabel yet. Is it a copy? // commented for now
 	if (!path_str)
 		return (1);
 	path_arr = ft_split(path_str, ':');
@@ -65,7 +65,7 @@ int	search_cmd_in_path(char **path_arr, t_token *token)
 		{
 			// free(token->cmd_arr[0]); NEEDS TO BE UNCOMMENTED WHEN MERGING WITH ALESS
 			token->cmd_arr[0] = tmp_path;
-			token->valid_cmd = 1;
+			token->is_valid_cmd = 1;
 			ft_free_2d_char(path_arr);
 			return (0);
 		}
@@ -75,11 +75,11 @@ int	search_cmd_in_path(char **path_arr, t_token *token)
 	return (1);
 }
 
-void	set_cmd_path_in_all_token(t_token *token, char **env_arr)
+void	set_cmd_path_in_all_token(t_token *token, char **envp_cpy)
 {
 	while (token)
 	{
-		set_cmd_path(token, env_arr);
+		set_cmd_path(token, envp_cpy);
 		token = token->next;
 	}
 }

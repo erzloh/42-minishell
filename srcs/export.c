@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 10:27:12 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/09 14:10:29 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/11 15:07:28 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	export(t_token *token, t_data *data)
 
 	if (!token->cmd_arr[1])
 	{
-		ft_get_all_env(data->env_arr);
+		ft_get_all_env(data->envp_cpy);
 		exit (0);
 	}
 	i = -1;
@@ -35,7 +35,7 @@ void	export(t_token *token, t_data *data)
 	if (!name)
 		fatal_error("Error with malloc() when calling ft_strndup()");
 	value = token->cmd_arr[1] + i + 1;
-	if (ft_setenv(name, value, &data->env_arr))
+	if (ft_setenv(name, value, &data->envp_cpy))
 	{
 		printf("minishell: export: invalid input\n");
 		g_status = 1;

@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:28:45 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/11 14:31:52 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/11 15:49:43 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,7 @@
 // Structures
 typedef struct s_data
 {
-    t_token *token; // pointer to the first token
-    char    **env_arr; // a COPY of envp
-    char    *line; // (maybe we don't need that here)
-    char    **line_elem; // Result of the expander (maybe we don't need that here)
-	int		tokens_nb;
-    struct s_token *token; // pointer to the first token
+	t_token	*token; // pointer to the first token
     char    **envp_cpy; // a COPY of envp
     char    *input;
     char    **formatted_input;
@@ -49,15 +44,15 @@ typedef struct s_data
 }	t_data;
 
 // Function prototypes
-int		process_input(char *input, t_data *data);
+int		process_input(t_data *data);
 
 // Initialization
 void	init_data(t_data *data, char **envp);
 
 // Path
-int		set_cmd_path(t_token *token, char **env_arr);
+int		set_cmd_path(t_token *token, char **envp_cpy);
 int		search_cmd_in_path(char **path_arr, t_token *token);
-void	set_cmd_path_in_all_token(t_token *token, char **env_arr);
+void	set_cmd_path_in_all_token(t_token *token, char **envp_cpy);
 
 // Utils
 int		print_error(char *err_msg, int ret_val);

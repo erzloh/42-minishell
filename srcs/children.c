@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   children.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eric <eric@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 13:58:14 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/08 12:21:59 by eric             ###   ########.fr       */
+/*   Updated: 2023/05/11 15:07:05 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	create_children(t_token *token, t_data *data)
 
 void	check_infile(t_token *token, t_data *data)
 {
-	if (!token->redirect.valid_infile)
+	if (!token->redirect.is_valid_infile)
 	{
 		printf("minishell: %s: No such file or directory\n",
 			token->redirect.infile);

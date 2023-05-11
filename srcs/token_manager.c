@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_manager.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 11:33:34 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/10 17:37:59 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/05/11 15:18:49 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,12 +111,12 @@ t_token	*ft_init_token(int id)
 		ft_fatal_error("memory allocation error", E_ERROR_MALLOC);
 	new_token->id = id;
 	new_token->cmd_arr = NULL;
-	new_token->isvalid_cmd = false;
+	new_token->is_valid_cmd = false;
 	new_token->is_builtin = false;
 	new_token->redirect.infile = NULL;
 	new_token->redirect.infile_fd = STDIN_FILENO;
 	new_token->redirect.r_in_type = NO_R_IN;
-	new_token->redirect.isvalid_infile = false;
+	new_token->redirect.is_valid_infile = false;
 	new_token->redirect.outfile = NULL;
 	new_token->redirect.outfile_fd = STDOUT_FILENO;
 	new_token->redirect.r_out_type = NO_R_OUT;
@@ -167,7 +167,7 @@ void	ft_display_token(t_token *token)
 			while (token->cmd_arr[++i])
 				printf("cmd_arr[%i] = %s\n", i, token->cmd_arr[i]);
 		}
-		printf("cmd_isvalid = %i\n", token->isvalid_cmd);
+		printf("cmd_isvalid = %i\n", token->is_valid_cmd);
 		printf("is_builtin = %i\n", token->is_builtin);
 		if (token->redirect.infile)
 			ft_printf("infile_str = %s\n", token->redirect.infile);

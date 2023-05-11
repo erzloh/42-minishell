@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:51:07 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/11 14:27:54 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/11 15:56:47 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 int	g_status;
 
-int	main(int argc, char **argv, char **envp)
+int	main(int ac, char **av, char **envp)
 {
-	char	*input;
 	t_data	data;
 
 	(void) av;
@@ -27,15 +26,14 @@ int	main(int argc, char **argv, char **envp)
 	}
 	g_status = 0;
 	init_data(&data, envp);
-	data.tokens_nb = 1; // it's here for now but this will be updated after the tokens are created
 	while (1)
 	{
-		input = readline("minishell$ ");
-		if (!input)
+		data.input = readline("minishell$ ");
+		if (!data.input)
 			fatal_error("Error with readline()");
-		add_history(input);
-		process_input(input, &data);
-		free(input); // We can do free_all() here as well I guess, to free the input, the token, etc...
+		add_history(data.input);
+		process_input(&data);
+		free(data.input); // We can do free_all() here as well I guess, to free the input, the token, etc...
 		// rl_on_new_line()
 	}
 	return (0);
@@ -44,7 +42,21 @@ int	main(int argc, char **argv, char **envp)
 // Initialize the data structure
 void	init_data(t_data *data, char **envp)
 {
-	data->env_arr = ft_str_arrdup(envp);
+	// *data = malloc(sizeof(t_data));
+	// if (!data)
+	// 	ft_fatal_error("memory allocation error\n", E_ERROR_MALLOC);
+	data->envp_cpy = ft_str_arrdup(envp);
+	// (*data)->input = input;
+	// (*data)->formatted_input = ft_lexer((*data)->input);
+	// (*data)->formatted_input = ft_expander((*data)->formatted_input, *envp);
+	// (*data)->tokens_nb = ft_create_token(&(*data)->token, (*data)->formatted_input);
+	// printf("formatted_input = {");
+	// i = -1;
+	// while ((*data)->formatted_input[++i])
+	// 	printf("%s, ", (*data)->formatted_input[i]);
+	// printf("}\n");
+	/* printf("here\n"); */
+	// ft_display_token((*data)->token);
 }
 
 void ft_execute_cmd(char *input, char ***envp)
@@ -162,15 +174,15 @@ void ft_execute_cmd(char *input, char ***envp)
 // int	main()
 // {
 // 	// t_token	token;
-// 	char	**env_arr;
+// 	char	**envp_cpy;
 // 	char	*cmd_arr[] = {"/usr/bin/env", NULL};
 
 // 	// token.cmd_arr = cmd_arr;
-// 	// token.valid_cmd = 0;
-// 	env_arr = NULL;
-// 	// set_cmd_path(&token, env_arr);
+// 	// token.is_valid_cmd = 0;
+// 	envp_cpy = NULL;
+// 	// set_cmd_path(&token, envp_cpy);
 // 	// printf("cmd = %s\n", token.cmd_arr[0]);
-// 	// printf("valid_cmd = %i\n", token.valid_cmd);
-// 	execve(cmd_arr[0], cmd_arr, env_arr);
+// 	// printf("is_valid_cmd = %i\n", token.is_valid_cmd);
+// 	execve(cmd_arr[0], cmd_arr, envp_cpy);
 // 	perror("Error");
 // }
