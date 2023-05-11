@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 10:08:43 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/11 15:59:17 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/11 16:47:06 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,22 @@
 
 int	process_input(t_data *data)
 {
-	int	i;
+	// int	i;
 	// Check syntax errors
+	if (!data->input[0])
+		return (1);
 	// Parsing
 	data->formatted_input = ft_lexer(data->input);
 	data->formatted_input = ft_expander(data->formatted_input, data->envp_cpy);
 	data->tokens_nb = ft_create_token(&data->token, data->formatted_input);
 
-	printf("formatted_input = {");
-	i = -1;
-	while (data->formatted_input[++i])
-		printf("%s, ", data->formatted_input[i]);
-	printf("}\n");
-	/* printf("here\n"); */
-	ft_display_token(data->token);
+	// printf("formatted_input = {");
+	// i = -1;
+	// while (data->formatted_input[++i])
+	// 	printf("%s, ", data->formatted_input[i]);
+	// printf("}\n");
+	// /* printf("here\n"); */
+	// ft_display_token(data->token);
 
 	// Create tokens
 	// I'm creating tokens manually for testing purposes
@@ -77,8 +79,8 @@ int	process_input(t_data *data)
 	// init_token(token4);
 
 	// Execute 
-	// set_cmd_path_in_all_token(data->token, data->envp_cpy);
-	// executor(data->token, data);
+	set_cmd_path_in_all_token(data->token, data->envp_cpy);
+	executor(data->token, data);
 
 	// set_cmd_path_in_all_token(token1, data->envp_cpy);
 	// executor(token1, data);

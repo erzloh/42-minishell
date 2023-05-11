@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 11:33:34 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/11 15:18:49 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/11 16:09:56 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ t_token	*ft_init_token(int id)
 	new_token->redirect.infile = NULL;
 	new_token->redirect.infile_fd = STDIN_FILENO;
 	new_token->redirect.r_in_type = NO_R_IN;
-	new_token->redirect.is_valid_infile = false;
+	new_token->redirect.is_valid_infile = true;
 	new_token->redirect.outfile = NULL;
 	new_token->redirect.outfile_fd = STDOUT_FILENO;
 	new_token->redirect.r_out_type = NO_R_OUT;
