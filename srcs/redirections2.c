@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 09:12:14 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/05 09:12:22 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/12 16:38:56 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ void	close_redirect_files(t_token *token)
 {
 	while (token)
 	{
-		if (token->redirect.r_in_type == INPUT_REDIRECT)
+		if (token->redirect.r_in_type == INPUT_REDIRECT
+			&& token->redirect.is_valid_infile == true)
 			if (close(token->redirect.infile_fd) < 0)
 				fatal_error("Error when trying to close an in-file");
 		if (token->redirect.r_out_type == OUTPUT_REDIRECT

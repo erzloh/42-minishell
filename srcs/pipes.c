@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 09:45:03 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/05 09:10:55 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/12 17:02:17 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,11 @@ void	create_pipes(t_data *data)
 }
 
 // Closes the write-end and the read-end of pipes
-void	close_pipes(t_token *token, t_data *data)
+void	close_pipes(t_data *data)
 {
-	int	pipes_nb;
-	int	i;
+	int		pipes_nb;
+	int		i;
+	t_token	*curr_token;
 
 	pipes_nb = data->tokens_nb - 1;
 	i = -1;
@@ -54,16 +55,17 @@ void	close_pipes(t_token *token, t_data *data)
 		if (close(data->pipe_fd[i][1]) < 0)
 			fatal_error("Error when closing the write-end a pipe");
 	}
-	while (token)
+	curr_token = data->token;
+	while (curr_token)
 	{
-		if (token->redirect.heredoc_pipe)
+		if (curr_token->redirect.heredoc_pipe)
 		{
-			if (close(token->redirect.heredoc_pipe[0]) < 0)
+			if (close(curr_token->redirect.heredoc_pipe[0]) < 0)
 				fatal_error("Error when closing the read-end of a << pipe");
-			if (close(token->redirect.heredoc_pipe[1]) < 0)
+			if (close(curr_token->redirect.heredoc_pipe[1]) < 0)
 				fatal_error("Error when closing the write-end a << pipe");
 		}
-		token = token->next;
+		curr_token = curr_token->next;
 	}
 }
 

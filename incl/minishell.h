@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:28:45 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/12 13:48:21 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/05/12 17:02:31 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	unset(t_token *token, t_data *data);
 
 // Pipes
 void	create_pipes(t_data *data);
-void	close_pipes(t_token *token, t_data *data);
+void	close_pipes(t_data *data);
 void	set_pipe_fd_in_token(t_token *token, t_data *data);
 void	free_pipe_fd(t_token *token, t_data *data);
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_manager.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 11:33:34 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/12 13:42:40 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/05/12 16:15:50 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,8 @@ int	ft_create_token(t_token **token, char **formatted_input)
 	int		nb_token;
 	t_token	*tail_token;
 
-	if(!token || !*token || formatted_input || !*formatted_input)
-		return (0);
+	// if(!token || !*token || formatted_input || !*formatted_input)
+	// 	return (0);
 	nb_token = 1;
 	*token = ft_init_token(nb_token);
 	tail_token = *token;
@@ -123,7 +123,7 @@ t_token	*ft_init_token(int id)
 	new_token->redirect.outfile_fd = STDOUT_FILENO;
 	new_token->redirect.r_out_type = NO_R_OUT;
 	new_token->redirect.heredoc_pipe = NULL;
-	new_token->pid = 0;
+	new_token->pid = -1;
 	new_token->next = NULL;
 	return (new_token);
 }

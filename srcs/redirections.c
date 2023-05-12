@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 08:59:43 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/11 15:07:05 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/12 16:27:00 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	set_output_redirect(t_token *token)
 	int		outfile_fd;
 
 	outfile = token->redirect.outfile;
-	outfile_fd = open(outfile, O_WRONLY | O_CREAT, 0644);
+	outfile_fd = open(outfile, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (outfile_fd < 0)
 		fatal_error("Error when openning an outfile");
 	token->redirect.outfile_fd = outfile_fd;

@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 13:58:14 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/11 15:07:05 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/12 17:02:45 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	set_dups(t_token *token)
 
 void	clean_up(t_token *token, t_data *data)
 {
-	close_pipes(token, data);
+	close_pipes(data);
 	close_redirect_files(token);
 	free_pipe_fd(token, data);
 }
