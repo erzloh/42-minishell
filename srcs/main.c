@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:51:07 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/11 16:24:18 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/12 14:01:56 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int ac, char **av, char **envp)
 	if (ac > 1)
 	{
 		printf("Error: minishell doesn't take any arguments\n");
-		return (1);
+		return (E_ERROR_ARG);
 	}
 	g_status = 0;
 	init_data(&data, envp);
@@ -32,9 +32,14 @@ int	main(int ac, char **av, char **envp)
 		if (!data.input)
 			fatal_error("Error with readline()");
 		add_history(data.input);
-		process_input(&data);
-		free(data.input); // We can do free_all() here as well I guess, to free the input, the token, etc...
-		// rl_on_new_line()
+		if (!ft_is_empty_cmd(data.input) && ft_is_correct_syntax(data.input))
+		{
+			// init_data(&data, envp, input);
+			// execute_cmd(data);
+			process_input(&data);
+			free(data.input); // We can do free_all() here as well I guess, to free the input, the token, etc...
+			// rl_on_new_line()
+		}
 	}
 	return (0);
 }

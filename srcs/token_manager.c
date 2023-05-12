@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_manager.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 11:33:34 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/11 16:09:56 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/12 13:42:40 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,8 @@ int	ft_create_token(t_token **token, char **formatted_input)
 	int		nb_token;
 	t_token	*tail_token;
 
+	if(!token || !*token || formatted_input || !*formatted_input)
+		return (0);
 	nb_token = 1;
 	*token = ft_init_token(nb_token);
 	tail_token = *token;

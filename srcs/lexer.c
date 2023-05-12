@@ -6,7 +6,7 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 12:52:34 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/10 17:19:09 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/05/12 13:42:11 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,11 +70,8 @@ char	**ft_lexer(char const *s)
 	int		nb_word_tot;
 	char	**split;
 
-	if (check_unmatched_quotes((char *)s))
-	{
-		printf("unmatch quotes\n");
+	if (!s)
 		return (NULL);
-	}	
 	nb_word_tot = ft_count_arg(s);
 	split = malloc((nb_word_tot + 1) * sizeof(char *));
 	if (!split)

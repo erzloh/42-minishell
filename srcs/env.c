@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 12:50:21 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/11 14:34:48 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/12 13:44:46 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ char	*ft_getenv(const char *name, char **envp_copy)
 	if (!ft_is_valid_name(name))
 		return (NULL);
 	if (!ft_memcmp(name, "?\0", 2))
-		return (ft_itoa(g_status)); // return le status quand la variable global sera implémenté
+		return (ft_itoa(g_status));
 	len = ft_strlen(name);
 	i = -1;
 	while (envp_copy[++i])

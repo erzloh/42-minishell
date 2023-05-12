@@ -6,7 +6,7 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 10:39:00 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/10 12:58:40 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/05/12 14:10:01 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ bool	check_unmatched_quotes(char *str)
 	}
 	if (open_quote)
 	{
-		ft_printf ("Error : quotes open\n");
+		ft_printf ("Error : quote open\n");
 		return (true);
 	}
 	return (false);
