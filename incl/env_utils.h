@@ -6,14 +6,13 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 13:52:24 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/01 14:25:39 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/05/15 17:17:15 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ENV_UTILS_H
 # define ENV_UTILS_H
 
-# include <stdbool.h>
 # include "../libft/libft.h"
 
 bool	ft_is_valid_name(const char *name);

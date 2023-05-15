@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:28:45 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/12 17:02:31 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/15 17:05:45 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,13 +97,5 @@ void	set_heredoc_redirect(t_token *token);
 void	set_output_redirect(t_token *token);
 void	set_append_redirect(t_token *token);
 void	close_redirect_files(t_token *token);
-
-// Tokens
-void	init_token(t_token *token);
-
-// check syntax
-bool	check_unmatched_quotes(char *str);
-bool	ft_is_empty_cmd(char *input);
-bool	ft_is_correct_syntax(char *input);
 
 #endif

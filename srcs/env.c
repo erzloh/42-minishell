@@ -6,11 +6,10 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 12:50:21 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/12 13:44:46 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/05/15 17:08:56 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/minishell.h"
 #include "../incl/env_utils.h"
 #include "../incl/env.h"
 

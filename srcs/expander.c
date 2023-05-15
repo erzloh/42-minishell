@@ -6,13 +6,14 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 15:54:47 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/10 13:09:39 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/05/15 17:25:32 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/minishell.h"
+#include "../libft/libft.h"
 #include "../incl/tokenizer.h"
 #include "../incl/quote_manager.h"
+#include "../incl/env.h"
 
 int	replace_env_var(char **input, int start, int end, char *env_var)
 {

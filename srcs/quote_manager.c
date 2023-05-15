@@ -6,11 +6,11 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 10:39:00 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/12 14:10:01 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/05/15 17:15:05 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/minishell.h"
+#include "../libft/libft.h"
 #include "../incl/quote_manager.h"
 
 bool	check_unmatched_quotes(char *str)

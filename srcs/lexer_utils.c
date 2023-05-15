@@ -6,11 +6,12 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:06:33 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/10 17:44:12 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/05/15 17:17:34 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft/libft.h"
+#include "../incl/lexer_utils.h"
 
 int	ft_is_pipe_or_redirec(int c)
 {

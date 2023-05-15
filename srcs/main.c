@@ -6,11 +6,12 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:51:07 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/12 14:01:56 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/05/15 16:41:57 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../incl/minishell.h"
+#include "../incl/check_input_syntax.h"
 
 int	g_status;
 
@@ -34,12 +35,14 @@ int	main(int ac, char **av, char **envp)
 		add_history(data.input);
 		if (!ft_is_empty_cmd(data.input) && ft_is_correct_syntax(data.input))
 		{
-			// init_data(&data, envp, input);
-			// execute_cmd(data);
+			// data.formatted_input = ft_format_input(input);
+			// if (ft_is_correct_syntax(data.formatted_input))
+			// data.token = create_token(data.formatted_input);
+			// execute_cmd(data.token);
 			process_input(&data);
-			free(data.input); // We can do free_all() here as well I guess, to free the input, the token, etc...
-			// rl_on_new_line()
 		}
+		free(data.input); // We can do free_all() here as well I guess, to free the input, the token, etc...
+		// rl_on_new_line()
 	}
 	return (0);
 }

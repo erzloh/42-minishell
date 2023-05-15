@@ -3,13 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   token_manager.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 11:33:34 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/12 16:15:50 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/15 17:25:41 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../libft/libft.h"
 #include "../incl/tokenizer.h"
 
 void	ft_formatting_redirect(t_redirect *red, char **input, int *i)
@@ -37,43 +38,6 @@ void	ft_formatting_redirect(t_redirect *red, char **input, int *i)
 		(*red).r_out_type = OUTPUT_REDIRECT;
 	}
 }
-
-/* int main(int argc, char **argv)
-{
-	if (argc > 1)
-	{
-		int	i;
-
-		char **argv_cpy = ft_str_arrdup(argv);
-		
-		printf("argv_cpy = {");
-		i = -1;
-		while (argv_cpy[++i])
-			printf("%s", argv_cpy[i]);
-		printf("}\n");
-
-		char *str;
-		str = malloc(sizeof(char) * 6);
-		str = ft_memcpy(str, "salut", 5);
-		str[5] = '\0';
-		
-		argv_cpy = add_str_to_str_arr(argv_cpy, str);
-		
-		printf("argv_cpy = {");
-		i = -1;
-		while (argv_cpy[++i])
-			printf("%s, ", argv_cpy[i]);
-		printf("}\n");
-		free(str);
-		i = -1;
-		while (argv_cpy[++i])
-		{
-			free(argv_cpy[i]);
-		}
-		free(argv_cpy);
-	}
-	return (0);
-} */
 
 int	ft_create_token(t_token **token, char **formatted_input)
 {
