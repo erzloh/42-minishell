@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   children.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eric <eric@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 13:58:14 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/12 17:02:45 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/15 17:14:38 by eric             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@ void	create_children(t_token *token, t_data *data)
 		// Child Process
 		if (token->pid == 0)
 		{
+			// Check if command is valid
+			if (!token->is_valid_cmd && !token->is_builtin)
+			{
+				printf("minishell: %s: command not found\n", token->cmd_arr[0]);
+				exit(127);
+			}
 			check_infile(token, data);
 			set_dups(token);
 			clean_up(token, data);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eric <eric@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 15:00:09 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/11 15:07:28 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/15 13:56:30 by eric             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	set_cmd_path(t_token *token, char **envp_cpy)
 	char	**path_arr;
 
 	(void) envp_cpy;
+	if (!token->cmd_arr[0][0])
+		return (0);
 	if (is_builtin(token))
 	{
 		token->is_builtin = 1;
