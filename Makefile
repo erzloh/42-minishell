@@ -6,14 +6,17 @@
 #    By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 14:21:14 by eholzer           #+#    #+#              #
-#    Updated: 2023/05/11 14:23:22 by eholzer          ###   ########.fr        #
+#    Updated: 2023/05/16 11:18:05 by eholzer          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		=	minishell
 
 CC			=	gcc
-CFLAGS		=	-Wall -Werror -Wextra -g
+CFLAGS		=	-Wall -Werror -Wextra -g -I$(HOME)/.brew/opt/readline/include
+
+INCL_PATH	=	-Iincl/ -I$(HOME)/.brew/opt/readline/include
+LIBS		=	-Llibft -lft -lreadline -L$(HOME)/.brew/opt/readline/lib
 
 LIBFT		=	libft.a
 
@@ -46,11 +49,15 @@ SRCS_LIST	=	main.c \
 				quote_manager.c \
 				lexer.c \
 				lexer_utils.c \
-				expander.c
+				expander.c \
+				signals.c \
+				termios.c
 
 OBJS_LIST	=	${SRCS_LIST:.c=.o}
 
 OBJS		=	${addprefix ${OBJS_DIR}, ${OBJS_LIST}}
+
+READLINE	=	-lreadline -L$(HOME)/.brew/opt/readline/lib
 
 all:			${LIBFT} ${NAME}
 
@@ -58,10 +65,10 @@ ${OBJS_DIR}:
 				mkdir ${OBJS_DIR}
 
 ${OBJS_DIR}%.o: ${SRCS_DIR}%.c
-				${CC} ${CFLAGS} -Iincl/ -c $^ -o $@
+				${CC} ${CFLAGS} ${INCL_PATH} -c $^ -o $@
 
 ${NAME}:		${OBJS_DIR} ${OBJS}
-				${CC} ${CFLAGS} ${OBJS} -Llibft -lft -lreadline -o ${NAME}
+				${CC} ${CFLAGS} ${OBJS} ${LIBS} -o ${NAME}
 
 ${LIBFT}:
 				$(MAKE) -C libft

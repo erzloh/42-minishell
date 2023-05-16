@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eric <eric@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:28:45 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/15 13:31:20 by eric             ###   ########.fr       */
+/*   Updated: 2023/05/16 11:30:46 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include <sys/wait.h>
+# include <termios.h>
 # include "../libft/libft.h"
 # include "tokenizer.h"
 # include "env.h"
@@ -105,5 +106,10 @@ void	init_token(t_token *token);
 bool	check_unmatched_quotes(char *str);
 bool	ft_is_empty_cmd(char *input);
 bool	ft_is_correct_syntax(char *input);
+
+// Signals
+void	set_termios(void);
+void	init_signal(void);
+void	sigint_handler(int sig);
 
 #endif

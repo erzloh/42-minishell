@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 14:21:05 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/05 09:48:24 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/16 10:41:01 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	echo(t_token *token)
 
 	i = 1;
 	flag = 0;
-	if (ft_strncmp(token->cmd_arr[1], "-n", 3) == 0)
+	if (token->cmd_arr[1] && ft_strncmp(token->cmd_arr[1], "-n", 3) == 0)
 	{
 		i++;
 		flag = 1;

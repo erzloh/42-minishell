@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:51:07 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/12 14:01:56 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/05/16 11:42:04 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	main(int ac, char **av, char **envp)
 	}
 	g_status = 0;
 	init_data(&data, envp);
+	set_termios();
+	init_signal();
 	while (1)
 	{
 		data.input = readline("minishell$ ");
@@ -38,7 +40,7 @@ int	main(int ac, char **av, char **envp)
 			// execute_cmd(data);
 			process_input(&data);
 			free(data.input); // We can do free_all() here as well I guess, to free the input, the token, etc...
-			// rl_on_new_line()
+			rl_on_new_line();
 		}
 	}
 	return (0);
