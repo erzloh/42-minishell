@@ -6,7 +6,7 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:28:45 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/15 17:05:45 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/05/17 10:55:43 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <string.h>
 # include <errno.h>
 # include <signal.h>
+# include <termios.h>
 # include <unistd.h>
 # include <fcntl.h>
 # include <sys/wait.h>
@@ -97,5 +98,11 @@ void	set_heredoc_redirect(t_token *token);
 void	set_output_redirect(t_token *token);
 void	set_append_redirect(t_token *token);
 void	close_redirect_files(t_token *token);
+
+// Signals
+void	ft_sigINGORE_handler(int signum);
+void	ft_sigINT_handler(int signum);
+int		ft_init_signal(int signum, void(*handler)(int));
+void	set_termios(void);
 
 #endif

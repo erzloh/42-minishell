@@ -6,7 +6,7 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:51:07 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/15 16:41:57 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/05/17 12:53:56 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,18 @@ int	main(int ac, char **av, char **envp)
 	}
 	g_status = 0;
 	init_data(&data, envp);
+	set_termios();
+	ft_init_signal(SIGINT, ft_sigINT_handler);
 	while (1)
 	{
 		data.input = readline("minishell$ ");
 		if (!data.input)
 			fatal_error("Error with readline()");
-		add_history(data.input);
-		if (!ft_is_empty_cmd(data.input) && ft_is_correct_syntax(data.input))
+		if (!ft_is_empty_cmd(data.input))
+			add_history(data.input);
+		if (ft_is_correct_syntax(data.input))
 		{
+			
 			// data.formatted_input = ft_format_input(input);
 			// if (ft_is_correct_syntax(data.formatted_input))
 			// data.token = create_token(data.formatted_input);
@@ -42,7 +46,7 @@ int	main(int ac, char **av, char **envp)
 			process_input(&data);
 		}
 		free(data.input); // We can do free_all() here as well I guess, to free the input, the token, etc...
-		// rl_on_new_line()
+		rl_on_new_line();
 	}
 	return (0);
 }

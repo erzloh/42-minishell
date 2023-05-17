@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   children2.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 12:43:33 by eric              #+#    #+#             */
-/*   Updated: 2023/05/09 14:07:46 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/17 10:21:52 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../incl/minishell.h"
 
 // Returns 0 if the command is exit or cd and that there are no pipes
 int	is_cmd_childable(t_token *token)

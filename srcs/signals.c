@@ -1,27 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   executor.c                                         :+:      :+:    :+:   */
+/*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/28 09:49:54 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/17 10:21:52 by alesspal         ###   ########.fr       */
+/*   Created: 2023/05/17 10:16:51 by alesspal          #+#    #+#             */
+/*   Updated: 2023/05/17 10:55:43 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/minishell.h"
 
-int	executor(t_token *token, t_data *data)
+extern int g_status;
+
+void	ft_sigINGORE_handler(int signum)
 {
-	create_pipes(data);
-	set_pipe_fd_in_token(token, data);
-	set_redirect_fd_in_token(token);
-	if (!is_cmd_childable(token))
-		exec_builtin(token, data);
-	else
-		create_children(token, data);
-	clean_up(token, data);
-	wait_children(token);
+	(void)signum;
+}
+
+void	ft_sigINT_handler(int signum)
+{
+	if (signum == SIGINT)
+		write(1, "\n", 1); // utiliser des fonctions asynchrone-safe
+}
+
+int	ft_init_signal(int signum, void(*handler)(int))
+{
+	struct sigaction sa;
+
+	sa.sa_handler = handler;
+	sigemptyset(&sa.sa_mask);
+	sa.sa_flags = SA_RESTART;
+	if (sigaction(signum, &sa, NULL) == -1)
+	{
+		perror("sigaction");
+		return (-1);
+	}
 	return (0);
 }
+
+

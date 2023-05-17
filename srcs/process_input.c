@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   process_input.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 10:08:43 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/11 16:47:06 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/17 12:54:35 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../incl/minishell.h"
 
 int	process_input(t_data *data)
 {
@@ -22,6 +22,8 @@ int	process_input(t_data *data)
 	data->formatted_input = ft_lexer(data->input);
 	data->formatted_input = ft_expander(data->formatted_input, data->envp_cpy);
 	data->tokens_nb = ft_create_token(&data->token, data->formatted_input);
+	/* ft_display_token(data->token);
+	printf("C'est la faute à Eric :(\n"); */
 
 	// printf("formatted_input = {");
 	// i = -1;

@@ -6,7 +6,7 @@
 #    By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 14:21:14 by eholzer           #+#    #+#              #
-#    Updated: 2023/05/15 17:05:45 by alesspal         ###   ########.fr        #
+#    Updated: 2023/05/17 10:52:49 by alesspal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,9 @@ SRCS_LIST	=	main.c \
 				quote_manager.c \
 				lexer.c \
 				lexer_utils.c \
-				expander.c
+				expander.c \
+				signals.c \
+				termios.c
 
 OBJS_LIST	=	${SRCS_LIST:.c=.o}
 

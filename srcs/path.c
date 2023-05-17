@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 15:00:09 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/11 15:07:28 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/17 12:47:39 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../incl/minishell.h"
 
 // Replace the token->cmd_arr[0] by the path of cmd if found
 // Returns 0 if it succeeds
@@ -22,7 +22,6 @@ int	set_cmd_path(t_token *token, char **envp_cpy)
 	char	*path_str;
 	char	**path_arr;
 
-	(void) envp_cpy;
 	if (is_builtin(token))
 	{
 		token->is_builtin = 1;

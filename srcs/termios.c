@@ -1,38 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   termios.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/01 14:21:05 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/17 15:41:05 by alesspal         ###   ########.fr       */
+/*   Created: 2023/05/17 10:19:16 by alesspal          #+#    #+#             */
+/*   Updated: 2023/05/17 10:19:34 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/minishell.h"
 
-int	echo(t_token *token)
+// Set the terminal attributes so that unwanted ^C are not printed
+void	set_termios(void)
 {
-	int	i;
-	int	flag;
+	struct termios	saved;
+	struct termios	attributes;
 
-	i = 1;
-	flag = 0;
-	if (token->cmd_arr[1] && ft_strncmp(token->cmd_arr[1], "-n", 3) == 0)
-	{
-		printf("flag\n");
-		i++;
-		flag = 1;
-	}
-	while (token->cmd_arr[i])
-	{
-		printf("%s", token->cmd_arr[i]);
-		if (token->cmd_arr[i + 1] != NULL)
-			printf(" ");
-		i++;
-	}
-	if (!flag)
-		printf("\n");
-	exit(0);
+	tcgetattr(STDIN_FILENO, &saved);
+	tcgetattr(STDIN_FILENO, &attributes);
+	attributes.c_lflag &= ~ECHOCTL;
+	tcsetattr(STDIN_FILENO, TCSAFLUSH, &attributes);
 }
