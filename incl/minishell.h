@@ -6,7 +6,7 @@
 /*   By: eric <eric@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:28:45 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/19 13:46:56 by eric             ###   ########.fr       */
+/*   Updated: 2023/05/19 13:50:58 by eric             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,9 +106,9 @@ void	ft_sigINT_handler(int signum);
 int		ft_init_signal(int signum, void(*handler)(int));
 void	set_termios(void);
 
-// Signals
-void	set_termios(void);
-void	init_signal(void);
-void	sigint_handler(int sig);
+// // Signals Eric
+// void	set_termios(void);
+// void	init_signal(void);
+// void	sigint_handler(int sig);
 
 #endif
