@@ -6,7 +6,7 @@
 /*   By: eric <eric@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:51:07 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/19 13:58:37 by eric             ###   ########.fr       */
+/*   Updated: 2023/05/19 16:19:45 by eric             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ int	main(int ac, char **av, char **envp)
 	g_status = 0;
 	init_data(&data, envp);
 	set_termios();
-	ft_init_signal(SIGINT, ft_sigINT_handler);
-	// init_signal();
+	init_signal();
 	while (1)
 	{
 		data.input = readline("minishell$ ");
@@ -45,7 +44,6 @@ int	main(int ac, char **av, char **envp)
 			// data.token = create_token(data.formatted_input);
 			// execute_cmd(data.token);
 			process_input(&data);
-			free(data.input); // We can do free_all() here as well I guess, to free the input, the token, etc...
 			// rl_on_new_line()
 		}
 		free(data.input); // We can do free_all() here as well I guess, to free the input, the token, etc...

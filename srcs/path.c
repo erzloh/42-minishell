@@ -6,7 +6,7 @@
 /*   By: eric <eric@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 15:00:09 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/19 13:59:32 by eric             ###   ########.fr       */
+/*   Updated: 2023/05/19 15:44:16 by eric             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	set_cmd_path(t_token *token, char **envp_cpy)
 	char	*path_str;
 	char	**path_arr;
 
-	if (!token->cmd_arr[0][0])
+	if (!token->cmd_arr || !token->cmd_arr[0][0])
 		return (0);
 	if (is_builtin(token))
 	{

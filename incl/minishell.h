@@ -6,7 +6,7 @@
 /*   By: eric <eric@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:28:45 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/19 13:50:58 by eric             ###   ########.fr       */
+/*   Updated: 2023/05/19 14:39:04 by eric             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,15 +100,14 @@ void	set_output_redirect(t_token *token);
 void	set_append_redirect(t_token *token);
 void	close_redirect_files(t_token *token);
 
-// Signals
-void	ft_sigINGORE_handler(int signum);
-void	ft_sigINT_handler(int signum);
-int		ft_init_signal(int signum, void(*handler)(int));
-void	set_termios(void);
+// Signals Aless
+// void	ft_sigINGORE_handler(int signum);
+// void	ft_sigINT_handler(int signum);
+// int		ft_init_signal(int signum, void(*handler)(int));
 
-// // Signals Eric
-// void	set_termios(void);
-// void	init_signal(void);
-// void	sigint_handler(int sig);
+// Signals
+void	set_termios(void);
+void	init_signal(void);
+void	sigint_handler(int sig);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: eric <eric@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 14:21:14 by eholzer           #+#    #+#              #
-#    Updated: 2023/05/19 14:03:15 by eric             ###   ########.fr        #
+#    Updated: 2023/05/19 14:52:15 by eric             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,13 @@ NAME		=	minishell
 CC			=	gcc
 CFLAGS		=	-Wall -Werror -Wextra -g -I$(HOME)/.brew/opt/readline/include
 
-INCL_PATH	=	-Iincl/ -I$(HOME)/.brew/opt/readline/include
-LIBS		=	-Llibft -lft -lreadline -L$(HOME)/.brew/opt/readline/lib
+INCL_PATH	=	-Iincl/ \
+				-I$(HOME)/.brew/opt/readline/include \
+				-I/usr/local/opt/readline/include
+
+LIBS		=	-Llibft -lft -lreadline \
+				-L$(HOME)/.brew/opt/readline/lib \
+				-L/usr/local/opt/readline/lib
 
 LIBFT		=	libft.a
 

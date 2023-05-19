@@ -6,11 +6,12 @@
 /*   By: eric <eric@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 13:58:14 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/19 13:52:58 by eric             ###   ########.fr       */
+/*   Updated: 2023/05/19 16:25:31 by eric             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/minishell.h"
+#include "env_utils.h"
 
 extern int g_status;
 
@@ -28,7 +29,10 @@ void	create_children(t_token *token, t_data *data)
 			// Check if command is valid
 			if (!token->is_valid_cmd && !token->is_builtin)
 			{
-				printf("minishell: %s: command not found\n", token->cmd_arr[0]);
+				if (ft_find_index_env("PATH", data->envp_cpy) == -1)
+					printf("minishell: %s: No such file or directory\n", token->cmd_arr[0]);
+				else
+					printf("minishell: %s: command not found\n", token->cmd_arr[0]);
 				exit(127);
 			}
 			check_infile(token, data);

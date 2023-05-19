@@ -6,7 +6,7 @@
 /*   By: eric <eric@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 09:51:03 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/19 13:56:35 by eric             ###   ########.fr       */
+/*   Updated: 2023/05/19 16:12:36 by eric             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,11 @@
 // Executes with execve() the external command given by token
 int	exec_external(t_token *token, t_data *data)
 {
-	execve(token->cmd_arr[0], token->cmd_arr, data->envp_cpy);
-	printf("minishell: %s: is a directory\n", token->cmd_arr[0]);
+	if (token->cmd_arr)
+	{
+		execve(token->cmd_arr[0], token->cmd_arr, data->envp_cpy);
+		printf("minishell: %s: command not found\n", token->cmd_arr[0]);
+	}
 	exit(127);
 }
 
