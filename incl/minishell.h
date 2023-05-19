@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eric <eric@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:28:45 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/16 11:30:46 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/19 13:46:56 by eric             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <string.h>
 # include <errno.h>
 # include <signal.h>
+# include <termios.h>
 # include <unistd.h>
 # include <fcntl.h>
 # include <sys/wait.h>
@@ -99,13 +100,11 @@ void	set_output_redirect(t_token *token);
 void	set_append_redirect(t_token *token);
 void	close_redirect_files(t_token *token);
 
-// Tokens
-void	init_token(t_token *token);
-
-// check syntax
-bool	check_unmatched_quotes(char *str);
-bool	ft_is_empty_cmd(char *input);
-bool	ft_is_correct_syntax(char *input);
+// Signals
+void	ft_sigINGORE_handler(int signum);
+void	ft_sigINT_handler(int signum);
+int		ft_init_signal(int signum, void(*handler)(int));
+void	set_termios(void);
 
 // Signals
 void	set_termios(void);

@@ -3,18 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 12:50:17 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/11 14:42:16 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/17 14:41:29 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/minishell.h"
+#include "../incl/env_utils.h"
 
-bool	ft_is_valid_name(const char *name)
+bool	ft_is_valid_env_name(const char *name)
 {
-	if (!name || !(ft_isalpha(*name) || *name == '_' || *name == '?') || !ft_strlen(name))
+	if (!name
+		|| (!ft_isalpha(*name) && *name != '_')
+		|| !ft_strlen(name))
 		return (false);
 	name++;
 	while (*name)

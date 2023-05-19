@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   tokenizer.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 13:55:13 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/11 15:18:30 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/15 17:18:40 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TOKENIZER_H
 # define TOKENIZER_H
-# include "../libft/libft.h"
-// # include "minishell.h"
 
 typedef enum e_redirect_in
 {

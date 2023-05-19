@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eric <eric@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:51:07 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/16 11:42:04 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/19 13:58:37 by eric             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../incl/minishell.h"
+#include "../incl/check_input_syntax.h"
 
 int	g_status;
 
@@ -27,21 +28,28 @@ int	main(int ac, char **av, char **envp)
 	g_status = 0;
 	init_data(&data, envp);
 	set_termios();
-	init_signal();
+	ft_init_signal(SIGINT, ft_sigINT_handler);
+	// init_signal();
 	while (1)
 	{
 		data.input = readline("minishell$ ");
 		if (!data.input)
 			fatal_error("Error with readline()");
-		add_history(data.input);
-		if (!ft_is_empty_cmd(data.input) && ft_is_correct_syntax(data.input))
+		if (!ft_is_empty_cmd(data.input))
+			add_history(data.input);
+		if (ft_is_correct_syntax(data.input))
 		{
-			// init_data(&data, envp, input);
-			// execute_cmd(data);
+			
+			// data.formatted_input = ft_format_input(input);
+			// if (ft_is_correct_syntax(data.formatted_input))
+			// data.token = create_token(data.formatted_input);
+			// execute_cmd(data.token);
 			process_input(&data);
 			free(data.input); // We can do free_all() here as well I guess, to free the input, the token, etc...
-			rl_on_new_line();
+			// rl_on_new_line()
 		}
+		free(data.input); // We can do free_all() here as well I guess, to free the input, the token, etc...
+		rl_on_new_line();
 	}
 	return (0);
 }

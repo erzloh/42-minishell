@@ -6,11 +6,11 @@
 /*   By: eric <eric@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 15:00:09 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/15 13:56:30 by eric             ###   ########.fr       */
+/*   Updated: 2023/05/19 13:59:32 by eric             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../incl/minishell.h"
 
 // Replace the token->cmd_arr[0] by the path of cmd if found
 // Returns 0 if it succeeds
@@ -22,7 +22,6 @@ int	set_cmd_path(t_token *token, char **envp_cpy)
 	char	*path_str;
 	char	**path_arr;
 
-	(void) envp_cpy;
 	if (!token->cmd_arr[0][0])
 		return (0);
 	if (is_builtin(token))

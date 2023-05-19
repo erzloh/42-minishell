@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eric <eric@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 09:51:03 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/16 10:38:10 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/19 13:56:35 by eric             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../incl/minishell.h"
 
 // Executes with execve() the external command given by token
 int	exec_external(t_token *token, t_data *data)

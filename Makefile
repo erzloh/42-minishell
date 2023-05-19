@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+         #
+#    By: eric <eric@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 14:21:14 by eholzer           #+#    #+#              #
-#    Updated: 2023/05/16 11:18:05 by eholzer          ###   ########.fr        #
+#    Updated: 2023/05/19 14:03:15 by eric             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,6 @@ SRCS_LIST	=	main.c \
 				pipes.c \
 				redirections.c \
 				redirections2.c \
-				init_token.c \
 				exec.c \
 				exit.c \
 				pwd.c \
@@ -46,6 +45,7 @@ SRCS_LIST	=	main.c \
 				unset.c \
 				token_manager.c \
 				check_input_syntax.c \
+				check_input_syntax_utils.c \
 				quote_manager.c \
 				lexer.c \
 				lexer_utils.c \

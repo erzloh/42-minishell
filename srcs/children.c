@@ -6,11 +6,11 @@
 /*   By: eric <eric@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 13:58:14 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/15 17:14:38 by eric             ###   ########.fr       */
+/*   Updated: 2023/05/19 13:52:58 by eric             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../incl/minishell.h"
 
 extern int g_status;
 
