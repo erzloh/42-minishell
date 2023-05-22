@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:51:07 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/22 11:21:13 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/22 13:19:50 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,18 @@ int	main(int ac, char **av, char **envp)
 			break ;
 		init_signal(exec_handler);
 		if (!ft_is_empty_cmd(data.input))
-			add_history(data.input);
-		if (ft_is_correct_syntax(data.input))
 		{
-			
-			// data.formatted_input = ft_format_input(input);
-			// if (ft_is_correct_syntax(data.formatted_input))
-			// data.token = create_token(data.formatted_input);
-			// execute_cmd(data.token);
-			process_input(&data);
-			// rl_on_new_line()
+			add_history(data.input);
+			if (ft_is_correct_syntax(data.input))
+			{
+				
+				// data.formatted_input = ft_format_input(input);
+				// if (ft_is_correct_syntax(data.formatted_input))
+				// data.token = create_token(data.formatted_input);
+				// execute_cmd(data.token);
+				process_input(&data);
+				// rl_on_new_line()
+			}
 		}
 		free(data.input); // We can do free_all() here as well I guess, to free the input, the token, etc...
 		rl_on_new_line();
