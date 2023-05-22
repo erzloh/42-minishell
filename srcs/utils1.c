@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:19:05 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/17 10:21:52 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/05/22 13:36:15 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,13 @@ int	is_str_digit(char *str)
 		if (!ft_isdigit(str[i]))
 			return (0);
 	return (1);
+}
+
+void	check_args(int ac)
+{
+	if (ac > 1)
+	{
+		printf("Error: minishell doesn't take any arguments\n");
+		exit(E_ERROR_ARG);
+	}
 }

@@ -6,12 +6,12 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:51:07 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/22 13:19:50 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/22 14:24:27 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/minishell.h"
-#include "../incl/check_input_syntax.h"
+#include "minishell.h"
+#include "check_input_syntax.h"
 
 int	g_status;
 
@@ -20,14 +20,8 @@ int	main(int ac, char **av, char **envp)
 	t_data	data;
 
 	(void) av;
-	if (ac > 1)
-	{
-		printf("Error: minishell doesn't take any arguments\n");
-		return (E_ERROR_ARG);
-	}
-	g_status = 0;
+	check_args(ac);
 	init_data(&data, envp);
-	set_termios();
 	while (1)
 	{
 		init_signal(prompt_handler);
@@ -46,11 +40,9 @@ int	main(int ac, char **av, char **envp)
 				// data.token = create_token(data.formatted_input);
 				// execute_cmd(data.token);
 				process_input(&data);
-				// rl_on_new_line()
 			}
 		}
 		free(data.input); // We can do free_all() here as well I guess, to free the input, the token, etc...
-		rl_on_new_line();
 	}
 	return (0);
 }
@@ -58,21 +50,9 @@ int	main(int ac, char **av, char **envp)
 // Initialize the data structure
 void	init_data(t_data *data, char **envp)
 {
-	// *data = malloc(sizeof(t_data));
-	// if (!data)
-	// 	ft_fatal_error("memory allocation error\n", E_ERROR_MALLOC);
 	data->envp_cpy = ft_str_arrdup(envp);
-	// (*data)->input = input;
-	// (*data)->formatted_input = ft_lexer((*data)->input);
-	// (*data)->formatted_input = ft_expander((*data)->formatted_input, *envp);
-	// (*data)->tokens_nb = ft_create_token(&(*data)->token, (*data)->formatted_input);
-	// printf("formatted_input = {");
-	// i = -1;
-	// while ((*data)->formatted_input[++i])
-	// 	printf("%s, ", (*data)->formatted_input[i]);
-	// printf("}\n");
-	/* printf("here\n"); */
-	// ft_display_token((*data)->token);
+	set_termios();
+	g_status = 0;
 }
 
 void ft_execute_cmd(char *input, char ***envp)

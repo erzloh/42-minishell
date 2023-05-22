@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:28:45 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/22 10:28:05 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/22 13:35:46 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_data
 }	t_data;
 
 // Function prototypes
+void	check_args(int ac);
 int		process_input(t_data *data);
 
 // Initialization
