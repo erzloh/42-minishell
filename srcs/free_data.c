@@ -1,28 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_2d_char.c                                  :+:      :+:    :+:   */
+/*   free_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/01 16:47:24 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/22 15:35:35 by alesspal         ###   ########.fr       */
+/*   Created: 2023/05/22 14:55:37 by alesspal          #+#    #+#             */
+/*   Updated: 2023/05/22 15:48:21 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/std.h"
+#include "../incl/minishell.h"
 
-void	ft_free_2d_char(char **c)
+void	ft_free_data(t_data *data)
 {
-	int i;
-
-	if (!c)
-		return;
-	i = -1;
-	while (c[++i]) {
-		/* printf("Freeing pointer: %p\n", c[i]); */
-		free(c[i]);
+	if (data->input)
+	{
+		free(data->input);
+		data->input = NULL;
 	}
-	/* printf("Freeing tab: %p\n", c); */
-	free(c);
+	if (data->formatted_input)
+	{
+		ft_free_2d_char(data->formatted_input);
+		data->formatted_input = NULL;
+	}
+	if (data->token)
+	{
+		ft_free_token(data->token);
+		/* data->token = NULL; */
+		data->tokens_nb = 0;
+	}
 }

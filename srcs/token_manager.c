@@ -6,7 +6,7 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 11:33:34 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/15 17:25:41 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/05/22 15:10:44 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ int	ft_create_token(t_token **token, char **formatted_input)
 	int		nb_token;
 	t_token	*tail_token;
 
-	// if(!token || !*token || formatted_input || !*formatted_input)
-	// 	return (0);
 	nb_token = 1;
 	*token = ft_init_token(nb_token);
 	tail_token = *token;
@@ -94,21 +92,11 @@ t_token	*ft_init_token(int id)
 
 void	ft_free_token(t_token *token)
 {
-	int		i;
 	t_token	*next;
 
 	while (token)
 	{
 		next = token->next;
-		if (token->cmd_arr)
-		{
-			i = -1;
-			while (token->cmd_arr[++i])
-			{
-				free(token->cmd_arr[i]);
-			}
-			free (token->cmd_arr);
-		}
 		if (token->redirect.infile)
 			free(token->redirect.infile);
 		if (token->redirect.outfile)

@@ -6,7 +6,7 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 13:55:13 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/15 17:18:40 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/05/22 15:08:07 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,6 @@ char	**ft_expander(char **line_elem, char **envp_copy);
 t_token	*ft_init_token(int id);
 int		ft_create_token(t_token **token, char **formatted_input);
 void	ft_display_token(t_token *token);
+void	ft_free_token(t_token *token);
 
 #endif

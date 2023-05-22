@@ -6,7 +6,7 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 12:58:17 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/17 12:28:01 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/05/22 14:27:18 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,27 +84,27 @@ bool	ft_is_valid_redirection(char **f_input, int i)
 
 bool	ft_is_correct_syntax(char *input)
 {
-	int		i;
-	char	**formatted_input;
-	extern	int g_status;
+	int			i;
+	char		**formatted_input;
+	extern int	g_status;
 
 	if (check_unmatched_quotes(input))
-		return (g_status = 258 ,false);
+		return (g_status = 258, false);
 	formatted_input = ft_lexer(input);
 	if (!formatted_input)
-		return (g_status = 258 ,false);
+		return (g_status = 258, false);
 	i = -1;
 	while (formatted_input[++i])
 	{
 		if (ft_is_pipe(formatted_input[i][0]))
 		{
 			if (!ft_is_valid_pipe(formatted_input, i))
-				return (g_status = 258 ,false);
+				return (g_status = 258, false);
 		}
 		else if (ft_is_redirection(formatted_input[i][0]))
 		{
 			if (!ft_is_valid_redirection(formatted_input, i))
-				return (g_status = 258 ,false);
+				return (g_status = 258, false);
 		}
 	}
 	return (true);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:28:45 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/22 10:28:05 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/22 15:10:35 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,9 @@ typedef struct s_data
 // Function prototypes
 int		process_input(t_data *data);
 
-// Initialization
+// Data management
 void	init_data(t_data *data, char **envp);
+void	ft_free_data(t_data *data);
 
 // Path
 int		set_cmd_path(t_token *token, char **envp_cpy);
@@ -110,6 +111,5 @@ void	set_termios(void);
 void	init_signal(void (*signal_handler)(int));
 void	prompt_handler(int sig);
 void	exec_handler(int sig);
-// void	sigint_handler(int sig);
 
 #endif

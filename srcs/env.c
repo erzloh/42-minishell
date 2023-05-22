@@ -6,14 +6,12 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 12:50:21 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/17 14:54:57 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/05/22 14:42:10 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/env_utils.h"
 #include "../incl/env.h"
-
-extern int g_status;
 
 int	ft_setenv(const char *name, const char *value, char ***envp_copy)
 {
@@ -35,11 +33,11 @@ int	ft_setenv(const char *name, const char *value, char ***envp_copy)
 	return (0);
 }
 
-int	ft_unsetenv(char *name, char ***envp_copy)
+int	ft_unsetenv(char *name, char ***envp_cp)
 {
 	if (!ft_is_valid_env_name(name))
 		return (-1);
-	if (ft_remove_env(name, envp_copy) || ft_find_index_env(name, *envp_copy) < 0)
+	if (ft_remove_env(name, envp_cp) || ft_find_index_env(name, *envp_cp) < 0)
 		return (-1);
 	return (0);
 }
@@ -62,7 +60,8 @@ char	*ft_getenv(const char *name, char **envp_copy)
 {
 	int			i;
 	int			len;
-	
+	extern int	g_status;
+
 	if (!ft_is_valid_env_name(name) && ft_memcmp(name, "?\0", 2))
 		return (NULL);
 	if (!ft_memcmp(name, "?\0", 2))
