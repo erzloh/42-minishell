@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: eric <eric@student.42.fr>                  +#+  +:+       +#+         #
+#    By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/13 14:21:14 by eholzer           #+#    #+#              #
-#    Updated: 2023/05/19 14:52:15 by eric             ###   ########.fr        #
+#    Updated: 2023/05/22 14:03:21 by alesspal         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,11 +17,13 @@ CFLAGS		=	-Wall -Werror -Wextra -g -I$(HOME)/.brew/opt/readline/include
 
 INCL_PATH	=	-Iincl/ \
 				-I$(HOME)/.brew/opt/readline/include \
-				-I/usr/local/opt/readline/include
+				-I/usr/local/opt/readline/include \
+				-I//opt/homebrew/Cellar/readline/8.2.1/include
 
 LIBS		=	-Llibft -lft -lreadline \
 				-L$(HOME)/.brew/opt/readline/lib \
-				-L/usr/local/opt/readline/lib
+				-L/usr/local/opt/readline/lib \
+				-L/opt/homebrew/Cellar/readline/8.2.1/lib
 
 LIBFT		=	libft.a
 

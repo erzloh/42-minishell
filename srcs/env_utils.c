@@ -6,7 +6,7 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 12:50:17 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/17 14:41:29 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/05/22 14:21:53 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,22 +45,22 @@ int	ft_find_index_env(const char *name, char **envp_copy)
 	return (-1);
 }
 
-int	ft_replace_env(const char *name, const char *value, char ***envp_copy)
+int	ft_replace_env(const char *name, const char *value, char ***envp_cp)
 {
 	int			i;
 	int			len;
 
-	if (!name || !(*envp_copy))
+	if (!name || !(*envp_cp))
 		return (-1);
 	len = ft_strlen(name);
 	i = -1;
-	while ((*envp_copy)[++i])
+	while ((*envp_cp)[++i])
 	{
-		if (!ft_strncmp((*envp_copy)[i], name, len) && (*envp_copy)[i][len] == '=')
+		if (!ft_strncmp((*envp_cp)[i], name, len) && (*envp_cp)[i][len] == '=')
 		{
-			free((*envp_copy)[i]);
-			(*envp_copy)[i] = ft_strjoin3(name, "=", value);
-			if (!(*envp_copy)[i])
+			free((*envp_cp)[i]);
+			(*envp_cp)[i] = ft_strjoin3(name, "=", value);
+			if (!(*envp_cp)[i])
 				ft_fatal_error("memory allocation error", E_ERROR_MALLOC);
 			return (0);
 		}
@@ -97,17 +97,17 @@ int	ft_add_env(const char *name, const char *value, char ***envp_copy)
 	return (0);
 }
 
-int	ft_remove_env(char *name, char ***envp_copy)
+int	ft_remove_env(char *name, char ***envp_c)
 {
 	char		**new_env;
 	int			i;
 	int			j;
 	int			len;
 
-	if (!name || !(*envp_copy))
+	if (!name || !(*envp_c))
 		return (-1);
 	i = 0;
-	while ((*envp_copy)[i])
+	while ((*envp_c)[i])
 		i++;
 	new_env = malloc(sizeof(char *) * i);
 	if (!new_env)
@@ -115,16 +115,14 @@ int	ft_remove_env(char *name, char ***envp_copy)
 	len = ft_strlen(name);
 	i = -1;
 	j = 0;
-	while ((*envp_copy)[++i])
+	while ((*envp_c)[++i])
 	{
-		if (!(!ft_memcmp((*envp_copy)[i], name, len) && (*envp_copy)[i][len] == '='))
+		if (!(!ft_memcmp((*envp_c)[i], name, len) && (*envp_c)[i][len] == '='))
 		{
-			new_env[j++] = ft_strdup((*envp_copy)[i]);
+			new_env[j++] = ft_strdup((*envp_c)[i]);
 			if (!new_env[j - 1])
 				ft_fatal_error("memory allocation error", E_ERROR_MALLOC);
 		}
 	}
-	new_env[j] = NULL;
-	ft_free_2d_char(*envp_copy);
-	return (*envp_copy = new_env, 0);
+	return (new_env[j] = NULL, ft_free_2d_char(*envp_c), *envp_c = new_env, 0);
 }
