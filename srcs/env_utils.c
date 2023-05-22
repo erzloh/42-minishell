@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 12:50:17 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/22 15:25:29 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/22 16:52:15 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,9 +106,7 @@ int	ft_remove_env(char *name, char ***envp_c)
 
 	if (!name || !(*envp_c))
 		return (-1);
-	i = 0;
-	while ((*envp_c)[i])
-		i++;
+	i = ft_str_arr_len(*envp_c);
 	new_env = malloc(sizeof(char *) * i);
 	if (!new_env)
 		ft_fatal_error("memory allocation error", E_ERROR_MALLOC);
@@ -124,5 +122,6 @@ int	ft_remove_env(char *name, char ***envp_c)
 				ft_fatal_error("memory allocation error", E_ERROR_MALLOC);
 		}
 	}
-	return (new_env[j] = NULL, ft_free_2d_char(*envp_c), *envp_c = new_env, 0);
+	new_env[j] = NULL;
+	return (ft_free_2d_char(*envp_c), *envp_c = new_env, 0);
 }

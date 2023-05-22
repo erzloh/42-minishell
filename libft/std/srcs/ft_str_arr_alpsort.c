@@ -6,7 +6,7 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 10:00:31 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/05 10:08:30 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/05/22 17:25:12 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,7 @@ void	ft_str_arr_alpsort(char ***str_arr)
 	s_sort = *str_arr;
 	if (!s_sort)
 		return ;
-	len_envp = 0;
-	while (s_sort[len_envp])
-		len_envp++;
+	len_envp = ft_str_arr_len;
 	i = -1;
 	while (++i < len_envp - 1)
 	{

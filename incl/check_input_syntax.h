@@ -6,14 +6,14 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 16:33:58 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/15 16:40:23 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/05/22 17:26:47 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CHECK_INPUT_SYNTAX_H
 # define CHECK_INPUT_SYNTAX_H
 
-#include <stdbool.h>
+# include <stdbool.h>
 
 bool	ft_is_pipe(int c);
 bool	ft_is_redirection(int c);

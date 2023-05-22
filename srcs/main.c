@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:51:07 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/22 14:50:49 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/22 16:51:31 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ int	main(int ac, char **av, char **envp)
 			init_signal(exec_handler);
 			process_input(&data);
 		}
-		free(data.input);
-		// free all
+		ft_free_data(&data);
 	}
-	// free all
+	ft_free_2d_char(data.envp_cpy);
+	ft_free_data(&data);
 	return (0);
 }
 
@@ -46,4 +46,9 @@ void	init_data(t_data *data, char **envp)
 	data->envp_cpy = ft_str_arrdup(envp);
 	set_termios();
 	g_status = 0;
+	data->input = NULL;
+	data->formatted_input = NULL;
+	data->tokens_nb = 0;
+	data->token = NULL;
+	data->pipe_fd = NULL;
 }

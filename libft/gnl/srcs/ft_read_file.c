@@ -6,12 +6,12 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 11:38:20 by alesspal          #+#    #+#             */
-/*   Updated: 2023/03/16 17:13:00 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/05/22 17:21:24 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incl/get_next_line.h"
-# include "../../std/incl/std.h"
+#include "../../std/incl/std.h"
 
 char	*ft_read_file(int fd)
 {

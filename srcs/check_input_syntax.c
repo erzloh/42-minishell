@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_input_syntax.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 12:58:17 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/22 15:17:30 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/22 17:28:01 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,28 +86,28 @@ bool	ft_is_valid_redirection(char **f_input, int i)
 bool	ft_is_correct_syntax(char *input)
 {
 	int		i;
-	char	**formatted_input;
+	char	**format_input;
 
 	if (ft_is_empty_cmd(input))
 		return (false);
 	if (check_unmatched_quotes(input))
 		return (g_status = 258, false);
-	formatted_input = ft_lexer(input);
-	if (!formatted_input)
-		return (g_status = 258, false);
+	format_input = ft_lexer(input);
+	if (!format_input)
+		return (ft_free_2d_char(format_input), g_status = 258, false);
 	i = -1;
-	while (formatted_input[++i])
+	while (format_input[++i])
 	{
-		if (ft_is_pipe(formatted_input[i][0]))
+		if (ft_is_pipe(format_input[i][0]))
 		{
-			if (!ft_is_valid_pipe(formatted_input, i))
-				return (g_status = 258, false);
+			if (!ft_is_valid_pipe(format_input, i))
+				return (ft_free_2d_char(format_input), g_status = 258, false);
 		}
-		else if (ft_is_redirection(formatted_input[i][0]))
+		else if (ft_is_redirection(format_input[i][0]))
 		{
-			if (!ft_is_valid_redirection(formatted_input, i))
-				return (g_status = 258, false);
+			if (!ft_is_valid_redirection(format_input, i))
+				return (ft_free_2d_char(format_input), g_status = 258, false);
 		}
 	}
-	return (true);
+	return (ft_free_2d_char(format_input), true);
 }

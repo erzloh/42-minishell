@@ -6,7 +6,7 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/25 16:09:25 by marvin            #+#    #+#             */
-/*   Updated: 2023/05/10 17:38:59 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/05/22 17:23:10 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,8 @@ char				*ft_strnstr(const char *str, const char *to_find, \
 /// @param s2 string two
 /// @return the concatenated string
 char				*ft_strjoin(const char *s1, const char *s2);
-char				*ft_strjoin3(const char *s1, const char *s2, const char *s3);
+char				*ft_strjoin3(const char *s1, const char *s2,
+						const char *s3);
 char				*ft_strtrim(char *s1, char const *set);
 
 /// @brief split a string into multiple strings with a separator

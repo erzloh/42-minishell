@@ -6,7 +6,7 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 13:55:13 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/15 17:18:40 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/05/22 17:26:24 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@
 typedef enum e_redirect_in
 {
 	NO_R_IN,
-	INPUT_REDIRECT,		// <
-	HEREDOC_REDIRECT	// <<
+	INPUT_REDIRECT,
+	HEREDOC_REDIRECT
 }	t_redirect_in;
 
 typedef enum e_redirect_out
 {
 	NO_R_OUT,
-	OUTPUT_REDIRECT,	// >
-	APPEND_REDIRECT	// >>
+	OUTPUT_REDIRECT,
+	APPEND_REDIRECT
 }	t_redirect_out;
 
 typedef struct s_redirect
@@ -55,5 +55,6 @@ char	**ft_expander(char **line_elem, char **envp_copy);
 t_token	*ft_init_token(int id);
 int		ft_create_token(t_token **token, char **formatted_input);
 void	ft_display_token(t_token *token);
+void	ft_free_token(t_token *token);
 
 #endif

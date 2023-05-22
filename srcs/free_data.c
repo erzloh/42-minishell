@@ -1,22 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quote_manager.h                                    :+:      :+:    :+:   */
+/*   free_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/10 10:39:13 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/22 17:26:36 by alesspal         ###   ########.fr       */
+/*   Created: 2023/05/22 14:55:37 by alesspal          #+#    #+#             */
+/*   Updated: 2023/05/22 17:28:15 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef QUOTE_MANAGER_H
-# define QUOTE_MANAGER_H
+#include "../incl/minishell.h"
 
-# include <stdbool.h>
-
-bool	check_unmatched_quotes(char *str);
-void	update_quote_status(char cur_char, char *cur_quote);
-char	*ft_remove_quotes(char *str);
-
-#endif
+void	ft_free_data(t_data *data)
+{
+	if (data->input)
+	{
+		free(data->input);
+		data->input = NULL;
+	}
+	if (data->formatted_input)
+	{
+		ft_free_2d_char(data->formatted_input);
+		data->formatted_input = NULL;
+	}
+	if (data->token)
+	{
+		ft_free_token(data->token);
+		data->tokens_nb = 0;
+	}
+}
