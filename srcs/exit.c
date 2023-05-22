@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 10:50:57 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/17 10:21:52 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/05/22 15:29:28 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/minishell.h"
-
-extern int g_status;
+#include "minishell.h"
 
 // Simulates the exit commands
 void	exit_builtin(t_token *token)
@@ -36,7 +34,8 @@ void	exit_builtin(t_token *token)
 	else if (!is_str_digit(token->cmd_arr[1]))
 	{
 		printf("exit\n");
-		printf("minishell: exit: %s: numeric argument required\n", token->cmd_arr[1]);
+		printf("minishell: exit: %s: numeric argument required\n",
+			token->cmd_arr[1]);
 		exit(255);
 	}
 	if (!token->pid)

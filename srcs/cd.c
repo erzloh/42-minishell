@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/08 14:15:59 by eric              #+#    #+#             */
-/*   Updated: 2023/05/17 10:21:52 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/05/22 15:16:17 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/minishell.h"
-
-extern int g_status;
+#include "minishell.h"
 
 void	cd(t_token *token)
 {

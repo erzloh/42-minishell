@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 15:06:33 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/15 17:17:34 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/05/22 16:44:55 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,27 +31,6 @@ void	update_word_count(const char *str, int i, int *nb_word)
 			(*nb_word)++;
 	}
 }
-
-/* int main()
-{
-	char *cmd = ft_strdup("     salut \" a \'a\'  \"  a \'  \"   \'a f\' afaf a f\"aa   a\"\'   a  ");
-
-	printf("cmd = %s\n", cmd);
-	printf("nb of word = %i\n", ft_count_arg(cmd));
-	free(cmd);
-
-	cmd = ft_strdup("     salut \" a \'a\' | \" | a \' >output.txt \"   \'a f\' afaf a f\"aa   a\"\'   a  > output.txt");
-
-	printf("cmd = %s\n", cmd);
-	printf("nb of word = %i\n", ft_count_arg(cmd));
-	free(cmd);
-	cmd = ft_strdup("|     salut \" a \'a\' | \"|a \' >output.txt \"   \'a f\' afaf a f\"aa   a\"\'   a>output.txt|");
-
-	printf("cmd = %s\n", cmd);
-	printf("nb of word = %i\n", ft_count_arg(cmd));
-	free(cmd);
-	return (0);
-} */
 
 char	*create_word_and_update_start(const char *str, int i, int *start)
 {
@@ -83,94 +62,3 @@ char	*handle_character(const char *str, int i, int *start)
 	else
 		return (NULL);
 }
-
-/* int main()
-{
-	int	i = 0;
-	char *cmd = ft_strdup("     salut \" a \'a\'  \"  a \'  \"   \'a f\' afaf a f\"aa   a\"\'   a  ");
-	char *arg = ft_get_arg(cmd, &i);
-
-	printf("cmd = %s\n", cmd);
-	printf("word = %s && i = %i\n", arg, i);
-	free(cmd);
-	free(arg);
-
-	cmd = ft_strdup("     salut \" a \'a\' | \" | a \' >output.txt \"   \'a f\' afaf a f\"aa   a\"\'   a  > output.txt");
-	arg = ft_get_arg(cmd, &i);
-	printf("cmd = %s\n", cmd);
-	printf("word = %s && i = %i\n", arg, i);
-	free(cmd);
-	free(arg);
-
-	cmd = ft_strdup("     salut \" a \'a\' | \"|a \' >output.txt \"   \'a f\' afaf a f\"aa   a\"\'   a>output.txt");
-	arg = ft_get_arg(cmd, &i);
-	printf("cmd = %s\n", cmd);
-	printf("word = %s && i = %i\n", arg, i);
-	free(cmd);
-	free(arg);
-	return (0);
-} */
-
-/* int	main()
-{
-	int		i = 0;
-	int		j = -1;
-	int		nb_word;
-	char	*cmd;
-	char	**split;
-
-	cmd = ft_strdup("     salut \" a \'a\'  \"  a \'  \"   \'a f\' afaf a f\"aa   a\"\'   a  ");
-	printf("cmd = %s\n", cmd);
-	nb_word = ft_count_arg(cmd);
-	printf("nb_word = %i\n", nb_word);
-	split = ft_lexer(cmd);
-	printf("lexer = {");
-	while (++j < nb_word)
-	{
-		printf("%s", split[j]);
-		if (j < nb_word - 1)
-			printf(", ");
-	}
-	printf("}\n");
-	free(cmd);
-	ft_free_2d_char(split);
-
-	printf("------------------------------------------------------------------------------------------------------------------------\n");
-
-	cmd = ft_strdup("     salut \" a \'a\' | \" | a \' >output.txt \"   \'a f\' afaf a f\"aa   a\"\'   a  > output.txt");
-	printf("cmd = %s\n", cmd);
-	nb_word = ft_count_arg(cmd);
-	printf("nb_word = %i\n", nb_word);
-	split = ft_lexer(cmd);
-	printf("lexer = {");
-	j = -1;
-	while (++j < nb_word)
-	{
-		printf("%s", split[j]);
-		if (j < nb_word - 1)
-			printf(", ");
-	}
-	printf("}\n");
-	free(cmd);
-	ft_free_2d_char(split);
-
-	printf("------------------------------------------------------------------------------------------------------------------------\n");
-	
-	cmd = ft_strdup("|     salut \" a \'a\' | \"|a \' >output.txt \"   \'a f\' afaf a f\"aa   a\"\'   a>output.txt|");
-	printf("cmd = %s\n", cmd);
-	nb_word = ft_count_arg(cmd);
-	printf("nb_word = %i\n", nb_word);
-	split = ft_lexer(cmd);
-	printf("lexer = {");
-	j = -1;
-	while (++j < nb_word)
-	{
-		printf("%s", split[j]);
-		if (j < nb_word - 1)
-			printf(", ");
-	}
-	printf("}\n");
-	free(cmd);
-	ft_free_2d_char(split);
-	return (0);
-} */

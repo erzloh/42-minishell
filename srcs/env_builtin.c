@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   env_builtin.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 10:43:34 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/17 10:21:52 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/05/22 15:25:22 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/minishell.h"
+#include "minishell.h"
 
 void	env(t_data *data)
 {

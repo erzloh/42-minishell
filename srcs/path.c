@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   path.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eric <eric@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 15:00:09 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/19 15:44:16 by eric             ###   ########.fr       */
+/*   Updated: 2023/05/22 16:33:47 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/minishell.h"
+#include "minishell.h"
 
 // Replace the token->cmd_arr[0] by the path of cmd if found
 // Returns 0 if it succeeds
@@ -18,7 +18,6 @@
 // Returns 1 if the command is not found
 int	set_cmd_path(t_token *token, char **envp_cpy)
 {
-	// char	*path_str = "/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki:/Library/Apple/usr/bin";
 	char	*path_str;
 	char	**path_arr;
 
@@ -29,26 +28,25 @@ int	set_cmd_path(t_token *token, char **envp_cpy)
 		token->is_builtin = 1;
 		return (0);
 	}
-	// Check if the cmd is already a valid path
 	if (access(token->cmd_arr[0], F_OK) == 0)
 	{
 		token->is_valid_cmd = 1;
 		return (0);
 	}
-	path_str = ft_getenv("PATH", envp_cpy); // Function not availabel yet. Is it a copy? // commented for now
+	path_str = ft_getenv("PATH", envp_cpy);
 	if (!path_str)
 		return (1);
 	path_arr = ft_split(path_str, ':');
 	if (!path_arr)
 		fatal_error("Error with malloc()");
-	// If not a path, checks if the commands exists in one of the paths from PATH
 	if (search_cmd_in_path(path_arr, token) == 0)
 		return (0);
 	else
 		return (1);
 }
 
-// Return 0 if the command is found in the path_arr. Set the value of token->cmd_arr[0] to the path.
+// Return 0 if the command is found in the path_arr. 
+// Set the value of token->cmd_arr[0] to the path.
 // Return 1 if the command is not found.
 // Return MALLOC_ERR if there is a malloc error.
 int	search_cmd_in_path(char **path_arr, t_token *token)
@@ -64,14 +62,14 @@ int	search_cmd_in_path(char **path_arr, t_token *token)
 			fatal_error("Error with malloc()");
 		if (access(tmp_path, F_OK) == 0)
 		{
-			// free(token->cmd_arr[0]); NEEDS TO BE UNCOMMENTED WHEN MERGING WITH ALESS
+			free(token->cmd_arr[0]);
 			token->cmd_arr[0] = tmp_path;
 			token->is_valid_cmd = 1;
 			ft_free_2d_char(path_arr);
 			return (0);
 		}
+		free(tmp_path);
 	}
-	free(tmp_path);
 	ft_free_2d_char(path_arr);
 	return (1);
 }

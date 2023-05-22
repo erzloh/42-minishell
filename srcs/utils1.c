@@ -6,11 +6,11 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:19:05 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/22 13:36:15 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/22 16:41:30 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/minishell.h"
+#include "minishell.h"
 
 // Print a default error message and append the first argument to it.
 // Print the errno error message as well.

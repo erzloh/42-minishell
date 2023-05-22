@@ -6,14 +6,11 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/28 13:58:14 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/22 13:23:29 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/22 16:10:03 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/minishell.h"
-#include "env_utils.h"
-
-extern int g_status;
+#include "minishell.h"
 
 // Creates children with fork() for each token element
 void	create_children(t_token *token, t_data *data)
@@ -23,19 +20,10 @@ void	create_children(t_token *token, t_data *data)
 		token->pid = fork();
 		if (token->pid < 0)
 			fatal_error("Error with fork()");
-		// Child Process
 		if (token->pid == 0)
 		{
 			check_infile(token, data);
-			// Check if command is valid
-			if (!token->is_valid_cmd && !token->is_builtin)
-			{
-				if (ft_find_index_env("PATH", data->envp_cpy) == -1)
-					printf("minishell: %s: No such file or directory\n", token->cmd_arr[0]);
-				else
-					printf("minishell: %s: command not found\n", token->cmd_arr[0]);
-				exit(127);
-			}
+			check_cmd_validity(token, data);
 			set_dups(token);
 			clean_up(token, data);
 			if (token->is_builtin)

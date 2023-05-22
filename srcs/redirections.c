@@ -6,11 +6,11 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 08:59:43 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/22 12:11:43 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/22 16:39:25 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incl/minishell.h"
+#include "minishell.h"
 
 void	set_redirect_fd_in_token(t_token *token)
 {
@@ -35,6 +35,15 @@ void	set_input_redirect(t_token *token)
 		token->redirect.is_valid_infile = 0;
 }
 
+static void	set_heredoc_pipe(int **heredoc_pipe)
+{
+	*heredoc_pipe = malloc(sizeof(int) * 2);
+	if (!*heredoc_pipe)
+		fatal_error("Error when trying to malloc() heredoc_pipe");
+	if (pipe(*heredoc_pipe) < 0)
+		fatal_error("Error when trying to pipe() heredoc_pipe");
+}
+
 void	set_heredoc_redirect(t_token *token)
 {
 	int		*heredoc_pipe;
@@ -42,15 +51,12 @@ void	set_heredoc_redirect(t_token *token)
 	char	*eof;
 
 	eof = token->redirect.infile;
-	heredoc_pipe = malloc(sizeof(int) * 2);
-	if (!heredoc_pipe)
-		fatal_error("Error when trying to malloc() heredoc_pipe");
-	if (pipe(heredoc_pipe) < 0)
-		fatal_error("Error when trying to pipe() heredoc_pipe");
+	set_heredoc_pipe(&heredoc_pipe);
 	heredoc_input = readline("> ");
 	if (heredoc_input)
 	{
-		while (heredoc_input && ft_strncmp(heredoc_input, eof, ft_strlen(eof)) != 0)
+		while (heredoc_input
+			&& ft_strncmp(heredoc_input, eof, ft_strlen(eof)) != 0)
 		{
 			write(heredoc_pipe[1], heredoc_input, ft_strlen(heredoc_input));
 			write(heredoc_pipe[1], "\n", 1);
@@ -71,18 +77,6 @@ void	set_output_redirect(t_token *token)
 
 	outfile = token->redirect.outfile;
 	outfile_fd = open(outfile, O_WRONLY | O_CREAT | O_TRUNC, 0644);
-	if (outfile_fd < 0)
-		fatal_error("Error when openning an outfile");
-	token->redirect.outfile_fd = outfile_fd;
-}
-
-void	set_append_redirect(t_token *token)
-{
-	char	*outfile;
-	int		outfile_fd;
-
-	outfile = token->redirect.outfile;
-	outfile_fd = open(outfile, O_WRONLY | O_CREAT | O_APPEND, 0644);
 	if (outfile_fd < 0)
 		fatal_error("Error when openning an outfile");
 	token->redirect.outfile_fd = outfile_fd;

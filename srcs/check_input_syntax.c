@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_input_syntax.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 12:58:17 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/17 12:28:01 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/05/22 15:17:30 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "../incl/tokenizer.h"
 #include "../incl/check_input_syntax.h"
 #include "../incl/quote_manager.h"
+#include "minishell.h"
 
 bool	ft_is_empty_cmd(char *input)
 {
@@ -86,25 +87,26 @@ bool	ft_is_correct_syntax(char *input)
 {
 	int		i;
 	char	**formatted_input;
-	extern	int g_status;
 
+	if (ft_is_empty_cmd(input))
+		return (false);
 	if (check_unmatched_quotes(input))
-		return (g_status = 258 ,false);
+		return (g_status = 258, false);
 	formatted_input = ft_lexer(input);
 	if (!formatted_input)
-		return (g_status = 258 ,false);
+		return (g_status = 258, false);
 	i = -1;
 	while (formatted_input[++i])
 	{
 		if (ft_is_pipe(formatted_input[i][0]))
 		{
 			if (!ft_is_valid_pipe(formatted_input, i))
-				return (g_status = 258 ,false);
+				return (g_status = 258, false);
 		}
 		else if (ft_is_redirection(formatted_input[i][0]))
 		{
 			if (!ft_is_valid_redirection(formatted_input, i))
-				return (g_status = 258 ,false);
+				return (g_status = 258, false);
 		}
 	}
 	return (true);

@@ -6,7 +6,7 @@
 /*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:28:45 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/22 13:35:46 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/22 16:00:07 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,26 +28,24 @@
 # include "../libft/libft.h"
 # include "tokenizer.h"
 # include "env.h"
-// Macros
 
-# define MALLOC_ERR -42
-// # define MILD_ERR -43 
-// # define CMD_NOT_FOUND -44 
+// Global variable
+int	g_status;
 
 // Structures
 typedef struct s_data
 {
-	t_token	*token; // pointer to the first token
-    char    **envp_cpy; // a COPY of envp
-    char    *input;
-    char    **formatted_input;
+	t_token	*token;
+	char	**envp_cpy;
+	char	*input;
+	char	**formatted_input;
 	int		**pipe_fd;
 	int		tokens_nb;
 }	t_data;
 
 // Function prototypes
 void	check_args(int ac);
-int		process_input(t_data *data);
+void	process_input(t_data *data);
 
 // Initialization
 void	init_data(t_data *data, char **envp);
@@ -64,7 +62,7 @@ int		is_builtin(t_token *token);
 int		is_str_digit(char *str);
 
 // Executor
-int		executor(t_token *token, t_data *data);
+void	executor(t_token *token, t_data *data);
 
 // Children
 void	create_children(t_token *token, t_data *data);
@@ -73,6 +71,7 @@ void	set_dups(t_token *token);
 void	clean_up(t_token *token, t_data *data);
 void	wait_children(t_token *token);
 int		is_cmd_childable(t_token *token);
+void	check_cmd_validity(t_token *token, t_data *data);
 
 // Exec
 int		exec_external(t_token *token, t_data *data);
@@ -101,16 +100,10 @@ void	set_output_redirect(t_token *token);
 void	set_append_redirect(t_token *token);
 void	close_redirect_files(t_token *token);
 
-// Signals Aless
-// void	ft_sigINGORE_handler(int signum);
-// void	ft_sigINT_handler(int signum);
-// int		ft_init_signal(int signum, void(*handler)(int));
-
 // Signals
 void	set_termios(void);
 void	init_signal(void (*signal_handler)(int));
 void	prompt_handler(int sig);
 void	exec_handler(int sig);
-// void	sigint_handler(int sig);
 
 #endif
