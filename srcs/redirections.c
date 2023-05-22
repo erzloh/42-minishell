@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirections.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 08:59:43 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/17 10:21:52 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/05/22 12:11:43 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,18 @@ void	set_heredoc_redirect(t_token *token)
 	if (pipe(heredoc_pipe) < 0)
 		fatal_error("Error when trying to pipe() heredoc_pipe");
 	heredoc_input = readline("> ");
-	while (ft_strncmp(heredoc_input, eof, ft_strlen(eof)) != 0)
+	if (heredoc_input)
 	{
-		write(heredoc_pipe[1], heredoc_input, ft_strlen(heredoc_input));
-		write(heredoc_pipe[1], "\n", 1);
-		free(heredoc_input);
-		heredoc_input = readline("> ");
+		while (heredoc_input && ft_strncmp(heredoc_input, eof, ft_strlen(eof)) != 0)
+		{
+			write(heredoc_pipe[1], heredoc_input, ft_strlen(heredoc_input));
+			write(heredoc_pipe[1], "\n", 1);
+			free(heredoc_input);
+			heredoc_input = readline("> ");
+		}
 	}
-	free(heredoc_input);
+	if (heredoc_input)
+		free(heredoc_input);
 	token->redirect.infile_fd = heredoc_pipe[0];
 	token->redirect.heredoc_pipe = heredoc_pipe;
 }

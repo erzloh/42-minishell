@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eric <eric@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:51:07 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/19 16:19:45 by eric             ###   ########.fr       */
+/*   Updated: 2023/05/22 11:21:13 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,13 @@ int	main(int ac, char **av, char **envp)
 	g_status = 0;
 	init_data(&data, envp);
 	set_termios();
-	init_signal();
 	while (1)
 	{
+		init_signal(prompt_handler);
 		data.input = readline("minishell$ ");
 		if (!data.input)
-			fatal_error("Error with readline()");
+			break ;
+		init_signal(exec_handler);
 		if (!ft_is_empty_cmd(data.input))
 			add_history(data.input);
 		if (ft_is_correct_syntax(data.input))

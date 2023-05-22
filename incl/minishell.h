@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eric <eric@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:28:45 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/19 14:39:04 by eric             ###   ########.fr       */
+/*   Updated: 2023/05/22 10:28:05 by eholzer          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,9 @@ void	close_redirect_files(t_token *token);
 
 // Signals
 void	set_termios(void);
-void	init_signal(void);
-void	sigint_handler(int sig);
+void	init_signal(void (*signal_handler)(int));
+void	prompt_handler(int sig);
+void	exec_handler(int sig);
+// void	sigint_handler(int sig);
 
 #endif
