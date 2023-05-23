@@ -6,7 +6,7 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 11:33:34 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/23 13:00:30 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/05/23 14:06:11 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,22 +19,22 @@ void	ft_formatting_redirect(t_redirect *red, char **input, int *i)
 	{
 		if (input[++(*i)][0] == '<')
 		{
-			(*red).infile = input[++(*i)];
+			(*red).infile = ft_strdup(input[++(*i)]);
 			(*red).r_in_type = HEREDOC_REDIRECT;
 			return ;
 		}
-		(*red).infile = input[*i];
+		(*red).infile = ft_strdup(input[*i]);
 		(*red).r_in_type = INPUT_REDIRECT;
 	}
 	else if (input[*i][0] == '>')
 	{
 		if (input[++(*i)][0] == '>')
 		{
-			(*red).outfile = input[++(*i)];
+			(*red).outfile = ft_strdup(input[++(*i)]);
 			(*red).r_out_type = APPEND_REDIRECT;
 			return ;
 		}
-		(*red).outfile = input[*i];
+		(*red).outfile = ft_strdup(input[*i]);
 		(*red).r_out_type = OUTPUT_REDIRECT;
 	}
 }
@@ -98,13 +98,25 @@ void	ft_free_token(t_token *token)
 	{
 		next = token->next;
 		if (token->cmd_arr)
+		{
 			ft_free_2d_char(token->cmd_arr);
+			token->cmd_arr = NULL;
+		}	
 		if (token->redirect.infile)
+		{
 			free(token->redirect.infile);
+			token->redirect.infile = NULL;
+		}
 		if (token->redirect.outfile)
+		{
 			free(token->redirect.outfile);
+			token->redirect.outfile = NULL;
+		}
 		if (token->redirect.heredoc_pipe)
+		{
 			free(token->redirect.heredoc_pipe);
+			token->redirect.heredoc_pipe = NULL;
+		}
 		free(token);
 		token = next;
 	}

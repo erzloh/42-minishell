@@ -6,7 +6,7 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 13:51:07 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/23 13:01:11 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/05/23 13:41:32 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ int	main(int ac, char **av, char **envp)
 		}
 		ft_free_data(&data);
 	}
-	ft_free_2d_char(data.envp_cpy);
-	ft_free_data(&data);
+	/* ft_free_2d_char(data.envp_cpy);
+	ft_free_data(&data); */
 	return (0);
 }
 
