@@ -6,7 +6,7 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/03 12:52:34 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/15 17:17:52 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/05/23 12:43:08 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ char	**ft_lexer(char const *s)
 	nb_word_tot = ft_count_arg(s);
 	split = malloc((nb_word_tot + 1) * sizeof(char *));
 	if (!split)
-		ft_fatal_error("memory allocation error\n", E_ERROR_MALLOC);
+		ft_fatal_error("memory allocation error4\n", E_ERROR_MALLOC);
 	i = 0;
 	nb_word_cpt = 0;
 	while (nb_word_cpt < nb_word_tot)

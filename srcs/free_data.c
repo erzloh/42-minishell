@@ -6,7 +6,7 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/22 14:55:37 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/22 17:28:15 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/05/23 13:04:38 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ void	ft_free_data(t_data *data)
 	{
 		ft_free_token(data->token);
 		data->tokens_nb = 0;
+		data->token = NULL;
 	}
 }
