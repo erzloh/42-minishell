@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eric <eric@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 13:36:17 by eric              #+#    #+#             */
-/*   Updated: 2023/05/22 16:39:51 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/23 14:14:33 by eric             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ void	prompt_handler(int sig)
 		rl_on_new_line();
 		rl_redisplay();
 		g_status = 1;
+	}
+	if (sig == SIGQUIT)
+	{
+		rl_on_new_line();
+		rl_redisplay();
 	}
 }
 
