@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   token_manager.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eric <eric@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 11:33:34 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/23 15:41:17 by eric             ###   ########.fr       */
+/*   Updated: 2023/05/23 15:45:11 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,25 +98,13 @@ void	ft_free_token(t_token *token)
 	{
 		next = token->next;
 		if (token->cmd_arr)
-		{
-			ft_free_2d_char(token->cmd_arr);
-			token->cmd_arr = NULL;
-		}	
+			ft_free_2d_char(token->cmd_arr);	
 		if (token->redirect.infile)
-		{
 			free(token->redirect.infile);
-			token->redirect.infile = NULL;
-		}
 		if (token->redirect.outfile)
-		{
 			free(token->redirect.outfile);
-			token->redirect.outfile = NULL;
-		}
 		if (token->redirect.heredoc_pipe)
-		{
 			free(token->redirect.heredoc_pipe);
-			token->redirect.heredoc_pipe = NULL;
-		}
 		free(token);
 		token = next;
 	}
