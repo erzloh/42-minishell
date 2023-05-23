@@ -6,7 +6,7 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 11:33:34 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/23 15:45:11 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/05/23 16:23:51 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void	ft_free_token(t_token *token)
 	{
 		next = token->next;
 		if (token->cmd_arr)
-			ft_free_2d_char(token->cmd_arr);	
+			ft_free_2d_char(token->cmd_arr);
 		if (token->redirect.infile)
 			free(token->redirect.infile);
 		if (token->redirect.outfile)

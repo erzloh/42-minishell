@@ -6,7 +6,7 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/01 12:50:21 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/22 16:52:55 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/05/23 16:20:46 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,7 @@ int	ft_unsetenv(char *name, char ***envp_cp)
 {
 	if (!ft_is_valid_env_name(name))
 		return (-1);
-	if (ft_remove_env(name, envp_cp)
-		|| ft_find_index_env(name, *envp_cp) < 0)
+	if (ft_find_index_env(name, *envp_cp) < 0 || ft_remove_env(name, envp_cp))
 		return (-1);
 	return (0);
 }
