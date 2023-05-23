@@ -6,7 +6,7 @@
 /*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/10 17:37:55 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/23 12:59:38 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/05/23 13:15:32 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,17 @@ char	**ft_str_arr_cat(char **str_arr, const char *new_str)
 	len_str_arr = ft_str_arr_len(str_arr);
 	new_str_arr = malloc((len_str_arr + 2) * sizeof(char *));
 	if (!new_str_arr)
-		ft_fatal_error("memory allocation error1\n", E_ERROR_MALLOC);
+		ft_fatal_error("memory allocation error\n", E_ERROR_MALLOC);
 	i = -1;
 	while (++i < len_str_arr)
 	{
 		new_str_arr[i] = ft_strdup(str_arr[i]);
 		if (!new_str_arr[i])
-			ft_fatal_error("memory allocation error222\n", E_ERROR_MALLOC);
+			ft_fatal_error("memory allocation error\n", E_ERROR_MALLOC);
 	}
 	new_str_arr[len_str_arr] = ft_strdup(new_str);
 	if (!new_str_arr[len_str_arr])
-		ft_fatal_error("memory allocation error3\n", E_ERROR_MALLOC);
+		ft_fatal_error("memory allocation error\n", E_ERROR_MALLOC);
 	new_str_arr[len_str_arr + 1] = NULL;
 	ft_free_2d_char(str_arr);
 	return (new_str_arr);
