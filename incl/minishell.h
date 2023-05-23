@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
+/*   By: eric <eric@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:28:45 by alesspal          #+#    #+#             */
-/*   Updated: 2023/05/22 16:54:28 by alesspal         ###   ########.fr       */
+/*   Updated: 2023/05/23 15:18:25 by eric             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	exec_builtin(t_token *token, t_data *data);
 int		echo(t_token *token);
 void	exit_builtin(t_token *token);
 void	pwd(void);
-void	cd(t_token *token);
+void	cd(t_token *token, t_data *data);
 void	env(t_data *data);
 void	export(t_token *token, t_data *data);
 void	unset(t_token *token, t_data *data);

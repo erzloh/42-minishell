@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eric <eric@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/05 09:51:03 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/22 15:28:31 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/23 15:18:27 by eric             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	exec_builtin(t_token *token, t_data *data)
 	else if (ft_strncmp(token->cmd_arr[0], "pwd", 4) == 0)
 		pwd();
 	else if (ft_strncmp(token->cmd_arr[0], "cd", 3) == 0)
-		cd(token);
+		cd(token, data);
 	else if (ft_strncmp(token->cmd_arr[0], "env", 4) == 0)
 		env(data);
 	else if (ft_strncmp(token->cmd_arr[0], "export", 7) == 0)
