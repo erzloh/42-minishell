@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eholzer <eholzer@student.42.fr>            +#+  +:+       +#+        */
+/*   By: alesspal <alesspal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/09 10:27:12 by eholzer           #+#    #+#             */
-/*   Updated: 2023/05/22 16:10:12 by eholzer          ###   ########.fr       */
+/*   Updated: 2023/05/23 16:33:03 by alesspal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ void	export(t_token *token, t_data *data)
 		exit(0);
 	}
 	if (set_name(&name, &i, token) == -1)
-		return ;
+		return (free(name));
 	if (token->cmd_arr[1][i] != '=')
-		return ;
+		return (free(name));
 	value = token->cmd_arr[1] + i + 1;
 	if (ft_setenv(name, value, &data->envp_cpy))
 		g_status = 1;
