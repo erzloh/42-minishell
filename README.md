@@ -63,6 +63,11 @@ ls -l | wc -l > output.txt
 ```shell
 cat file.txt
 ```
+
+## Screenshots
+
 <img width="564" alt="Screen Shot 2023-06-02 at 3 49 57 PM" src="https://github.com/erzloh/42-minishell/assets/48589114/a2fcaa9d-587f-4851-98cb-107cdec05d74">
+
 <img width="541" alt="Screen Shot 2023-06-02 at 3 50 09 PM" src="https://github.com/erzloh/42-minishell/assets/48589114/d26ef1dd-17bb-4475-a41d-1578a57b1ad6">
+
 <img width="553" alt="Screen Shot 2023-06-02 at 3 51 11 PM" src="https://github.com/erzloh/42-minishell/assets/48589114/7ac8bf0c-f3c2-4882-a8f2-091cc8af2cf9">
